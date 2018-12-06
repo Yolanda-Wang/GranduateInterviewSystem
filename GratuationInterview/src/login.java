@@ -1,4 +1,7 @@
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.sql.*;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -10,7 +13,12 @@ import javax.swing.JTextField;
 
 
 public class login {
-    
+        public static String url = "jdbc:mysql://localhost:3306/interview?useUnicode=true&characterencoding=GBK";
+        public static String username = "manager";
+        public static String password = "123456";
+        public static Connection con;
+        public static Statement stmt;
+        public static ResultSet rs;
     public static void main(String[] args) {    
         // 创建 JFrame 实例
         JFrame frame = new JFrame("登录");
@@ -32,13 +40,27 @@ public class login {
 
         // 设置界面可见
         frame.setVisible(true);
+
+        try {
+            System.out.println("登录：");
+            Class.forName("com.mysql.jdbc.Driver");
+            System.out.println("加载驱动成功");
+        } catch (ClassNotFoundException var2) {
+            System.out.println("加载驱动失败!");
+            var2.printStackTrace();
+        }
+
+        try {
+            con = DriverManager.getConnection(url, username, password);
+            stmt = con.createStatement();
+            System.out.println("连接成功");
+        } catch (SQLException var1) {
+            System.out.println("连接失败!");
+        }
     }
 
     private static void placeComponents(JPanel panel) {
 
-        /* 布局部分我们这边不多做介绍
-         * 这边设置布局为 null
-         */
         panel.setLayout(null);
 
         // 创建 JLabel
@@ -67,17 +89,111 @@ public class login {
         loginButton.setBounds(170, 180, 100, 35);
         panel.add(loginButton);
         
-        JLabel classLabel = new JLabel("类别:");
-        classLabel.setFont(new Font("",Font.PLAIN,16));
-        classLabel.setBounds(100,140,80,25);
-        panel.add(classLabel);
-        
-        JComboBox comboBox=new JComboBox();
-        comboBox.setBounds(140,140,100,20);
-        comboBox.addItem("student");
-        comboBox.addItem("teacher");
-        panel.add(comboBox);
+        //登录
+        loginButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String passW = String.valueOf(passwordText.getPassword());
+                if(userText.getText().equals("")){
+                    System.out.println("请输入账号");
+                }
+                else if(passW.equals("")){
+                    System.out.println("请输入密码");
+                }
+                else{
+                    if(userText.getText().length()==11){
+                        String select = "select S_stuID,S_password from student where S_stuID='"+userText.getText()+"'";
+                        try {
+                            rs = stmt.executeQuery(select);
+                            if(rs.next()){
+                                if(rs.getString("S_password")==null){
+                                    System.out.println("未分配密码");
+                                }
+                                else{
+                                    if(rs.getString("S_password").equals(passW)){
+                                        /*登陆成功跳转界面
+
+
+
+
+
+                                         */
+                                    }
+                                    else{
+                                        System.out.println("密码错误！");
+                                    }
+                                }
+                            }
+                            else{
+                                System.out.println("该考生未登记");
+                            }
+                        } catch (SQLException e1) {
+                            e1.printStackTrace();
+                        }
+                    }
+                    else if(userText.getText().length()==6){
+                        String select = "select T_TeaID,T_password from teacher where T_TeaID='"+userText.getText()+"'";
+                        try {
+                            rs = stmt.executeQuery(select);
+                            if(rs.next()){
+                                if(rs.getString("T_password")==null){
+                                    System.out.println("未分配密码");
+                                }
+                                else{
+                                    if(rs.getString("T_password").equals(passW)){
+                                        /*登陆成功跳转界面
+
+
+
+
+
+                                         */
+                                    }
+                                    else{
+                                        System.out.println("密码错误！");
+                                    }
+                                }
+                            }
+                            else{
+                                System.out.println("该导师未登记");
+                            }
+                        } catch (SQLException e1) {
+                            e1.printStackTrace();
+                        }
+                    }
+                    else if(userText.getText().length()==2){
+                        String select = "select M_manID,M_password from manager where M_manID='"+userText.getText()+"'";
+                        try {
+                            rs = stmt.executeQuery(select);
+                            if(rs.next()){
+                                if(rs.getString("M_password")==null){
+                                    System.out.println("未分配密码");
+                                }
+                                else{
+                                    if(rs.getString("M_password").equals(passW)){
+                                        /*登陆成功跳转界面
+
+
+
+
+
+                                         */
+                                    }
+                                    else{
+                                        System.out.println("密码错误！");
+                                    }
+                                }
+                            }
+                            else{
+                                System.out.println("该管理员不存在");
+                            }
+                        } catch (SQLException e1) {
+                            e1.printStackTrace();
+                        }
+                    }
+                }
+            }
+        });
 
     }
-
 }

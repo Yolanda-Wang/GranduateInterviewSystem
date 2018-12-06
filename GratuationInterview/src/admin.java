@@ -5,16 +5,7 @@ import java.awt.event.ActionListener;
 import java.sql.*;
 import java.util.Vector;
 
-import javax.swing.JButton;
-import javax.swing.JComboBox;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JMenu;
-import javax.swing.JMenuBar;
-import javax.swing.JPanel;
-import javax.swing.JPasswordField;
-import javax.swing.JTable;
-import javax.swing.JTextField;
+import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 
 
@@ -87,24 +78,34 @@ public admin() {
         JTable table = new JTable(model[0]);
         names.add("账号");
         names.add("密码");
+        names.add("类别");
     String viewtable = "select * from password";
-    try {
         try {
             rs = stmt.executeQuery(viewtable);
+            while (rs.next()) {
+                String ID = rs.getString("ID");
+                String passWord = rs.getString("password");
+                String type = rs.getString("type");
+                Vector row = new Vector();
+                row.add(ID);
+                row.add(passWord);
+                row.add(type);
+                data.add(row);
+                model[0] = new DefaultTableModel(data, names);
+                table.setModel(model[0]);
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        while (rs.next()) {
-        }
-    }
-
-	    JTable table = new JTable(tableValues,columnNames);
-	    table.setBounds(10,70,250,100);
+        model[0].setDataVector(data, names); // 设置模型中的元素，它会自动显示在列表中
+        JScrollPane jsp = new JScrollPane(table); // 用列表创建可滚动的Panel，把这个Panel添加到窗口中
+        jsp.setSize(200, 200);
+        jsp.setLocation(10, 70);
+        panel.add(jsp);
+	    table.setBounds(10,70,200,200);
 	    table.setRowHeight(30);
 	    table.setFont(new Font("",Font.PLAIN,16));
 	    table.getTableHeader().setBounds(10, 50, 250, 20);
-	    panel.add(table.getTableHeader());
-	    panel.add(table);
 	    
 	    //输入文本框
 	    JLabel userLabel = new JLabel("账号:");
@@ -126,17 +127,6 @@ public admin() {
         JPasswordField passwordText = new JPasswordField(20);
         passwordText.setBounds(350,70,165,25);
         panel.add(passwordText);
-        
-        JLabel classLabel = new JLabel("类别:");
-        classLabel.setFont(new Font("",Font.PLAIN,16));
-        classLabel.setBounds(300,100,80,25);
-        panel.add(classLabel);
-        
-//        JComboBox comboBox=new JComboBox();
-//        comboBox.setBounds(350,100,100,20);
-//        comboBox.addItem("student");
-//        comboBox.addItem("teacher");
-//        panel.add(comboBox);
 
         JButton addButton = new JButton("添加");
         addButton.setFont(new Font("",Font.PLAIN,16));
@@ -164,24 +154,81 @@ public admin() {
                 String passW = String.valueOf(passwordText.getPassword());
                 if(!userText.getText().equals("")&&!passW.equals("")){
                     try {
-                        if(userText.getText().length()==11||userText.getText().length()==6||userText.getText().length()==2) {
-                            String addPass = "insert into password(ID,password) values('"+userText.getText()+"','"+passW+"')";
-                            stmt.executeUpdate(addPass);
-
+                        if(passW.length()==8){
+                            if(userText.getText().length()==11) {
+                                String viewtable = "select ID from password where ID='"+userText.getText()+"'";
+                                rs = stmt.executeQuery(viewtable);
+                                if(rs.next()){
+                                    String addPass = "insert into password(ID,password,type) values('"+userText.getText()+"','"+passW+"','考生')";
+                                    String addstup = "insert into student(S_password) values('"+passW+"')";
+                                    stmt.executeUpdate(addPass);
+                                    stmt.executeUpdate(addstup);
+                                    Vector rowData1 = new Vector();
+                                    rowData1.add(userText.getText());
+                                    rowData1.add(passW);
+                                    rowData1.add("考生");
+                                    data.add(rowData1);
+                                    model[0] = new DefaultTableModel(data, names);
+                                    table.setModel(model[0]);
+                                    System.out.println("考生账号密码添加成功");
+                                }
+                                else{
+                                    System.out.println("该考生账号不存在");
+                                }
+                            }
+                            else if(userText.getText().length()==6){
+                                String viewtable = "select ID from password where ID='"+userText.getText()+"'";
+                                rs = stmt.executeQuery(viewtable);
+                                if(rs.next()){
+                                    String addPass = "insert into password(ID,password,type) values('"+userText.getText()+"','"+passW+"','导师')";
+                                    String addteap = "insert into teacher(T_password) values('"+passW+"')";
+                                    stmt.executeUpdate(addPass);
+                                    stmt.executeUpdate(addteap);
+                                    Vector rowData2 = new Vector();
+                                    rowData2.add(userText.getText());
+                                    rowData2.add(passW);
+                                    rowData2.add("导师");
+                                    data.add(rowData2);
+                                    model[0] = new DefaultTableModel(data, names);
+                                    table.setModel(model[0]);
+                                    System.out.println("导师账号密码添加成功");
+                                }
+                                else{
+                                    System.out.println("该导师账号不存在");
+                                }
+                            }
+                            else if(userText.getText().length()==2){
+                                String addPass = "insert into password(ID,password,type) values('"+userText.getText()+"','"+passW+"','管理员')";
+                                String addmanp = "insert into manager(M_manID,M_password) values('"+userText.getText()+"','"+passW+"')";
+                                stmt.executeUpdate(addPass);
+                                stmt.executeUpdate(addmanp);
+                                Vector rowData2 = new Vector();
+                                rowData2.add(userText.getText());
+                                rowData2.add(passW);
+                                rowData2.add("管理员");
+                                data.add(rowData2);
+                                model[0] = new DefaultTableModel(data, names);
+                                table.setModel(model[0]);
+                                System.out.println("管理员账号密码添加成功");
+                            }
+                            else{
+                                System.out.println("账号长度不匹配");
+                            }
                         }
-                        else{
-                            System.out.println("账号长度不匹配");
+                     else {
+                            System.out.println("密码为八位数");
                         }
-
-
-
                     } catch (SQLException e1) {
                         e1.printStackTrace();
                     }
                 }
-
+                else{
+                    System.out.println("账号密码需同时添加");
+                }
             }
         });
+
+        //更新账号密码
 
 	    //设置大小
 	    frame.setSize(600,500);

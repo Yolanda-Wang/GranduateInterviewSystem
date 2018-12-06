@@ -2,6 +2,7 @@ import java.awt.BorderLayout;
 import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.sql.*;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -15,8 +16,31 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 
 public class teacherManagement {
+    public static String url = "jdbc:mysql://localhost:3306/interview?useUnicode=true&characterencoding=GBK";
+    public static String username = "manager";
+    public static String password = "123456";
+    public static Connection con;
+    public static Statement stmt;
+    public static ResultSet rs;
 	public static void main(String[] args) {
-		teacherManagement w1=new teacherManagement();
+        //连接数据库
+        try {
+            System.out.println("导师信息：");
+            Class.forName("com.mysql.jdbc.Driver");
+            System.out.println("加载驱动成功");
+        } catch (ClassNotFoundException var2) {
+            System.out.println("加载驱动失败!");
+            var2.printStackTrace();
+        }
+
+        try {
+            con = DriverManager.getConnection(url, username, password);
+            stmt = con.createStatement();
+            System.out.println("导师信息数据库连接成功");
+        } catch (SQLException var1) {
+            System.out.println("导师信息数据库连接失败!");
+        }
+	    teacherManagement w1=new teacherManagement();
     }
 public teacherManagement() {
 	//初始化一个jframe

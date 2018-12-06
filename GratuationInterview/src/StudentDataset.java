@@ -40,13 +40,10 @@ public class StudentDataset {
         } catch (SQLException var1) {
             System.out.println("数据库连接失败!");
         }
-        StudentDataset(stmt);
+        StudentDataset a = new StudentDataset();
     }
 
-public static void StudentDataset(Statement stmt)  {
-
-
-
+public StudentDataset() {
     //初始化一个jframe
     JFrame frame = new JFrame("学生信息");
 
@@ -243,7 +240,6 @@ public static void StudentDataset(Statement stmt)  {
         e.printStackTrace();
     }
     model[0].setDataVector(data, names); // 设置模型中的元素，它会自动显示在列表中
-
     JScrollPane jsp = new JScrollPane(table); // 用列表创建可滚动的Panel，把这个Panel添加到窗口中
     jsp.setSize(1000, 200);
     jsp.setLocation(0, 220);
@@ -287,8 +283,10 @@ public static void StudentDataset(Statement stmt)  {
                     ") values('"+text1.getText()+"','"+text3.getText()+"','"+text7.getText()+"','"+text9.getText()+"'" +
                     ",'"+text6.getText()+"','"+text10.getText()+"','"+text8.getText()+"','"+text2.getText()+"','"+text5.getText()+"'" +
                     ",'"+text4.getText()+"')";
+            String add_stuID = "insert into password(ID) values('"+text1.getText()+"')";
             try {
                 stmt.executeUpdate(add_stuInfo);
+                stmt.executeUpdate(add_stuID);
                 Vector rowData5 = new Vector();
                 rowData5.add(text1.getText());
                 rowData5.add(text3.getText());
@@ -462,7 +460,9 @@ public static void StudentDataset(Statement stmt)  {
             try {
                 if(rs.next()){
                     String deleteInfo = "delete from student where S_stuID='"+text1.getText()+"'";
+                    String deleteID = "delete from password where ID='"+text1.getText()+"'";
                     stmt.executeUpdate(deleteInfo);
+                    stmt.executeUpdate(deleteID);
                     String view = "select * from student";
                     rs = stmt.executeQuery(view);
                     if(!data.isEmpty()) {
