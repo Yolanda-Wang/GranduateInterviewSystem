@@ -20,42 +20,42 @@ public class login {
         public static Statement stmt;
         public static ResultSet rs;
     public static void main(String[] args) {    
-        // ´´½¨ JFrame ÊµÀı
-        JFrame frame = new JFrame("µÇÂ¼");
+        // åˆ›å»º JFrame å®ä¾‹
+        JFrame frame = new JFrame("ç™»å½•");
         // Setting the width and height of frame
         frame.setSize(450, 300);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        /* ´´½¨Ãæ°å£¬Õâ¸öÀàËÆÓÚ HTML µÄ div ±êÇ©
-         * ÎÒÃÇ¿ÉÒÔ´´½¨¶à¸öÃæ°å²¢ÔÚ JFrame ÖĞÖ¸¶¨Î»ÖÃ
-         * Ãæ°åÖĞÎÒÃÇ¿ÉÒÔÌí¼ÓÎÄ±¾×Ö¶Î£¬°´Å¥¼°ÆäËû×é¼ş¡£
+        /* åˆ›å»ºé¢æ¿ï¼Œè¿™ä¸ªç±»ä¼¼äº HTML çš„ div æ ‡ç­¾
+         * æˆ‘ä»¬å¯ä»¥åˆ›å»ºå¤šä¸ªé¢æ¿å¹¶åœ¨ JFrame ä¸­æŒ‡å®šä½ç½®
+         * é¢æ¿ä¸­æˆ‘ä»¬å¯ä»¥æ·»åŠ æ–‡æœ¬å­—æ®µï¼ŒæŒ‰é’®åŠå…¶ä»–ç»„ä»¶ã€‚
          */
         JPanel panel = new JPanel();    
-        // Ìí¼ÓÃæ°å
+        // æ·»åŠ é¢æ¿
         frame.add(panel);
         /* 
-         * µ÷ÓÃÓÃ»§¶¨ÒåµÄ·½·¨²¢Ìí¼Ó×é¼şµ½Ãæ°å
+         * è°ƒç”¨ç”¨æˆ·å®šä¹‰çš„æ–¹æ³•å¹¶æ·»åŠ ç»„ä»¶åˆ°é¢æ¿
          */
         placeComponents(panel);
 
-        // ÉèÖÃ½çÃæ¿É¼û
+        // è®¾ç½®ç•Œé¢å¯è§
         frame.setVisible(true);
 
         try {
-            System.out.println("µÇÂ¼£º");
+            System.out.println("ç™»å½•ï¼š");
             Class.forName("com.mysql.jdbc.Driver");
-            System.out.println("¼ÓÔØÇı¶¯³É¹¦");
+            System.out.println("åŠ è½½é©±åŠ¨æˆåŠŸ");
         } catch (ClassNotFoundException var2) {
-            System.out.println("¼ÓÔØÇı¶¯Ê§°Ü!");
+            System.out.println("åŠ è½½é©±åŠ¨å¤±è´¥!");
             var2.printStackTrace();
         }
 
         try {
             con = DriverManager.getConnection(url, username, password);
             stmt = con.createStatement();
-            System.out.println("Á¬½Ó³É¹¦");
+            System.out.println("è¿æ¥æˆåŠŸ");
         } catch (SQLException var1) {
-            System.out.println("Á¬½ÓÊ§°Ü!");
+            System.out.println("è¿æ¥å¤±è´¥!");
         }
     }
 
@@ -63,7 +63,7 @@ public class login {
 
         panel.setLayout(null);
 
-        // ´´½¨ JLabel
+        // åˆ›å»º JLabel
         JLabel userLabel = new JLabel("User:");
         userLabel.setFont(new Font("",Font.PLAIN,16));
         userLabel.setBounds(100,60,250,25);
@@ -89,16 +89,16 @@ public class login {
         loginButton.setBounds(170, 180, 100, 35);
         panel.add(loginButton);
         
-        //µÇÂ¼
+        //ç™»å½•
         loginButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 String passW = String.valueOf(passwordText.getPassword());
                 if(userText.getText().equals("")){
-                    System.out.println("ÇëÊäÈëÕËºÅ");
+                    System.out.println("è¯·è¾“å…¥è´¦å·");
                 }
                 else if(passW.equals("")){
-                    System.out.println("ÇëÊäÈëÃÜÂë");
+                    System.out.println("è¯·è¾“å…¥å¯†ç ");
                 }
                 else{
                     if(userText.getText().length()==11){
@@ -107,11 +107,11 @@ public class login {
                             rs = stmt.executeQuery(select);
                             if(rs.next()){
                                 if(rs.getString("S_password")==null){
-                                    System.out.println("Î´·ÖÅäÃÜÂë");
+                                    System.out.println("æœªåˆ†é…å¯†ç ");
                                 }
                                 else{
                                     if(rs.getString("S_password").equals(passW)){
-                                        /*µÇÂ½³É¹¦Ìø×ª½çÃæ
+                                        /*ç™»é™†æˆåŠŸè·³è½¬ç•Œé¢
 
 
 
@@ -120,12 +120,12 @@ public class login {
                                          */
                                     }
                                     else{
-                                        System.out.println("ÃÜÂë´íÎó£¡");
+                                        System.out.println("å¯†ç é”™è¯¯ï¼");
                                     }
                                 }
                             }
                             else{
-                                System.out.println("¸Ã¿¼ÉúÎ´µÇ¼Ç");
+                                System.out.println("è¯¥è€ƒç”Ÿæœªç™»è®°");
                             }
                         } catch (SQLException e1) {
                             e1.printStackTrace();
@@ -137,11 +137,11 @@ public class login {
                             rs = stmt.executeQuery(select);
                             if(rs.next()){
                                 if(rs.getString("T_password")==null){
-                                    System.out.println("Î´·ÖÅäÃÜÂë");
+                                    System.out.println("æœªåˆ†é…å¯†ç ");
                                 }
                                 else{
                                     if(rs.getString("T_password").equals(passW)){
-                                        /*µÇÂ½³É¹¦Ìø×ª½çÃæ
+                                        /*ç™»é™†æˆåŠŸè·³è½¬ç•Œé¢
 
 
 
@@ -150,12 +150,12 @@ public class login {
                                          */
                                     }
                                     else{
-                                        System.out.println("ÃÜÂë´íÎó£¡");
+                                        System.out.println("å¯†ç é”™è¯¯ï¼");
                                     }
                                 }
                             }
                             else{
-                                System.out.println("¸Ãµ¼Ê¦Î´µÇ¼Ç");
+                                System.out.println("è¯¥å¯¼å¸ˆæœªç™»è®°");
                             }
                         } catch (SQLException e1) {
                             e1.printStackTrace();
@@ -167,11 +167,11 @@ public class login {
                             rs = stmt.executeQuery(select);
                             if(rs.next()){
                                 if(rs.getString("M_password")==null){
-                                    System.out.println("Î´·ÖÅäÃÜÂë");
+                                    System.out.println("æœªåˆ†é…å¯†ç ");
                                 }
                                 else{
                                     if(rs.getString("M_password").equals(passW)){
-                                        /*µÇÂ½³É¹¦Ìø×ª½çÃæ
+                                        /*ç™»é™†æˆåŠŸè·³è½¬ç•Œé¢
 
 
 
@@ -180,12 +180,12 @@ public class login {
                                          */
                                     }
                                     else{
-                                        System.out.println("ÃÜÂë´íÎó£¡");
+                                        System.out.println("å¯†ç é”™è¯¯ï¼");
                                     }
                                 }
                             }
                             else{
-                                System.out.println("¸Ã¹ÜÀíÔ±²»´æÔÚ");
+                                System.out.println("è¯¥ç®¡ç†å‘˜ä¸å­˜åœ¨");
                             }
                         } catch (SQLException e1) {
                             e1.printStackTrace();

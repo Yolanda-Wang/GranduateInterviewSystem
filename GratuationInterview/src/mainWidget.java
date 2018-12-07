@@ -16,73 +16,73 @@ public class mainWidget {
         mainWidget w1=new mainWidget();
     }
 	public mainWidget() {
-		//³õÊ¼»¯Ò»¸öjframe
-        JFrame frame = new JFrame("Ñ§Éú¶Ë");
+		//åˆå§‹åŒ–ä¸€ä¸ªjframe
+        JFrame frame = new JFrame("å­¦ç”Ÿç«¯");
 
-        //³õÊ¼»¯Ò»¸ö²Ëµ¥À¸
+        //åˆå§‹åŒ–ä¸€ä¸ªèœå•æ 
         JMenuBar menuBar = new JMenuBar();
 
-        //³õÊ¼»¯²Ëµ¥
-        JMenu menu1 = new JMenu("²Ù×÷(O)");
+        //åˆå§‹åŒ–èœå•
+        JMenu menu1 = new JMenu("æ“ä½œ(O)");
         menu1.setMnemonic('O');  
-        menu1.setFont(new Font("ËÎÌå",Font.PLAIN,16));
-        JMenu menu2 = new JMenu("°ïÖú(H)");
+        menu1.setFont(new Font("å®‹ä½“",Font.PLAIN,16));
+        JMenu menu2 = new JMenu("å¸®åŠ©(H)");
         menu2.setMnemonic('H'); 
-        menu2.setFont(new Font("ËÎÌå",Font.PLAIN,16));
-        JMenu menu3 = new JMenu("²éÑ¯(Q)");
+        menu2.setFont(new Font("å®‹ä½“",Font.PLAIN,16));
+        JMenu menu3 = new JMenu("æŸ¥è¯¢(Q)");
         menu3.setMnemonic('Q'); 
-        menu3.setFont(new Font("ËÎÌå",Font.PLAIN,16));
-        JMenu menu4 = new JMenu("Í³¼Æ(S)");
+        menu3.setFont(new Font("å®‹ä½“",Font.PLAIN,16));
+        JMenu menu4 = new JMenu("ç»Ÿè®¡(S)");
         menu4.setMnemonic('S'); 
-        menu4.setFont(new Font("ËÎÌå",Font.PLAIN,16));
-        JMenu menu5 = new JMenu("Î¬»¤(M)");
+        menu4.setFont(new Font("å®‹ä½“",Font.PLAIN,16));
+        JMenu menu5 = new JMenu("ç»´æŠ¤(M)");
         menu5.setMnemonic('M'); 
-        menu5.setFont(new Font("ËÎÌå",Font.PLAIN,16));
-        //³õÊ¼»¯Ò»¸öpanel
+        menu5.setFont(new Font("å®‹ä½“",Font.PLAIN,16));
+        //åˆå§‹åŒ–ä¸€ä¸ªpanel
         JPanel panel = new JPanel();
 
-        //³õÊ¼»¯Ò»¸öÈİÆ÷
+        //åˆå§‹åŒ–ä¸€ä¸ªå®¹å™¨
         Container container = frame.getContentPane();
 
-        //³õÊ¼»¯Ò»¸ö°´Å¥
-        JButton logout = new JButton("×¢Ïú");
-        logout.setFont(new Font("ËÎÌå",Font.PLAIN,16));
+        //åˆå§‹åŒ–ä¸€ä¸ªæŒ‰é’®
+        JButton logout = new JButton("æ³¨é”€");
+        logout.setFont(new Font("å®‹ä½“",Font.PLAIN,16));
         logout.setBounds(400,250, 100, 35);
         panel.add(logout);
         logout.setFocusPainted(false);
         
-        JButton start = new JButton("Ñ¡Ìâ");
+        JButton start = new JButton("é€‰é¢˜");
         start.setFocusPainted(false);
-        start.setFont(new Font("ËÎÌå",Font.PLAIN,25));
+        start.setFont(new Font("å®‹ä½“",Font.PLAIN,25));
         start.setBounds(250,100, 100, 75);
         panel.add(start);
  
-        //°Ñ²Ëµ¥Ìí¼Óµ½²Ëµ¥À¸
+        //æŠŠèœå•æ·»åŠ åˆ°èœå•æ 
         menuBar.add(menu1);
         menuBar.add(menu2);
         menuBar.add(menu3);
         menuBar.add(menu4);
         menuBar.add(menu5);
-        //ÉèÖÃ²Ëµ¥À¸
+        //è®¾ç½®èœå•æ 
         frame.setJMenuBar(menuBar);
         
         panel.setLayout(null);
         
-        //°ÑpanelÌí¼Óµ½ÈİÆ÷
+        //æŠŠpanelæ·»åŠ åˆ°å®¹å™¨
         container.add(panel);
 
 
-        //ÉèÖÃ¹Ø±Õ·½Ê½
+        //è®¾ç½®å…³é—­æ–¹å¼
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 
-        //ÉèÖÃ´óĞ¡
+        //è®¾ç½®å¤§å°
         frame.setSize(600,500);
 
-        //ÉèÖÃÎ»ÖÃ
+        //è®¾ç½®ä½ç½®
         frame.setLocation(100, 100);
 
-        //ÉèÖÃ¿É¼ûĞÔ
+        //è®¾ç½®å¯è§æ€§
         frame.setVisible(true);
 	}
 }

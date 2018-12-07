@@ -39,18 +39,18 @@ public class database {
     public static void connect(String url,String username,String password) {
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            System.out.println("¼ÓÔØÇı¶¯³É¹¦!");
+            System.out.println("åŠ è½½é©±åŠ¨æˆåŠŸ!");
         } catch (ClassNotFoundException var2) {
-            System.out.println("¼ÓÔØÇı¶¯Ê§°Ü!");
+            System.out.println("åŠ è½½é©±åŠ¨å¤±è´¥!");
             var2.printStackTrace();
         }
 
         try {
             con = DriverManager.getConnection(url, username, password);
             stmt = con.createStatement();
-            System.out.println("Êı¾İ¿âÁ¬½Ó³É¹¦!");
+            System.out.println("æ•°æ®åº“è¿æ¥æˆåŠŸ!");
         } catch (SQLException var1) {
-            System.out.println("Êı¾İ¿âÁ¬½ÓÊ§°Ü!");
+            System.out.println("æ•°æ®åº“è¿æ¥å¤±è´¥!");
         }
 
     }
@@ -77,7 +77,7 @@ public class database {
 
             rs.close();
         } catch (Exception var3) {
-            System.out.println("Êı¾İ²éÑ¯Ê§°Ü!");
+            System.out.println("æ•°æ®æŸ¥è¯¢å¤±è´¥!");
             var3.printStackTrace();
         }
 
@@ -88,9 +88,9 @@ public class database {
             stmt.clearBatch();
             stmt.addBatch(sql);
             stmt.executeBatch();
-            System.out.println("Êı¾İ²åÈë³É¹¦!");
+            System.out.println("æ•°æ®æ’å…¥æˆåŠŸ!");
         } catch (Exception var2) {
-            System.out.println("Êı¾İ²åÈëÊ§°Ü!");
+            System.out.println("æ•°æ®æ’å…¥å¤±è´¥!");
             var2.printStackTrace();
         }
 
@@ -99,9 +99,9 @@ public class database {
     public static void update(String sql) {
         try {
             stmt.executeUpdate(sql);
-            System.out.println("Êı¾İ¸üĞÂ³É¹¦!");
+            System.out.println("æ•°æ®æ›´æ–°æˆåŠŸ!");
         } catch (Exception var2) {
-            System.out.println("Êı¾İ¸üĞÂÊ§°Ü!");
+            System.out.println("æ•°æ®æ›´æ–°å¤±è´¥!");
         }
 
     }

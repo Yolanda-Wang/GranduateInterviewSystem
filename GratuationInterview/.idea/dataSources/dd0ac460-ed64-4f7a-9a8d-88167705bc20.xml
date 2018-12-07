@@ -16,7 +16,7 @@
     </schema>
     <schema id="4" parent="1" name="interview">
       <Visible>1</Visible>
-      <Collation>gbk_chinese_ci</Collation>
+      <Collation>utf8_general_ci</Collation>
     </schema>
     <schema id="5" parent="1" name="mysql">
       <Collation>latin1_swedish_ci</Collation>
@@ -921,7 +921,9 @@
     <table id="232" parent="4" name="manager">
       <Collation>latin1_swedish_ci</Collation>
     </table>
-    <table id="233" parent="4" name="password"/>
+    <table id="233" parent="4" name="password">
+      <Collation>gbk_chinese_ci</Collation>
+    </table>
     <table id="234" parent="4" name="polque">
       <Collation>latin1_swedish_ci</Collation>
     </table>
@@ -943,19 +945,19 @@
       <NotNull>1</NotNull>
       <DefaultExpression>&apos;&apos;</DefaultExpression>
       <ColumnKind>normal</ColumnKind>
-      <Collation>gbk_chinese_ci</Collation>
+      <Collation>utf8_general_ci</Collation>
     </column>
     <column id="240" parent="229" name="E_content">
       <Position>2</Position>
       <DataType>char(100)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
-      <Collation>gbk_chinese_ci</Collation>
+      <Collation>utf8_general_ci</Collation>
     </column>
     <column id="241" parent="229" name="E_level">
       <Position>3</Position>
       <DataType>char(2)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
-      <Collation>gbk_chinese_ci</Collation>
+      <Collation>utf8_general_ci</Collation>
     </column>
     <column id="242" parent="229" name="E_flag">
       <Position>4</Position>
@@ -971,13 +973,13 @@
       <Position>1</Position>
       <DataType>varchar(11)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
-      <Collation>gbk_chinese_ci</Collation>
+      <Collation>utf8_general_ci</Collation>
     </column>
     <column id="245" parent="230" name="password">
       <Position>2</Position>
       <DataType>char(8)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
-      <Collation>gbk_chinese_ci</Collation>
+      <Collation>utf8_general_ci</Collation>
     </column>
     <column id="246" parent="230" name="time">
       <Position>3</Position>
@@ -990,25 +992,25 @@
       <NotNull>1</NotNull>
       <DefaultExpression>&apos;&apos;</DefaultExpression>
       <ColumnKind>normal</ColumnKind>
-      <Collation>gbk_chinese_ci</Collation>
+      <Collation>utf8_general_ci</Collation>
     </column>
     <column id="248" parent="231" name="M_content">
       <Position>2</Position>
       <DataType>char(100)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
-      <Collation>gbk_chinese_ci</Collation>
+      <Collation>utf8_general_ci</Collation>
     </column>
     <column id="249" parent="231" name="M_level">
       <Position>3</Position>
       <DataType>char(2)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
-      <Collation>gbk_chinese_ci</Collation>
+      <Collation>utf8_general_ci</Collation>
     </column>
     <column id="250" parent="231" name="M_Major">
       <Position>4</Position>
       <DataType>char(10)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
-      <Collation>gbk_chinese_ci</Collation>
+      <Collation>utf8_general_ci</Collation>
     </column>
     <column id="251" parent="231" name="M_flag">
       <Position>5</Position>
@@ -1026,13 +1028,13 @@
       <NotNull>1</NotNull>
       <DefaultExpression>&apos;&apos;</DefaultExpression>
       <ColumnKind>normal</ColumnKind>
-      <Collation>gbk_chinese_ci</Collation>
+      <Collation>utf8_general_ci</Collation>
     </column>
     <column id="254" parent="232" name="M_password">
       <Position>2</Position>
       <DataType>char(8)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
-      <Collation>gbk_chinese_ci</Collation>
+      <Collation>utf8_general_ci</Collation>
     </column>
     <key id="255" parent="232" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
@@ -1044,16 +1046,19 @@
       <DataType>varchar(11)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
+      <Collation>utf8_general_ci</Collation>
     </column>
     <column id="257" parent="233" name="password">
       <Position>2</Position>
       <DataType>char(8)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
+      <Collation>utf8_general_ci</Collation>
     </column>
     <column id="258" parent="233" name="type">
       <Position>3</Position>
       <DataType>varchar(3)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
+      <Collation>utf8_general_ci</Collation>
     </column>
     <key id="259" parent="233" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
@@ -1066,19 +1071,19 @@
       <NotNull>1</NotNull>
       <DefaultExpression>&apos;&apos;</DefaultExpression>
       <ColumnKind>normal</ColumnKind>
-      <Collation>gbk_chinese_ci</Collation>
+      <Collation>utf8_general_ci</Collation>
     </column>
     <column id="261" parent="234" name="P_content">
       <Position>2</Position>
       <DataType>char(100)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
-      <Collation>gbk_chinese_ci</Collation>
+      <Collation>utf8_general_ci</Collation>
     </column>
     <column id="262" parent="234" name="P_level">
       <Position>3</Position>
       <DataType>char(2)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
-      <Collation>gbk_chinese_ci</Collation>
+      <Collation>utf8_general_ci</Collation>
     </column>
     <column id="263" parent="234" name="P_flag">
       <Position>4</Position>
@@ -1094,7 +1099,7 @@
       <Position>1</Position>
       <DataType>char(11)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
-      <Collation>gbk_chinese_ci</Collation>
+      <Collation>utf8_general_ci</Collation>
     </column>
     <column id="266" parent="235" name="majNo">
       <Position>2</Position>
@@ -1117,14 +1122,14 @@
       <NotNull>1</NotNull>
       <DefaultExpression>&apos;&apos;</DefaultExpression>
       <ColumnKind>normal</ColumnKind>
-      <Collation>gbk_chinese_ci</Collation>
+      <Collation>utf8_general_ci</Collation>
     </column>
     <column id="270" parent="236" name="S_name">
       <Position>2</Position>
       <DataType>varchar(20)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
-      <Collation>gbk_chinese_ci</Collation>
+      <Collation>utf8_general_ci</Collation>
     </column>
     <column id="271" parent="236" name="S_polGrade">
       <Position>3</Position>
@@ -1146,7 +1151,7 @@
       <DataType>char(10)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
-      <Collation>gbk_chinese_ci</Collation>
+      <Collation>utf8_general_ci</Collation>
     </column>
     <column id="275" parent="236" name="S_intGrade">
       <Position>7</Position>
@@ -1158,28 +1163,28 @@
       <DataType>varchar(20)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
-      <Collation>gbk_chinese_ci</Collation>
+      <Collation>utf8_general_ci</Collation>
     </column>
     <column id="277" parent="236" name="S_ID">
       <Position>9</Position>
       <DataType>char(18)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
-      <Collation>gbk_chinese_ci</Collation>
+      <Collation>utf8_general_ci</Collation>
     </column>
     <column id="278" parent="236" name="S_sex">
       <Position>10</Position>
       <DataType>char(1)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
-      <Collation>gbk_chinese_ci</Collation>
+      <Collation>utf8_general_ci</Collation>
     </column>
     <column id="279" parent="236" name="S_phone">
       <Position>11</Position>
       <DataType>char(11)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
-      <Collation>gbk_chinese_ci</Collation>
+      <Collation>utf8_general_ci</Collation>
     </column>
     <column id="280" parent="236" name="S_password">
       <Position>12</Position>
@@ -1190,6 +1195,7 @@
     <column id="281" parent="236" name="S_flag">
       <Position>13</Position>
       <DataType>smallint(6)|0s</DataType>
+      <DefaultExpression>&apos;0&apos;</DefaultExpression>
       <ColumnKind>normal</ColumnKind>
     </column>
     <key id="282" parent="236" name="PRIMARY">
@@ -1203,29 +1209,29 @@
       <NotNull>1</NotNull>
       <DefaultExpression>&apos;&apos;</DefaultExpression>
       <ColumnKind>normal</ColumnKind>
-      <Collation>gbk_chinese_ci</Collation>
+      <Collation>utf8_general_ci</Collation>
     </column>
     <column id="284" parent="237" name="T_name">
       <Position>2</Position>
       <DataType>varchar(20)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
-      <Collation>gbk_chinese_ci</Collation>
+      <Collation>utf8_general_ci</Collation>
     </column>
     <column id="285" parent="237" name="T_major">
       <Position>3</Position>
       <DataType>char(10)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
-      <Collation>gbk_chinese_ci</Collation>
+      <Collation>utf8_general_ci</Collation>
     </column>
     <column id="286" parent="237" name="T_password">
       <Position>4</Position>
       <DataType>char(8)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
-      <Collation>gbk_chinese_ci</Collation>
+      <Collation>utf8_general_ci</Collation>
     </column>
     <column id="287" parent="237" name="T_flag">
       <Position>5</Position>
-      <DataType>smallint(6)|0s</DataType>
+      <DataType>char(1)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
@@ -1240,13 +1246,13 @@
       <NotNull>1</NotNull>
       <DefaultExpression>&apos;&apos;</DefaultExpression>
       <ColumnKind>normal</ColumnKind>
-      <Collation>gbk_chinese_ci</Collation>
+      <Collation>utf8_general_ci</Collation>
     </column>
     <column id="290" parent="238" name="S_name">
       <Position>2</Position>
       <DataType>varchar(20)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
-      <Collation>gbk_chinese_ci</Collation>
+      <Collation>utf8_general_ci</Collation>
     </column>
     <column id="291" parent="238" name="S_polGrade">
       <Position>3</Position>
@@ -1267,7 +1273,7 @@
       <Position>6</Position>
       <DataType>char(10)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
-      <Collation>gbk_chinese_ci</Collation>
+      <Collation>utf8_general_ci</Collation>
     </column>
     <key id="295" parent="238" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
