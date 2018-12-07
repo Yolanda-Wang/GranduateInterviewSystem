@@ -2,9 +2,8 @@ import java.awt.BorderLayout;
 import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.Font;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.Statement;
+import java.sql.*;
+import java.util.Vector;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -16,6 +15,8 @@ import javax.swing.JScrollPane;
 import javax.swing.JSplitPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
+import javax.swing.table.DefaultTableModel;
+
 public class titleDataset {
     public static String url = "jdbc:mysql://localhost:3306/interview?useUnicode=true&characterencoding=utf-8";
     public static String username = "manager";
@@ -24,8 +25,25 @@ public class titleDataset {
     public static Statement stmt;
     public static ResultSet rs;
 	public static void main(String[] args) {
+        //连接数据库
+        try {
+            System.out.println("题目信息：");
+            Class.forName("com.mysql.jdbc.Driver");
+            System.out.println("加载驱动成功");
+        } catch (ClassNotFoundException var2) {
+            System.out.println("加载驱动失败!");
+            var2.printStackTrace();
+        }
+        try {
+            con = DriverManager.getConnection(url, username, password);
+            stmt = con.createStatement();
+            System.out.println("题目信息数据库连接成功!");
+        } catch (SQLException var1) {
+            System.out.println("题目信息数据库连接失败!");
+        }
        titleDataset w1=new titleDataset();
     }
+
 public titleDataset() {
 	//初始化一个jframe
     JFrame frame = new JFrame("题目信息");
@@ -116,11 +134,102 @@ public titleDataset() {
     // 定义表格数据数组
     String[][] tableValues = {{"1","专业类","数学","4",null,"0"},{"20","英语","英语","2",null,"0"},{"55","政治","政治","3",null,"0"},{"23","专业类","计算机","4",null,"0"},{"1","专业类","化学","4",null,"0"},{"44","专业类","物理","4",null,"0"},{"24","英语","英语","3",null,"0"}};
     // 创建指定列名和数据的表格
-    JTable table = new JTable(tableValues,columnNames);
+
+    final DefaultTableModel[] model = {new DefaultTableModel()};
+    Vector data = new Vector(); // 数据行向量集，因为列表不止一行，往里面添加数据行向量，添加方法add(row)
+    Vector names = new Vector();// 列名向量，使用它的add()方法添加列名
+    JTable table = new JTable(model[0]);
+    //显示数据库信息
+    names.add("题号");
+    names.add("分类");
+    names.add("专业");
+    names.add("难度");
+    names.add("内容");
+    names.add("flag");
+    //专业类题目
+    String viewtable = "select * from majque";
+    try {
+        rs = stmt.executeQuery(viewtable);
+        while(rs.next()){
+            String No = rs.getString("M_No");
+            String major = rs.getString("M_Major");
+            String level = rs.getString("M_level");
+            String content = rs.getString("M_content");
+            String flag = rs.getString("M_flag");
+            Vector row = new Vector(); // 数据行向量，使用它的add()添加元素，比如整数、String、Object等，有几行就new几个行向量
+            row.add(No);
+            row.add("专业类");
+            row.add(major);
+            row.add(level);
+            row.add(content);
+            row.add(flag);
+            data.add(row);
+            model[0] = new DefaultTableModel(data, names);
+            table.setModel(model[0]);
+        }
+    } catch (SQLException e) {
+        e.printStackTrace();
+    }
+
+    //英语类题目
+    String vieweng = "select * from engque";
+    try {
+        rs = stmt.executeQuery(vieweng);
+        while(rs.next()){
+            String No = rs.getString("E_No");
+            String level = rs.getString("E_level");
+            String content = rs.getString("E_content");
+            String flag = rs.getString("E_flag");
+            Vector row2 = new Vector(); // 数据行向量，使用它的add()添加元素，比如整数、String、Object等，有几行就new几个行向量
+            row2.add(No);
+            row2.add("英语类");
+            row2.add(level);
+            row2.add(content);
+            row2.add(flag);
+            data.add(row2);
+            model[0] = new DefaultTableModel(data, names);
+            table.setModel(model[0]);
+        }
+    } catch (SQLException e) {
+        e.printStackTrace();
+    }
+
+    //政治类题目
+    String viewpol = "select * from polque";
+    try {
+        rs = stmt.executeQuery(vieweng);
+        while(rs.next()){
+            String No = rs.getString("P_No");
+            String level = rs.getString("P_level");
+            String content = rs.getString("P_content");
+            String flag = rs.getString("P_flag");
+            Vector row2 = new Vector(); // 数据行向量，使用它的add()添加元素，比如整数、String、Object等，有几行就new几个行向量
+            row2.add(No);
+            row2.add("政治类");
+            row2.add(level);
+            row2.add(content);
+            row2.add(flag);
+            data.add(row2);
+            model[0] = new DefaultTableModel(data, names);
+            table.setModel(model[0]);
+        }
+    } catch (SQLException e) {
+        e.printStackTrace();
+    }
+
+
+    model[0].setDataVector(data, names); // 设置模型中的元素，它会自动显示在列表中
+    JScrollPane jsp = new JScrollPane(table); // 用列表创建可滚动的Panel，把这个Panel添加到窗口中
+    jsp.setSize(600, 150);
+    jsp.setLocation(0, 320);
+    panel.add(jsp);
+
     table.setBounds(0,320,600,150);
     table.getTableHeader().setBounds(0, 300, 600, 20);
     panel.add(table.getTableHeader());
-    panel.add(table);
+
+
+
     //添加按钮
     JButton bt1=new JButton("添加");
     bt1.setBounds(0, 250, 100, 35);
@@ -197,7 +306,7 @@ public titleDataset() {
     //把panel添加到容器
     container.add(panel);
 
-    //添加账号密码
+    //
 
 
     //设置关闭方式
