@@ -1,6 +1,8 @@
 import java.awt.Container;
 import java.awt.Font;
 import java.awt.GridLayout;
+import java.net.InetAddress;
+import java.net.MulticastSocket;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -9,80 +11,115 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
-import javax.swing.JTextField; 
+import javax.swing.JTextField;
+
+
+import java.net.DatagramPacket;
+import java.net.InetAddress;
+import java.net.MulticastSocket;
+import java.util.Date;
 
 public class mainWidget {
+    public static MulticastSocket msr = null;
+    public static InetAddress group;
 	public static void main(String[] args) {
         mainWidget w1=new mainWidget();
     }
 	public mainWidget() {
-		//åˆå§‹åŒ–ä¸€ä¸ªjframe
-        JFrame frame = new JFrame("å­¦ç”Ÿç«¯");
+		//³õÊ¼»¯Ò»¸öjframe
+        JFrame frame = new JFrame("Ñ§Éú¶Ë");
 
-        //åˆå§‹åŒ–ä¸€ä¸ªèœå•æ 
+        //³õÊ¼»¯Ò»¸ö²Ëµ¥À¸
         JMenuBar menuBar = new JMenuBar();
 
-        //åˆå§‹åŒ–èœå•
-        JMenu menu1 = new JMenu("æ“ä½œ(O)");
+        //³õÊ¼»¯²Ëµ¥
+        JMenu menu1 = new JMenu("²Ù×÷(O)");
         menu1.setMnemonic('O');  
-        menu1.setFont(new Font("å®‹ä½“",Font.PLAIN,16));
-        JMenu menu2 = new JMenu("å¸®åŠ©(H)");
+        menu1.setFont(new Font("ËÎÌå",Font.PLAIN,16));
+        JMenu menu2 = new JMenu("°ïÖú(H)");
         menu2.setMnemonic('H'); 
-        menu2.setFont(new Font("å®‹ä½“",Font.PLAIN,16));
-        JMenu menu3 = new JMenu("æŸ¥è¯¢(Q)");
+        menu2.setFont(new Font("ËÎÌå",Font.PLAIN,16));
+        JMenu menu3 = new JMenu("²éÑ¯(Q)");
         menu3.setMnemonic('Q'); 
-        menu3.setFont(new Font("å®‹ä½“",Font.PLAIN,16));
-        JMenu menu4 = new JMenu("ç»Ÿè®¡(S)");
+        menu3.setFont(new Font("ËÎÌå",Font.PLAIN,16));
+        JMenu menu4 = new JMenu("Í³¼Æ(S)");
         menu4.setMnemonic('S'); 
-        menu4.setFont(new Font("å®‹ä½“",Font.PLAIN,16));
-        JMenu menu5 = new JMenu("ç»´æŠ¤(M)");
+        menu4.setFont(new Font("ËÎÌå",Font.PLAIN,16));
+        JMenu menu5 = new JMenu("Î¬»¤(M)");
         menu5.setMnemonic('M'); 
-        menu5.setFont(new Font("å®‹ä½“",Font.PLAIN,16));
-        //åˆå§‹åŒ–ä¸€ä¸ªpanel
+        menu5.setFont(new Font("ËÎÌå",Font.PLAIN,16));
+        //³õÊ¼»¯Ò»¸öpanel
         JPanel panel = new JPanel();
 
-        //åˆå§‹åŒ–ä¸€ä¸ªå®¹å™¨
+        //³õÊ¼»¯Ò»¸öÈİÆ÷
         Container container = frame.getContentPane();
 
-        //åˆå§‹åŒ–ä¸€ä¸ªæŒ‰é’®
-        JButton logout = new JButton("æ³¨é”€");
-        logout.setFont(new Font("å®‹ä½“",Font.PLAIN,16));
+        //³õÊ¼»¯Ò»¸ö°´Å¥
+        JButton logout = new JButton("×¢Ïú");
+        logout.setFont(new Font("ËÎÌå",Font.PLAIN,16));
         logout.setBounds(400,250, 100, 35);
         panel.add(logout);
         logout.setFocusPainted(false);
         
-        JButton start = new JButton("é€‰é¢˜");
+        JButton start = new JButton("Ñ¡Ìâ");
         start.setFocusPainted(false);
-        start.setFont(new Font("å®‹ä½“",Font.PLAIN,25));
+        start.setFont(new Font("ËÎÌå",Font.PLAIN,25));
         start.setBounds(250,100, 100, 75);
         panel.add(start);
  
-        //æŠŠèœå•æ·»åŠ åˆ°èœå•æ 
+        //°Ñ²Ëµ¥Ìí¼Óµ½²Ëµ¥À¸
         menuBar.add(menu1);
         menuBar.add(menu2);
         menuBar.add(menu3);
         menuBar.add(menu4);
         menuBar.add(menu5);
-        //è®¾ç½®èœå•æ 
+        //ÉèÖÃ²Ëµ¥À¸
         frame.setJMenuBar(menuBar);
         
         panel.setLayout(null);
         
-        //æŠŠpanelæ·»åŠ åˆ°å®¹å™¨
+        //°ÑpanelÌí¼Óµ½ÈİÆ÷
         container.add(panel);
 
 
-        //è®¾ç½®å…³é—­æ–¹å¼
+        //ÉèÖÃ¹Ø±Õ·½Ê½
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 
-        //è®¾ç½®å¤§å°
+        //ÉèÖÃ´óĞ¡
         frame.setSize(600,500);
 
-        //è®¾ç½®ä½ç½®
+        //ÉèÖÃÎ»ÖÃ
         frame.setLocation(100, 100);
 
-        //è®¾ç½®å¯è§æ€§
+        //ÉèÖÃ¿É¼ûĞÔ
         frame.setVisible(true);
-	}
+        try {
+            group = InetAddress.getByName("224.0.0.2");//×é²¥µØÖ·
+            int port = 8888;
+            msr = new MulticastSocket(port);
+            msr.joinGroup(group);//¼ÓÈëÁ¬½Ó
+            byte[] buffer = new byte[8192];
+            System.out.println("½ÓÊÕÊı¾İ°üÆô¶¯£¡(Æô¶¯Ê±¼ä: "+new Date()+")");
+            //½¨Á¢Ò»¸öÖ¸¶¨»º³åÇø´óĞ¡µÄÊı¾İ°ü
+            while (true) {
+                DatagramPacket dp = new DatagramPacket(buffer, buffer.length);
+                msr.receive(dp);
+                String s = new String(dp.getData(),0,dp.getLength());
+                //½âÂë×é²¥Êı¾İ°ü
+                System.out.println(s);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }finally{
+            if(msr!=null){
+                try {
+                    msr.leaveGroup(group);
+                    msr.close();
+                } catch (Exception e2) {
+                    // TODO: handle exception
+                }
+            }
+        }
+    }
 }

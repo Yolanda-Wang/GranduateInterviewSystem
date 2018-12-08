@@ -24,135 +24,135 @@ public class StudentDataset {
     public static Statement stmt;
     public static ResultSet rs;
     public static void main(String[] args) throws Exception {
-        //è¿æ¥æ•°æ®åº“
+        //Á¬½ÓÊı¾İ¿â
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            System.out.println("åŠ è½½é©±åŠ¨æˆåŠŸ");
+            System.out.println("¼ÓÔØÇı¶¯³É¹¦");
         } catch (ClassNotFoundException var2) {
-            System.out.println("åŠ è½½é©±åŠ¨å¤±è´¥!");
+            System.out.println("¼ÓÔØÇı¶¯Ê§°Ü!");
             var2.printStackTrace();
         }
 
         try {
             con = DriverManager.getConnection(url, username, password);
             stmt = con.createStatement();
-            System.out.println("æ•°æ®åº“è¿æ¥æˆåŠŸ");
+            System.out.println("Êı¾İ¿âÁ¬½Ó³É¹¦");
         } catch (SQLException var1) {
-            System.out.println("æ•°æ®åº“è¿æ¥å¤±è´¥!");
+            System.out.println("Êı¾İ¿âÁ¬½ÓÊ§°Ü!");
         }
         StudentDataset a = new StudentDataset();
     }
 
 public StudentDataset() {
-    //åˆå§‹åŒ–ä¸€ä¸ªjframe
-    JFrame frame = new JFrame("å­¦ç”Ÿä¿¡æ¯");
+    //³õÊ¼»¯Ò»¸öjframe
+    JFrame frame = new JFrame("Ñ§ÉúĞÅÏ¢");
 
-    //åˆå§‹åŒ–ä¸€ä¸ªèœå•æ 
+    //³õÊ¼»¯Ò»¸ö²Ëµ¥À¸
     JMenuBar menuBar = new JMenuBar();
 
-    //åˆå§‹åŒ–èœå•
-    JMenu menu1 = new JMenu("æ“ä½œ(O)");
+    //³õÊ¼»¯²Ëµ¥
+    JMenu menu1 = new JMenu("²Ù×÷(O)");
     menu1.setMnemonic('O');  
-    menu1.setFont(new Font("å®‹ä½“",Font.PLAIN,16));
-    JMenu menu2 = new JMenu("å¸®åŠ©(H)");
+    menu1.setFont(new Font("ËÎÌå",Font.PLAIN,16));
+    JMenu menu2 = new JMenu("°ïÖú(H)");
     menu2.setMnemonic('H'); 
-    menu2.setFont(new Font("å®‹ä½“",Font.PLAIN,16));
-    JMenu menu3 = new JMenu("æŸ¥è¯¢(Q)");
+    menu2.setFont(new Font("ËÎÌå",Font.PLAIN,16));
+    JMenu menu3 = new JMenu("²éÑ¯(Q)");
     menu3.setMnemonic('Q'); 
-    menu3.setFont(new Font("å®‹ä½“",Font.PLAIN,16));
-    JMenu menu4 = new JMenu("ç»Ÿè®¡(S)");
+    menu3.setFont(new Font("ËÎÌå",Font.PLAIN,16));
+    JMenu menu4 = new JMenu("Í³¼Æ(S)");
     menu4.setMnemonic('S'); 
-    menu4.setFont(new Font("å®‹ä½“",Font.PLAIN,16));
-    JMenu menu5 = new JMenu("ç»´æŠ¤(M)");
+    menu4.setFont(new Font("ËÎÌå",Font.PLAIN,16));
+    JMenu menu5 = new JMenu("Î¬»¤(M)");
     menu5.setMnemonic('M'); 
-    menu5.setFont(new Font("å®‹ä½“",Font.PLAIN,16));
-    //åˆå§‹åŒ–ä¸€ä¸ªpanel
+    menu5.setFont(new Font("ËÎÌå",Font.PLAIN,16));
+    //³õÊ¼»¯Ò»¸öpanel
     JPanel panel = new JPanel();
 
-    //åˆå§‹åŒ–ä¸€ä¸ªå®¹å™¨
+    //³õÊ¼»¯Ò»¸öÈİÆ÷
     Container container = frame.getContentPane();
-    //æŠŠèœå•æ·»åŠ åˆ°èœå•æ 
+    //°Ñ²Ëµ¥Ìí¼Óµ½²Ëµ¥À¸
     menuBar.add(menu1);
     menuBar.add(menu2);
     menuBar.add(menu3);
     menuBar.add(menu4);
     menuBar.add(menu5);
-    //è®¾ç½®èœå•æ 
+    //ÉèÖÃ²Ëµ¥À¸
     frame.setJMenuBar(menuBar);
     
     panel.setLayout(null);
     
-    JLabel label1=new JLabel("è€ƒå·ï¼š");
+    JLabel label1=new JLabel("¿¼ºÅ£º");
     label1.setBounds(25,30,100,25);
     label1.setFont(new Font("",Font.PLAIN,16));
     JTextField text1 = new JTextField(20);
     text1.setBounds(100,30,150,25);
     panel.add(text1);
     
-    JLabel label2=new JLabel("èº«ä»½è¯å·ï¼š");
+    JLabel label2=new JLabel("Éí·İÖ¤ºÅ£º");
     label2.setBounds(25,60,100,25);
     label2.setFont(new Font("",Font.PLAIN,16));   
     JTextField text2 = new JTextField(20);
     text2.setBounds(100,60,150,25);
     panel.add(text2);
     
-    JLabel label6=new JLabel("ä¸“ä¸šæˆç»©ï¼š");
+    JLabel label6=new JLabel("×¨Òµ³É¼¨£º");
     label6.setBounds(25,90,100,25);
     label6.setFont(new Font("",Font.PLAIN,16));   
     JTextField text6 = new JTextField(20);
     text6.setBounds(100,90,150,25);
     panel.add(text6);
     
-    JLabel label3=new JLabel("å§“åï¼š");
+    JLabel label3=new JLabel("ĞÕÃû£º");
     label3.setBounds(250,30,100,25);
     label3.setFont(new Font("",Font.PLAIN,16));
     JTextField text3 = new JTextField(20);
     text3.setBounds(325,30,150,25);
     panel.add(text3);
     
-    JLabel label4=new JLabel("è”ç³»æ–¹å¼ï¼š");
+    JLabel label4=new JLabel("ÁªÏµ·½Ê½£º");
     label4.setBounds(250,60,100,25);
     label4.setFont(new Font("",Font.PLAIN,16));
     JTextField text4 = new JTextField(20);
     text4.setBounds(325,60,150,25);
     panel.add(text4);
     
-    JLabel label7=new JLabel("æ”¿æ²»æˆç»©ï¼š");
+    JLabel label7=new JLabel("ÕşÖÎ³É¼¨£º");
     label7.setBounds(250,90,100,25);
     label7.setFont(new Font("",Font.PLAIN,16));
     JTextField text7 = new JTextField(20);
     text7.setBounds(325,90,150,25);
     panel.add(text7);
     
-    JLabel label5=new JLabel("æ€§åˆ«ï¼š");
+    JLabel label5=new JLabel("ĞÔ±ğ£º");
     label5.setBounds(485,30,100,25);
     label5.setFont(new Font("",Font.PLAIN,16));
     JTextField text5= new JTextField(20);
     text5.setBounds(555,30,150,25);
     panel.add(text5);
     
-    JLabel label8=new JLabel("æœ¬ç§‘å­¦æ ¡ï¼š");
+    JLabel label8=new JLabel("±¾¿ÆÑ§Ğ££º");
     label8.setBounds(485,60,100,25);
     label8.setFont(new Font("",Font.PLAIN,16));
     JTextField text8= new JTextField(20);
     text8.setBounds(555,60,150,25);
     panel.add(text8);
     
-    JLabel label9=new JLabel("è‹±è¯­æˆç»©ï¼š");
+    JLabel label9=new JLabel("Ó¢Óï³É¼¨£º");
     label9.setBounds(485,90,100,25);
     label9.setFont(new Font("",Font.PLAIN,16));
     JTextField text9= new JTextField(20);
     text9.setBounds(555,90,150,25);
     panel.add(text9);
     
-    JLabel label10=new JLabel("æŠ¥è€ƒä¸“ä¸šï¼š");
+    JLabel label10=new JLabel("±¨¿¼×¨Òµ£º");
     label10.setBounds(720,30,100,25);
     label10.setFont(new Font("",Font.PLAIN,16));
     JTextField text10= new JTextField(20);
     text10.setBounds(790,30,150,25);
     panel.add(text10);
     
-    JLabel label11=new JLabel("é¢è¯•æˆç»©ï¼š");
+    JLabel label11=new JLabel("ÃæÊÔ³É¼¨£º");
     label11.setBounds(720,90,100,25);
     label11.setFont(new Font("",Font.PLAIN,16));
     JTextField text11= new JTextField(20);
@@ -172,36 +172,36 @@ public StudentDataset() {
     panel.add(label10);
     panel.add(label11);
 
-    //åˆ†å‰²çº¿
+    //·Ö¸îÏß
     JSplitPane split1=new JSplitPane();
     split1.setBounds(1000, 0,1, 800);
     panel.add(split1);
 
-//    //ç”¨è¡¨æ ¼æ˜¾ç¤ºé¢˜ç›®
-//    Object[] columnNames = {"è€ƒå·","å§“å","æ€§åˆ«","æŠ¥è€ƒä¸“ä¸š","èº«ä»½è¯å·","è”ç³»æ–¹å¼","æœ¬ç§‘å­¦æ ¡","ä¸“ä¸šæˆç»©","æ”¿æ²»æˆç»©","è‹±è¯­æˆç»©","é¢è¯•æˆç»©","flag",};// å®šä¹‰è¡¨æ ¼åˆ—åæ•°ç»„
-//    // å®šä¹‰è¡¨æ ¼æ•°æ®æ•°ç»„
-//    String[] tableValues = {"0","Bob","ç”·","æ•°å­¦","123","345","SCU","89","92","76","72","0"};
-//    // åˆ›å»ºæŒ‡å®šåˆ—åå’Œæ•°æ®çš„è¡¨æ ¼
+//    //ÓÃ±í¸ñÏÔÊ¾ÌâÄ¿
+//    Object[] columnNames = {"¿¼ºÅ","ĞÕÃû","ĞÔ±ğ","±¨¿¼×¨Òµ","Éí·İÖ¤ºÅ","ÁªÏµ·½Ê½","±¾¿ÆÑ§Ğ£","×¨Òµ³É¼¨","ÕşÖÎ³É¼¨","Ó¢Óï³É¼¨","ÃæÊÔ³É¼¨","flag",};// ¶¨Òå±í¸ñÁĞÃûÊı×é
+//    // ¶¨Òå±í¸ñÊı¾İÊı×é
+//    String[] tableValues = {"0","Bob","ÄĞ","ÊıÑ§","123","345","SCU","89","92","76","72","0"};
+//    // ´´½¨Ö¸¶¨ÁĞÃûºÍÊı¾İµÄ±í¸ñ
 //    JTable table=new JTable(tableValues,columnNames);
 
 
     final DefaultTableModel[] model = {new DefaultTableModel()};
-    Vector data = new Vector(); // æ•°æ®è¡Œå‘é‡é›†ï¼Œå› ä¸ºåˆ—è¡¨ä¸æ­¢ä¸€è¡Œï¼Œå¾€é‡Œé¢æ·»åŠ æ•°æ®è¡Œå‘é‡ï¼Œæ·»åŠ æ–¹æ³•add(row)
-    Vector names = new Vector();// åˆ—åå‘é‡ï¼Œä½¿ç”¨å®ƒçš„add()æ–¹æ³•æ·»åŠ åˆ—å
+    Vector data = new Vector(); // Êı¾İĞĞÏòÁ¿¼¯£¬ÒòÎªÁĞ±í²»Ö¹Ò»ĞĞ£¬ÍùÀïÃæÌí¼ÓÊı¾İĞĞÏòÁ¿£¬Ìí¼Ó·½·¨add(row)
+    Vector names = new Vector();// ÁĞÃûÏòÁ¿£¬Ê¹ÓÃËüµÄadd()·½·¨Ìí¼ÓÁĞÃû
     JTable table = new JTable(model[0]);
 
-    //æ˜¾ç¤ºæ•°æ®åº“ä¿¡æ¯
-    names.add("è€ƒå·");
-    names.add("å§“å");
-    names.add("æ€§åˆ«");
-    names.add("æŠ¥è€ƒä¸“ä¸š");
-    names.add("èº«ä»½è¯å·");
-    names.add("è”ç³»æ–¹å¼");
-    names.add("æœ¬ç§‘å­¦æ ¡");
-    names.add("ä¸“ä¸šæˆç»©");
-    names.add("æ”¿æ²»æˆç»©");
-    names.add("è‹±è¯­æˆç»©");
-    names.add("é¢è¯•æˆç»©");
+    //ÏÔÊ¾Êı¾İ¿âĞÅÏ¢
+    names.add("¿¼ºÅ");
+    names.add("ĞÕÃû");
+    names.add("ĞÔ±ğ");
+    names.add("±¨¿¼×¨Òµ");
+    names.add("Éí·İÖ¤ºÅ");
+    names.add("ÁªÏµ·½Ê½");
+    names.add("±¾¿ÆÑ§Ğ£");
+    names.add("×¨Òµ³É¼¨");
+    names.add("ÕşÖÎ³É¼¨");
+    names.add("Ó¢Óï³É¼¨");
+    names.add("ÃæÊÔ³É¼¨");
     names.add("flag");
     String viewtable = "select * from student";
     try {
@@ -219,7 +219,7 @@ public StudentDataset() {
             String sex = rs.getString("S_sex");
             String phone = rs.getString("S_phone");
             String flag = rs.getString("S_flag");
-            Vector row = new Vector(); // æ•°æ®è¡Œå‘é‡ï¼Œä½¿ç”¨å®ƒçš„add()æ·»åŠ å…ƒç´ ï¼Œæ¯”å¦‚æ•´æ•°ã€Stringã€Objectç­‰ï¼Œæœ‰å‡ è¡Œå°±newå‡ ä¸ªè¡Œå‘é‡
+            Vector row = new Vector(); // Êı¾İĞĞÏòÁ¿£¬Ê¹ÓÃËüµÄadd()Ìí¼ÓÔªËØ£¬±ÈÈçÕûÊı¡¢String¡¢ObjectµÈ£¬ÓĞ¼¸ĞĞ¾Ínew¼¸¸öĞĞÏòÁ¿
             row.add(stu_id);
             row.add(name);
             row.add(sex);
@@ -239,42 +239,42 @@ public StudentDataset() {
     } catch (SQLException e) {
         e.printStackTrace();
     }
-    model[0].setDataVector(data, names); // è®¾ç½®æ¨¡å‹ä¸­çš„å…ƒç´ ï¼Œå®ƒä¼šè‡ªåŠ¨æ˜¾ç¤ºåœ¨åˆ—è¡¨ä¸­
-    JScrollPane jsp = new JScrollPane(table); // ç”¨åˆ—è¡¨åˆ›å»ºå¯æ»šåŠ¨çš„Panelï¼ŒæŠŠè¿™ä¸ªPanelæ·»åŠ åˆ°çª—å£ä¸­
+    model[0].setDataVector(data, names); // ÉèÖÃÄ£ĞÍÖĞµÄÔªËØ£¬Ëü»á×Ô¶¯ÏÔÊ¾ÔÚÁĞ±íÖĞ
+    JScrollPane jsp = new JScrollPane(table); // ÓÃÁĞ±í´´½¨¿É¹ö¶¯µÄPanel£¬°ÑÕâ¸öPanelÌí¼Óµ½´°¿ÚÖĞ
     jsp.setSize(1000, 200);
     jsp.setLocation(0, 220);
     panel.add(jsp);
     table.setBounds(0,220,1000,100);
-    table.setFont(new Font("å®‹ä½“",Font.PLAIN,16));
+    table.setFont(new Font("ËÎÌå",Font.PLAIN,16));
     table.setRowHeight(30);
     table.getTableHeader().setBounds(0,200,1000,20);
-    table.getTableHeader().setFont(new Font("å®‹ä½“",Font.PLAIN,16));
+    table.getTableHeader().setFont(new Font("ËÎÌå",Font.PLAIN,16));
 
 
 
-    //æ·»åŠ æŒ‰é’®
-    JButton bt1=new JButton("æ·»åŠ ");
+    //Ìí¼Ó°´Å¥
+    JButton bt1=new JButton("Ìí¼Ó");
     bt1.setBounds(0, 150, 100, 35);
-    bt1.setFont(new Font("å®‹ä½“",Font.PLAIN,16));;
+    bt1.setFont(new Font("ËÎÌå",Font.PLAIN,16));;
     panel.add(bt1);
-    JButton bt2=new JButton("æ›´æ–°");
+    JButton bt2=new JButton("¸üĞÂ");
     bt2.setBounds(200, 150, 100, 35);
-    bt2.setFont(new Font("å®‹ä½“",Font.PLAIN,16));;
+    bt2.setFont(new Font("ËÎÌå",Font.PLAIN,16));;
     panel.add(bt2);
-    JButton bt3=new JButton("åˆ é™¤");
+    JButton bt3=new JButton("É¾³ı");
     bt3.setBounds(400, 150, 100, 35);
-    bt3.setFont(new Font("å®‹ä½“",Font.PLAIN,16));;
+    bt3.setFont(new Font("ËÎÌå",Font.PLAIN,16));;
     panel.add(bt3);
-    JButton bt4=new JButton("æµè§ˆ");
+    JButton bt4=new JButton("ä¯ÀÀ");
     bt4.setBounds(600, 150, 100, 35);
-    bt4.setFont(new Font("å®‹ä½“",Font.PLAIN,16));;
+    bt4.setFont(new Font("ËÎÌå",Font.PLAIN,16));;
     panel.add(bt4);
-    JButton bt5=new JButton("å…³é—­");
+    JButton bt5=new JButton("¹Ø±Õ");
     bt5.setBounds(800, 150, 100, 35);
-    bt5.setFont(new Font("å®‹ä½“",Font.PLAIN,16));;
+    bt5.setFont(new Font("ËÎÌå",Font.PLAIN,16));;
     panel.add(bt5);
 
-    //æ·»åŠ ä¿¡æ¯
+    //Ìí¼ÓĞÅÏ¢
     bt1.addActionListener(new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e){
@@ -300,19 +300,19 @@ public StudentDataset() {
                     data.add(rowData5);
                     model[0] = new DefaultTableModel(data, names);
                     table.setModel(model[0]);
-                    System.out.println("æ•°æ®æ·»åŠ æˆåŠŸ");
+                    System.out.println("Êı¾İÌí¼Ó³É¹¦");
                 } catch (SQLException e1) {
                     e1.printStackTrace();
-                    System.out.println("æ•°æ®æ·»åŠ å¤±è´¥");
+                    System.out.println("Êı¾İÌí¼ÓÊ§°Ü");
                 }
             }
             else{
-                System.out.println("ä¿¡æ¯ä¸ç¬¦åˆè§„èŒƒ");
+                System.out.println("ĞÅÏ¢²»·ûºÏ¹æ·¶");
             }
         }
     });
 
-    //æ›´æ–°ä¿¡æ¯
+    //¸üĞÂĞÅÏ¢
     bt2.addActionListener(new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -325,7 +325,7 @@ public StudentDataset() {
                 }
                 try {
                     if(rs.next()){
-                        //æ›´æ–°å­¦ç”Ÿå§“å
+                        //¸üĞÂÑ§ÉúĞÕÃû
                         if (!text3.getText().equals("")) {
                             String updateInfo = "update student set S_name='" + text3.getText() + "' where S_stuID='" + text1.getText() + "'";
                             try {
@@ -334,7 +334,7 @@ public StudentDataset() {
                                 e1.printStackTrace();
                             }
                         }
-                        //æ›´æ–°æ”¿æ²»æˆç»©
+                        //¸üĞÂÕşÖÎ³É¼¨
                         if (!text7.getText().equals("")) {
                             String updateInfo = "update student set S_polGrade='" + Integer.parseInt(text7.getText()) + "' where S_stuID='" + text1.getText() + "'";
                             try {
@@ -343,7 +343,7 @@ public StudentDataset() {
                                 e1.printStackTrace();
                             }
                         }
-                        //æ›´æ–°è‹±è¯­æˆç»©
+                        //¸üĞÂÓ¢Óï³É¼¨
                         if (!text9.getText().equals("")) {
                             String updateInfo = "update student set S_EngGrade='" + Integer.parseInt(text9.getText()) + "' where S_stuID='" + text1.getText() + "'";
                             try {
@@ -352,7 +352,7 @@ public StudentDataset() {
                                 e1.printStackTrace();
                             }
                         }
-                        //æ›´æ–°ä¸“ä¸šæˆç»©
+                        //¸üĞÂ×¨Òµ³É¼¨
                         if (!text6.getText().equals("")) {
                             String updateInfo = "update student set S_majGrade='" + Integer.parseInt(text6.getText()) + "' where S_stuID='" + text1.getText() + "'";
                             try {
@@ -361,7 +361,7 @@ public StudentDataset() {
                                 e1.printStackTrace();
                             }
                         }
-                        //æ›´æ–°æŠ¥è€ƒä¸“ä¸š
+                        //¸üĞÂ±¨¿¼×¨Òµ
                         if (!text10.getText().equals("")) {
                             String updateInfo = "update student set S_major='" + text10.getText() + "' where S_stuID='" + text1.getText() + "'";
                             try {
@@ -370,7 +370,7 @@ public StudentDataset() {
                                 e1.printStackTrace();
                             }
                         }
-                        //æ›´æ–°é¢è¯•æˆç»©
+                        //¸üĞÂÃæÊÔ³É¼¨
                         if (!text11.getText().equals("")) {
                             System.out.println(text11.getText());
                             String updateInfo = "update student set S_intGrade='" + Integer.parseInt(text11.getText()) + "' where S_stuID='" + text1.getText() + "'";
@@ -380,7 +380,7 @@ public StudentDataset() {
                                 e1.printStackTrace();
                             }
                         }
-                        //æ›´æ–°æœ¬ç§‘å­¦æ ¡
+                        //¸üĞÂ±¾¿ÆÑ§Ğ£
                         if (!text8.getText().equals("")) {
                             String updateInfo = "update student set S_School='" + text8.getText() + "' where S_stuID='" + text1.getText() + "'";
                             try {
@@ -389,7 +389,7 @@ public StudentDataset() {
                                 e1.printStackTrace();
                             }
                         }
-                        //æ›´æ–°è”ç³»æ–¹å¼
+                        //¸üĞÂÁªÏµ·½Ê½
                         if (!text4.getText().equals("")) {
                             String updateInfo = "update student set S_phone='" + text4.getText() + "' where S_stuID='" + text1.getText() + "'";
                             try {
@@ -435,10 +435,10 @@ public StudentDataset() {
                         } catch (SQLException e1) {
                             e1.printStackTrace();
                         }
-                        System.out.println("æ•°æ®æ›´æ–°æˆåŠŸ");
+                        System.out.println("Êı¾İ¸üĞÂ³É¹¦");
                     }
                     else{
-                        System.out.println("æ•°æ®æ›´æ–°å¤±è´¥");
+                        System.out.println("Êı¾İ¸üĞÂÊ§°Ü");
                     }
                 } catch (SQLException e1) {
                     e1.printStackTrace();
@@ -447,7 +447,7 @@ public StudentDataset() {
         }
     });
 
-    //åˆ é™¤æ•°æ®
+    //É¾³ıÊı¾İ
     bt3.addActionListener(new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -503,17 +503,17 @@ public StudentDataset() {
                         model[0] = new DefaultTableModel(data, names);
                         table.setModel(model[0]);
                     }
-                    System.out.println("ä¿¡æ¯åˆ é™¤æˆåŠŸ");
+                    System.out.println("ĞÅÏ¢É¾³ı³É¹¦");
                 }
                 else{
-                    System.out.println("æœªæŸ¥è¯¢åˆ°æ•°æ®");
+                    System.out.println("Î´²éÑ¯µ½Êı¾İ");
                 }
             } catch (SQLException e1) {
                 e1.printStackTrace();
             }
         }
     });
-        //æµè§ˆå­¦ç”Ÿè¡¨
+        //ä¯ÀÀÑ§Éú±í
     bt4.addActionListener(new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e){
@@ -526,7 +526,7 @@ public StudentDataset() {
                     table.setModel(model[0]);
                 }
                 while(rs.next()){
-                    System.out.println("æ•°æ®æµè§ˆæˆåŠŸï¼");
+                    System.out.println("Êı¾İä¯ÀÀ³É¹¦£¡");
                     String stu_id = rs.getString("S_stuID");
                     String name = rs.getString("S_name");
                     String polGrade = rs.getString("S_polGrade");
@@ -558,27 +558,27 @@ public StudentDataset() {
                 }
             } catch (SQLException e1) {
                 e1.printStackTrace();
-                System.out.println("æ•°æ®æµè§ˆå¤±è´¥");
+                System.out.println("Êı¾İä¯ÀÀÊ§°Ü");
             }
         }
     });
 
-    //æŸ¥æ‰¾
-    JLabel Clabel1=new JLabel("è€ƒå·ï¼š");
+    //²éÕÒ
+    JLabel Clabel1=new JLabel("¿¼ºÅ£º");
     Clabel1.setBounds(1020,90,100,25);
     Clabel1.setFont(new Font("",Font.PLAIN,16));
     JTextField Ctext1 = new JTextField(20);
     Ctext1.setBounds(1060,90,150,25);
     panel.add(Ctext1);
     
-    JLabel Clabel2=new JLabel("å§“åï¼š");
+    JLabel Clabel2=new JLabel("ĞÕÃû£º");
     Clabel2.setBounds(1020,120,100,25);
     Clabel2.setFont(new Font("",Font.PLAIN,16));   
     JTextField Ctext2 = new JTextField(20);
     Ctext2.setBounds(1060,120,150,25);
     panel.add(Ctext2);
     
-    JLabel Clabel3=new JLabel("æŸ¥æ‰¾");
+    JLabel Clabel3=new JLabel("²éÕÒ");
     Clabel3.setBounds(1020,60,100,25);
     Clabel3.setFont(new Font("",Font.PLAIN,16));
     
@@ -586,19 +586,19 @@ public StudentDataset() {
     panel.add(Clabel2);
     panel.add(Clabel3);
 
-    //æŸ¥è¯¢æ¡†æŒ‰é’®
-    JButton Cbt1=new JButton("æŸ¥è¯¢");
+    //²éÑ¯¿ò°´Å¥
+    JButton Cbt1=new JButton("²éÑ¯");
     Cbt1.setBounds(1020, 180, 100, 35);
-    Cbt1.setFont(new Font("å®‹ä½“",Font.PLAIN,16));;
+    Cbt1.setFont(new Font("ËÎÌå",Font.PLAIN,16));;
     panel.add(Cbt1);
-    JButton Cbt2=new JButton("é‡ç½®");
+    JButton Cbt2=new JButton("ÖØÖÃ");
     Cbt2.setBounds(1150, 180, 100, 35);
-    Cbt2.setFont(new Font("å®‹ä½“",Font.PLAIN,16));;
+    Cbt2.setFont(new Font("ËÎÌå",Font.PLAIN,16));;
     panel.add(Cbt2);
-    //æŠŠpanelæ·»åŠ åˆ°å®¹å™¨
+    //°ÑpanelÌí¼Óµ½ÈİÆ÷
     container.add(panel);
 
-    //æŸ¥è¯¢ä¿¡æ¯
+    //²éÑ¯ĞÅÏ¢
     Cbt1.addActionListener(new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e){
@@ -612,7 +612,7 @@ public StudentDataset() {
                 try {
                     rs = stmt.executeQuery(selectInfo);
                     while(rs.next()){
-                        System.out.println("å­¦å·æŸ¥è¯¢æˆåŠŸï¼");
+                        System.out.println("Ñ§ºÅ²éÑ¯³É¹¦£¡");
                         String stu_id = rs.getString("S_stuID");
                         String name = rs.getString("S_name");
                         String polGrade = rs.getString("S_polGrade");
@@ -656,7 +656,7 @@ public StudentDataset() {
                     try {
                         rs = stmt.executeQuery(selectInfo);
                         while(rs.next()){
-                            System.out.println("å§“åæŸ¥è¯¢æˆåŠŸï¼");
+                            System.out.println("ĞÕÃû²éÑ¯³É¹¦£¡");
                             String stu_id = rs.getString("S_stuID");
                             String name = rs.getString("S_name");
                             String polGrade = rs.getString("S_polGrade");
@@ -735,7 +735,7 @@ public StudentDataset() {
                                 table.setModel(model[0]);
                             }
                             else{
-                                System.out.println("å­¦å·ä¸å§“åä¸åŒ¹é…");
+                                System.out.println("Ñ§ºÅÓëĞÕÃû²»Æ¥Åä");
                             }
                         }
                     } catch (SQLException e2) {
@@ -746,7 +746,7 @@ public StudentDataset() {
             }
     });
 
-    //é‡ç½®æŸ¥è¯¢ä¿¡æ¯
+    //ÖØÖÃ²éÑ¯ĞÅÏ¢
     Cbt2.addActionListener(new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e){
@@ -763,17 +763,17 @@ public StudentDataset() {
 
 
 
-    //è®¾ç½®å…³é—­æ–¹å¼
+    //ÉèÖÃ¹Ø±Õ·½Ê½
     frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 
-    //è®¾ç½®å¤§å°
+    //ÉèÖÃ´óĞ¡
     frame.setSize(1300,700);
 
-    //è®¾ç½®ä½ç½®
+    //ÉèÖÃÎ»ÖÃ
     frame.setLocation(100, 100);
 
-    //è®¾ç½®å¯è§æ€§
+    //ÉèÖÃ¿É¼ûĞÔ
     frame.setVisible(true);
 }
 }
