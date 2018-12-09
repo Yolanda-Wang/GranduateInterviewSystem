@@ -7,16 +7,7 @@ import java.awt.event.ActionListener;
 import java.sql.*;
 import java.util.Vector;
 
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JMenu;
-import javax.swing.JMenuBar;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JSplitPane;
-import javax.swing.JTable;
-import javax.swing.JTextField;
+import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 
 import java.net.DatagramPacket;
@@ -130,8 +121,10 @@ public class teacherMainWidget {
     label8.setFont(new Font("",Font.PLAIN,16));
 
     //题目内容
-        JLabel label9=new JLabel(" ");
-        label9.setBounds(320,70,250,50);
+        JTextArea label9=new JTextArea();
+        //label9.setSize(5000,5000);
+        label9.setLineWrap(true);
+        label9.setBounds(320,50,250,280);
         label9.setFont(new Font("",Font.PLAIN,16));
     panel.add(label1);
     panel.add(label2);
@@ -142,6 +135,7 @@ public class teacherMainWidget {
     panel.add(label7);
     panel.add(label8);
         panel.add(label9);
+        label9.setText("综合面试其实主要考察考生的综合素质。包括考生本科期间的科研能力、知识结构、计算机操作能力、外语能力和应变能力等，在回答的时候并不要求十分精准的答案，但是要求考生流畅清楚以及有逻辑性的陈述。所以在综合面试之前相关信息的搜集、知识点的储备、以及勤加练习都是必不可少的。");
     //分割线
     JSplitPane split1=new JSplitPane();
     split1.setBounds(300, 0,1, 500);
@@ -156,9 +150,13 @@ public class teacherMainWidget {
     bt1.setFont(new Font("宋体",Font.PLAIN,16));;
     panel.add(bt1);
     JButton bt2=new JButton("下一题");
-    bt2.setBounds(400, 250, 100, 35);
+    bt2.setBounds(320, 350, 100, 35);
     bt2.setFont(new Font("宋体",Font.PLAIN,16));;
     panel.add(bt2);
+        JButton bt3=new JButton("下一位");
+        bt3.setBounds(450, 350, 100, 35);
+        bt3.setFont(new Font("宋体",Font.PLAIN,16));;
+        panel.add(bt3);
 
     //用表格显示题目
 
@@ -380,6 +378,38 @@ public class teacherMainWidget {
         }
     });
 
+    bt3.addActionListener(new ActionListener() {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            String next_stuID = "20161414624";
+
+            try {
+                group = InetAddress.getByName("224.0.0.2");//组播地址
+                int port = 8888;
+                mss = new MulticastSocket(port);
+                mss.joinGroup(group);
+                System.out.println("发送数据包启动！（启动时间" + new Date() + ")");
+                String message = next_stuID;
+                byte[] buffer = message.getBytes();
+                DatagramPacket dp = new DatagramPacket(buffer, buffer.length, group, port);
+                mss.send(dp);
+                System.out.println("发送数据包给 " + group + ":" + port);
+                Thread.sleep(1000);
+            } catch (Exception e1) {
+                e1.printStackTrace();
+            } finally {
+                try {
+                    if (mss != null) {
+                        mss.leaveGroup(group);
+                        mss.close();
+                    }
+                } catch (Exception e2) {
+                    // TODO: handle exception
+                }
+            }
+            countque++;
+        }
+    });
 
     //提交分数
     bt1.addActionListener(new ActionListener() {
