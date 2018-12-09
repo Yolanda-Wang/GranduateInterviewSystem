@@ -756,7 +756,6 @@ public StudentDataset() {
                  data.clear();
                  model[0] = new DefaultTableModel(data, names);
                  table.setModel(model[0]);
-                 table.getColumnModel().getColumn(4).setPreferredWidth(120);
              }
         }
     });

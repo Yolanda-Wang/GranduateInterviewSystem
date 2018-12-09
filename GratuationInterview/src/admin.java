@@ -10,7 +10,7 @@ import javax.swing.table.DefaultTableModel;
 
 
 public class admin {
-    public static String url = "jdbc:mysql://localhost:3306/interview?useUnicode=true&characterencoding=utf-8";
+    public static String url = "jdbc:mysql://localhost:3306/interview?useUnicode=true&characterencoding=GBK";
     public static String username = "manager";
     public static String password = "123456";
     public static Connection con;
@@ -18,67 +18,67 @@ public class admin {
     public static ResultSet rs;
 public static void main(String[]args) throws SQLException {
     try {
-        System.out.println("è´¦å·ç®¡ç†ï¼š");
+        System.out.println("ÕËºÅ¹ÜÀí£º");
         Class.forName("com.mysql.jdbc.Driver");
-        System.out.println("åŠ è½½é©±åŠ¨æˆåŠŸ");
+        System.out.println("¼ÓÔØÇı¶¯³É¹¦");
     } catch (ClassNotFoundException var2) {
-        System.out.println("åŠ è½½é©±åŠ¨å¤±è´¥!");
+        System.out.println("¼ÓÔØÇı¶¯Ê§°Ü!");
         var2.printStackTrace();
     }
     try {
         con = DriverManager.getConnection(url, username, password);
         stmt = con.createStatement();
-        System.out.println("è´¦å·ç®¡ç†æ•°æ®åº“è¿æ¥æˆåŠŸ");
+        System.out.println("ÕËºÅ¹ÜÀíÊı¾İ¿âÁ¬½Ó³É¹¦");
     } catch (SQLException var1) {
-        System.out.println("è´¦å·ç®¡ç†æ•°æ®åº“è¿æ¥å¤±è´¥!");
+        System.out.println("ÕËºÅ¹ÜÀíÊı¾İ¿âÁ¬½ÓÊ§°Ü!");
     }
 	admin a=new admin();
 }
 public admin() {
-	JFrame frame=new JFrame("ç®¡ç†å‘˜ç•Œé¢");
-	//åˆå§‹åŒ–ä¸€ä¸ªèœå•æ 
+	JFrame frame=new JFrame("¹ÜÀíÔ±½çÃæ");
+	//³õÊ¼»¯Ò»¸ö²Ëµ¥À¸
     JMenuBar menuBar = new JMenuBar();
 
-    //åˆå§‹åŒ–èœå•
-    JMenu menu1 = new JMenu("æ“ä½œ(O)");
+    //³õÊ¼»¯²Ëµ¥
+    JMenu menu1 = new JMenu("²Ù×÷(O)");
     menu1.setMnemonic('O');  
-    menu1.setFont(new Font("å®‹ä½“",Font.PLAIN,16));
-    JMenu menu2 = new JMenu("å¸®åŠ©(H)");
+    menu1.setFont(new Font("ËÎÌå",Font.PLAIN,16));
+    JMenu menu2 = new JMenu("°ïÖú(H)");
     menu2.setMnemonic('H'); 
-    menu2.setFont(new Font("å®‹ä½“",Font.PLAIN,16));
-    JMenu menu3 = new JMenu("æŸ¥è¯¢(Q)");
+    menu2.setFont(new Font("ËÎÌå",Font.PLAIN,16));
+    JMenu menu3 = new JMenu("²éÑ¯(Q)");
     menu3.setMnemonic('Q'); 
-    menu3.setFont(new Font("å®‹ä½“",Font.PLAIN,16));
-    JMenu menu4 = new JMenu("ç»Ÿè®¡(S)");
+    menu3.setFont(new Font("ËÎÌå",Font.PLAIN,16));
+    JMenu menu4 = new JMenu("Í³¼Æ(S)");
     menu4.setMnemonic('S'); 
-    menu4.setFont(new Font("å®‹ä½“",Font.PLAIN,16));
-    JMenu menu5 = new JMenu("ç»´æŠ¤(M)");
+    menu4.setFont(new Font("ËÎÌå",Font.PLAIN,16));
+    JMenu menu5 = new JMenu("Î¬»¤(M)");
     menu5.setMnemonic('M'); 
-    menu5.setFont(new Font("å®‹ä½“",Font.PLAIN,16));
-    //æŠŠèœå•æ·»åŠ åˆ°èœå•æ 
+    menu5.setFont(new Font("ËÎÌå",Font.PLAIN,16));
+    //°Ñ²Ëµ¥Ìí¼Óµ½²Ëµ¥À¸
     menuBar.add(menu1);
     menuBar.add(menu2);
     menuBar.add(menu3);
     menuBar.add(menu4);
     menuBar.add(menu5);
-    //è®¾ç½®èœå•æ 
+    //ÉèÖÃ²Ëµ¥À¸
     frame.setJMenuBar(menuBar);
     
     JPanel panel=new JPanel();
     Container container = frame.getContentPane();
 	panel.setLayout(null);
 	   
-//	  Object[] columnNames = {"è´¦å·","å¯†ç ","ç±»åˆ«"};// å®šä¹‰è¡¨æ ¼åˆ—åæ•°ç»„
-//	    // å®šä¹‰è¡¨æ ¼æ•°æ®æ•°ç»„
+//	  Object[] columnNames = {"ÕËºÅ","ÃÜÂë","Àà±ğ"};// ¶¨Òå±í¸ñÁĞÃûÊı×é
+//	    // ¶¨Òå±í¸ñÊı¾İÊı×é
 //	    String[][] tableValues = {{"001","123",null},{"002","234",null},{"003","562",null}};
-//	    // åˆ›å»ºæŒ‡å®šåˆ—åå’Œæ•°æ®çš„è¡¨æ ¼
+//	    // ´´½¨Ö¸¶¨ÁĞÃûºÍÊı¾İµÄ±í¸ñ
         final DefaultTableModel[] model = {new DefaultTableModel()};
-        Vector data = new Vector(); // æ•°æ®è¡Œå‘é‡é›†ï¼Œå› ä¸ºåˆ—è¡¨ä¸æ­¢ä¸€è¡Œï¼Œå¾€é‡Œé¢æ·»åŠ æ•°æ®è¡Œå‘é‡ï¼Œæ·»åŠ æ–¹æ³•add(row)
-        Vector names = new Vector();// åˆ—åå‘é‡ï¼Œä½¿ç”¨å®ƒçš„add()æ–¹æ³•æ·»åŠ åˆ—å
+        Vector data = new Vector(); // Êı¾İĞĞÏòÁ¿¼¯£¬ÒòÎªÁĞ±í²»Ö¹Ò»ĞĞ£¬ÍùÀïÃæÌí¼ÓÊı¾İĞĞÏòÁ¿£¬Ìí¼Ó·½·¨add(row)
+        Vector names = new Vector();// ÁĞÃûÏòÁ¿£¬Ê¹ÓÃËüµÄadd()·½·¨Ìí¼ÓÁĞÃû
         JTable table = new JTable(model[0]);
-        names.add("è´¦å·");
-        names.add("å¯†ç ");
-        names.add("ç±»åˆ«");
+        names.add("ÕËºÅ");
+        names.add("ÃÜÂë");
+        names.add("Àà±ğ");
     String viewtable = "select * from password";
         try {
             rs = stmt.executeQuery(viewtable);
@@ -97,8 +97,8 @@ public admin() {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        model[0].setDataVector(data, names); // è®¾ç½®æ¨¡å‹ä¸­çš„å…ƒç´ ï¼Œå®ƒä¼šè‡ªåŠ¨æ˜¾ç¤ºåœ¨åˆ—è¡¨ä¸­
-        JScrollPane jsp = new JScrollPane(table); // ç”¨åˆ—è¡¨åˆ›å»ºå¯æ»šåŠ¨çš„Panelï¼ŒæŠŠè¿™ä¸ªPanelæ·»åŠ åˆ°çª—å£ä¸­
+        model[0].setDataVector(data, names); // ÉèÖÃÄ£ĞÍÖĞµÄÔªËØ£¬Ëü»á×Ô¶¯ÏÔÊ¾ÔÚÁĞ±íÖĞ
+        JScrollPane jsp = new JScrollPane(table); // ÓÃÁĞ±í´´½¨¿É¹ö¶¯µÄPanel£¬°ÑÕâ¸öPanelÌí¼Óµ½´°¿ÚÖĞ
         jsp.setSize(200, 200);
         jsp.setLocation(10, 70);
         panel.add(jsp);
@@ -107,8 +107,8 @@ public admin() {
 	    table.setFont(new Font("",Font.PLAIN,16));
 	    table.getTableHeader().setBounds(10, 50, 250, 20);
 	    
-	    //è¾“å…¥æ–‡æœ¬æ¡†
-	    JLabel userLabel = new JLabel("è´¦å·:");
+	    //ÊäÈëÎÄ±¾¿ò
+	    JLabel userLabel = new JLabel("ÕËºÅ:");
         userLabel.setFont(new Font("",Font.PLAIN,16));
         userLabel.setBounds(300,40,250,25);
         panel.add(userLabel);
@@ -118,7 +118,7 @@ public admin() {
         panel.add(userText);
 
 
-        JLabel passwordLabel = new JLabel("å¯†ç :");
+        JLabel passwordLabel = new JLabel("ÃÜÂë:");
         passwordLabel.setFont(new Font("",Font.PLAIN,16));
         passwordLabel.setBounds(300,70,80,25);
         panel.add(passwordLabel);
@@ -128,17 +128,17 @@ public admin() {
         passwordText.setBounds(350,70,165,25);
         panel.add(passwordText);
 
-        JButton addButton = new JButton("æ·»åŠ ");
+        JButton addButton = new JButton("Ìí¼Ó");
         addButton.setFont(new Font("",Font.PLAIN,16));
         addButton.setBounds(300, 150, 70, 35);
         panel.add(addButton);
         
-        JButton updateButton = new JButton("æ›´æ–°");
+        JButton updateButton = new JButton("¸üĞÂ");
         updateButton.setFont(new Font("",Font.PLAIN,16));
         updateButton.setBounds(400, 150, 70, 35);
         panel.add(updateButton);
         
-        JButton deleteButton = new JButton("åˆ é™¤");
+        JButton deleteButton = new JButton("É¾³ı");
         deleteButton.setFont(new Font("",Font.PLAIN,16));
         deleteButton.setBounds(500, 150, 70, 35);
         panel.add(deleteButton);
@@ -147,7 +147,7 @@ public admin() {
 	    container.add(panel);
 	    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        //æ·»åŠ è´¦å·å¯†ç 
+        //Ìí¼ÓÕËºÅÃÜÂë
         addButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -159,76 +159,76 @@ public admin() {
                                 String viewtable = "select S_stuID from student where S_stuID='"+userText.getText()+"'";
                                 rs = stmt.executeQuery(viewtable);
                                 if(rs.next()){
-                                    String addPass = "insert into password(ID,password,type) values('"+userText.getText()+"','"+passW+"','è€ƒç”Ÿ')";
+                                    String addPass = "insert into password(ID,password,type) values('"+userText.getText()+"','"+passW+"','¿¼Éú')";
                                     String addstup = "update student set S_password = '"+passW+"' where S_stuID='"+userText.getText()+"'";
                                     stmt.executeUpdate(addPass);
                                     stmt.executeUpdate(addstup);
                                     Vector rowData1 = new Vector();
                                     rowData1.add(userText.getText());
                                     rowData1.add(passW);
-                                    rowData1.add("è€ƒç”Ÿ");
+                                    rowData1.add("¿¼Éú");
                                     data.add(rowData1);
                                     model[0] = new DefaultTableModel(data, names);
                                     table.setModel(model[0]);
-                                    System.out.println("è€ƒç”Ÿè´¦å·å¯†ç æ·»åŠ æˆåŠŸ");
+                                    System.out.println("¿¼ÉúÕËºÅÃÜÂëÌí¼Ó³É¹¦");
                                 }
                                 else{
-                                    System.out.println("è¯¥è€ƒç”Ÿè´¦å·ä¸å­˜åœ¨");
+                                    System.out.println("¸Ã¿¼ÉúÕËºÅ²»´æÔÚ");
                                 }
                             }
                             else if(userText.getText().length()==6){
                                 String viewtable = "select T_TeaID from teacher where T_TeaID='"+userText.getText()+"'";
                                 rs = stmt.executeQuery(viewtable);
                                 if(rs.next()){
-                                    String addPass = "insert into password(ID,password,type) values('"+userText.getText()+"','"+passW+"','å¯¼å¸ˆ')";
+                                    String addPass = "insert into password(ID,password,type) values('"+userText.getText()+"','"+passW+"','µ¼Ê¦')";
                                     String addteap = "update teacher set T_password = '"+passW+"' where T_TeaID='"+userText.getText()+"'";
                                     stmt.executeUpdate(addPass);
                                     stmt.executeUpdate(addteap);
                                     Vector rowData2 = new Vector();
                                     rowData2.add(userText.getText());
                                     rowData2.add(passW);
-                                    rowData2.add("å¯¼å¸ˆ");
+                                    rowData2.add("µ¼Ê¦");
                                     data.add(rowData2);
                                     model[0] = new DefaultTableModel(data, names);
                                     table.setModel(model[0]);
-                                    System.out.println("å¯¼å¸ˆè´¦å·å¯†ç æ·»åŠ æˆåŠŸ");
+                                    System.out.println("µ¼Ê¦ÕËºÅÃÜÂëÌí¼Ó³É¹¦");
                                 }
                                 else{
-                                    System.out.println("è¯¥å¯¼å¸ˆè´¦å·ä¸å­˜åœ¨");
+                                    System.out.println("¸Ãµ¼Ê¦ÕËºÅ²»´æÔÚ");
                                 }
                             }
                             else if(userText.getText().length()==2){
-                                String addPass = "insert into password(ID,password,type) values('"+userText.getText()+"','"+passW+"','ç®¡ç†å‘˜')";
+                                String addPass = "insert into password(ID,password,type) values('"+userText.getText()+"','"+passW+"','¹ÜÀíÔ±')";
                                 String addmanp = "insert into manager(M_manID,M_password) values('"+userText.getText()+"','"+passW+"')";
                                 stmt.executeUpdate(addPass);
                                 stmt.executeUpdate(addmanp);
                                 Vector rowData2 = new Vector();
                                 rowData2.add(userText.getText());
                                 rowData2.add(passW);
-                                rowData2.add("ç®¡ç†å‘˜");
+                                rowData2.add("¹ÜÀíÔ±");
                                 data.add(rowData2);
                                 model[0] = new DefaultTableModel(data, names);
                                 table.setModel(model[0]);
-                                System.out.println("ç®¡ç†å‘˜è´¦å·å¯†ç æ·»åŠ æˆåŠŸ");
+                                System.out.println("¹ÜÀíÔ±ÕËºÅÃÜÂëÌí¼Ó³É¹¦");
                             }
                             else{
-                                System.out.println("è´¦å·é•¿åº¦ä¸åŒ¹é…");
+                                System.out.println("ÕËºÅ³¤¶È²»Æ¥Åä");
                             }
                         }
                      else {
-                            System.out.println("å¯†ç ä¸ºå…«ä½æ•°");
+                            System.out.println("ÃÜÂëÎª°ËÎ»Êı");
                         }
                     } catch (SQLException e1) {
                         e1.printStackTrace();
                     }
                 }
                 else{
-                    System.out.println("è´¦å·å¯†ç éœ€åŒæ—¶æ·»åŠ ");
+                    System.out.println("ÕËºÅÃÜÂëĞèÍ¬Ê±Ìí¼Ó");
                 }
             }
         });
 
-        //æ›´æ–°è´¦å·å¯†ç 
+        //¸üĞÂÕËºÅÃÜÂë
         updateButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -263,60 +263,60 @@ public admin() {
                                     String viewtable = "select S_stuID from student where S_stuID='"+userText.getText()+"'";
                                     rs = stmt.executeQuery(viewtable);
                                     if(rs.next()){
-                                        String addPass = "insert into password(ID,password,type) values('"+userText.getText()+"','"+passW+"','è€ƒç”Ÿ')";
+                                        String addPass = "insert into password(ID,password,type) values('"+userText.getText()+"','"+passW+"','¿¼Éú')";
                                         String addstup = "update student set S_password = '"+passW+"' where S_stuID='"+userText.getText()+"'";
                                         stmt.executeUpdate(addPass);
                                         stmt.executeUpdate(addstup);
                                         Vector rowData1 = new Vector();
                                         rowData1.add(userText.getText());
                                         rowData1.add(passW);
-                                        rowData1.add("è€ƒç”Ÿ");
+                                        rowData1.add("¿¼Éú");
                                         data.add(rowData1);
                                         model[0] = new DefaultTableModel(data, names);
                                         table.setModel(model[0]);
-                                        System.out.println("è€ƒç”Ÿè´¦å·å¯†ç æ·»åŠ æˆåŠŸ");
+                                        System.out.println("¿¼ÉúÕËºÅÃÜÂëÌí¼Ó³É¹¦");
                                     }
                                     else{
-                                        System.out.println("è¯¥è€ƒç”Ÿè´¦å·ä¸å­˜åœ¨");
+                                        System.out.println("¸Ã¿¼ÉúÕËºÅ²»´æÔÚ");
                                     }
                                 }
                                 else if(userText.getText().length()==6){
                                     String viewtable = "select T_TeaID from teacher where T_TeaID='"+userText.getText()+"'";
                                     rs = stmt.executeQuery(viewtable);
                                     if(rs.next()){
-                                        String addPass = "insert into password(ID,password,type) values('"+userText.getText()+"','"+passW+"','å¯¼å¸ˆ')";
+                                        String addPass = "insert into password(ID,password,type) values('"+userText.getText()+"','"+passW+"','µ¼Ê¦')";
                                         String addteap = "update teacher set T_password = '"+passW+"' where T_TeaID='"+userText.getText()+"'";
                                         stmt.executeUpdate(addPass);
                                         stmt.executeUpdate(addteap);
                                         Vector rowData2 = new Vector();
                                         rowData2.add(userText.getText());
                                         rowData2.add(passW);
-                                        rowData2.add("å¯¼å¸ˆ");
+                                        rowData2.add("µ¼Ê¦");
                                         data.add(rowData2);
                                         model[0] = new DefaultTableModel(data, names);
                                         table.setModel(model[0]);
-                                        System.out.println("å¯¼å¸ˆè´¦å·å¯†ç æ·»åŠ æˆåŠŸ");
+                                        System.out.println("µ¼Ê¦ÕËºÅÃÜÂëÌí¼Ó³É¹¦");
                                     }
                                     else{
-                                        System.out.println("è¯¥å¯¼å¸ˆè´¦å·ä¸å­˜åœ¨");
+                                        System.out.println("¸Ãµ¼Ê¦ÕËºÅ²»´æÔÚ");
                                     }
                                 }
                                 else if(userText.getText().length()==2){
-                                    String addPass = "insert into password(ID,password,type) values('"+userText.getText()+"','"+passW+"','ç®¡ç†å‘˜')";
+                                    String addPass = "insert into password(ID,password,type) values('"+userText.getText()+"','"+passW+"','¹ÜÀíÔ±')";
                                     String addmanp = "insert into manager(M_manID,M_password) values('"+userText.getText()+"','"+passW+"')";
                                     stmt.executeUpdate(addPass);
                                     stmt.executeUpdate(addmanp);
                                     Vector rowData2 = new Vector();
                                     rowData2.add(userText.getText());
                                     rowData2.add(passW);
-                                    rowData2.add("ç®¡ç†å‘˜");
+                                    rowData2.add("¹ÜÀíÔ±");
                                     data.add(rowData2);
                                     model[0] = new DefaultTableModel(data, names);
                                     table.setModel(model[0]);
-                                    System.out.println("ç®¡ç†å‘˜è´¦å·å¯†ç æ·»åŠ æˆåŠŸ");
+                                    System.out.println("¹ÜÀíÔ±ÕËºÅÃÜÂëÌí¼Ó³É¹¦");
                                 }
                                 else{
-                                    System.out.println("è´¦æˆ·ä¸å­˜åœ¨");
+                                    System.out.println("ÕË»§²»´æÔÚ");
                                 }
                             }
                             String selectall = "select * from password";
@@ -341,13 +341,13 @@ public admin() {
                     }
 
                     else{
-                        System.out.println("å¯†ç å¿…é¡»ä¸ºå…«ä½ï¼");
+                        System.out.println("ÃÜÂë±ØĞëÎª°ËÎ»£¡");
                     }
                 }
             }
         });
 
-        //åˆ é™¤è´¦å·å¯†ç 
+        //É¾³ıÕËºÅÃÜÂë
     deleteButton.addActionListener(new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -364,12 +364,12 @@ public admin() {
                                     stmt.executeUpdate(delete);
                                     String delete_stu = "update student set S_password='' where S_stuID = '" + userText.getText() + "'";
                                     stmt.executeUpdate(delete_stu);
-                                    System.out.println("è€ƒç”Ÿè´¦å·å¯†ç åˆ é™¤æˆåŠŸ");
+                                    System.out.println("¿¼ÉúÕËºÅÃÜÂëÉ¾³ı³É¹¦");
                                 } else {
-                                    System.out.println("è´¦å·å¯†ç ä¸åŒ¹é…");
+                                    System.out.println("ÕËºÅÃÜÂë²»Æ¥Åä");
                                 }
                             } else {
-                                System.out.println("è´¦å·å¯†ç ä¸å­˜åœ¨");
+                                System.out.println("ÕËºÅÃÜÂë²»´æÔÚ");
                             }
                         } catch (SQLException e1) {
                             e1.printStackTrace();
@@ -384,12 +384,12 @@ public admin() {
                                     stmt.executeUpdate(delete);
                                     String delete_stu = "update teacher set T_password='' where T_TeaID = '" + userText.getText() + "'";
                                     stmt.executeUpdate(delete_stu);
-                                    System.out.println("å¯¼å¸ˆè´¦å·å¯†ç åˆ é™¤æˆåŠŸ");
+                                    System.out.println("µ¼Ê¦ÕËºÅÃÜÂëÉ¾³ı³É¹¦");
                                 } else {
-                                    System.out.println("è´¦å·å¯†ç ä¸åŒ¹é…");
+                                    System.out.println("ÕËºÅÃÜÂë²»Æ¥Åä");
                                 }
                             } else {
-                                System.out.println("è´¦å·å¯†ç ä¸å­˜åœ¨");
+                                System.out.println("ÕËºÅÃÜÂë²»´æÔÚ");
                             }
                         } catch (SQLException e1) {
                             e1.printStackTrace();
@@ -405,12 +405,12 @@ public admin() {
                                     stmt.executeUpdate(delete);
                                     String delete_stu = "update manager set M_password='' where M_manID = '" + userText.getText() + "'";
                                     stmt.executeUpdate(delete_stu);
-                                    System.out.println("ç®¡ç†å‘˜è´¦å·å¯†ç åˆ é™¤æˆåŠŸ");
+                                    System.out.println("¹ÜÀíÔ±ÕËºÅÃÜÂëÉ¾³ı³É¹¦");
                                 } else {
-                                    System.out.println("è´¦å·å¯†ç ä¸åŒ¹é…");
+                                    System.out.println("ÕËºÅÃÜÂë²»Æ¥Åä");
                                 }
                             } else {
-                                System.out.println("è´¦å·å¯†ç ä¸å­˜åœ¨");
+                                System.out.println("ÕËºÅÃÜÂë²»´æÔÚ");
                             }
                         } catch (SQLException e1) {
                             e1.printStackTrace();
@@ -436,20 +436,20 @@ public admin() {
                         e1.printStackTrace();
                     }
                 } else {
-                    System.out.println("åˆ é™¤å¤±è´¥ï¼");
+                    System.out.println("É¾³ıÊ§°Ü£¡");
                 }
             } else {
-                System.out.println("è¯·è¾“å…¥è´¦å·å’Œå¯†ç ");
+                System.out.println("ÇëÊäÈëÕËºÅºÍÃÜÂë");
             }
         }
     });
-	    //è®¾ç½®å¤§å°
+	    //ÉèÖÃ´óĞ¡
 	    frame.setSize(600,500);
 
-	    //è®¾ç½®ä½ç½®
+	    //ÉèÖÃÎ»ÖÃ
 	    frame.setLocation(100, 100);
 
-	    //è®¾ç½®å¯è§æ€§
+	    //ÉèÖÃ¿É¼ûĞÔ
 	    frame.setVisible(true);
 }
 }

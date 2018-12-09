@@ -11,7 +11,7 @@ import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 
 public class teacherManagement {
-    public static String url = "jdbc:mysql://localhost:3306/interview?useUnicode=true&characterencoding=utf-8";
+    public static String url = "jdbc:mysql://localhost:3306/interview?useUnicode=true&characterencoding=GBK";
     public static String username = "manager";
     public static String password = "123456";
     public static Connection con;

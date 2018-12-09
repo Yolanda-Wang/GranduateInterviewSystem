@@ -19,7 +19,7 @@ public class database {
         stmt.executeUpdate("create database Interview");
         stmt.close();
         con.close();
-        url = "jdbc:mysql://localhost:3306/Interview?useUnicode=true&characterEncoding=utf-8";
+        url = "jdbc:mysql://localhost:3306/Interview?useUnicode=true&characterEncoding=GBK";
         con = DriverManager.getConnection(url, "manager", "123456");
         stmt = con.createStatement();
         String sql_Stu = "create table student(S_stuID char(11),S_name varchar(20),S_polGrade SMALLINT,S_EngGrade SMALLINT,S_majGrade SMALLINT,S_major char(10),S_intGrade SMALLINT,S_School varchar(20),S_ID char(18),S_sex char(1),S_phone char(11),S_password char(8),S_flag SMALLINT,PRIMARY KEY(S_stuID));";

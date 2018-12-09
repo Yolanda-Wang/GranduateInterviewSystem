@@ -2,119 +2,116 @@ import java.awt.BorderLayout;
 import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.sql.*;
 import java.util.Vector;
 
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JMenu;
-import javax.swing.JMenuBar;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JSplitPane;
-import javax.swing.JTable;
-import javax.swing.JTextField;
+import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 
 public class titleDataset {
-    public static String url = "jdbc:mysql://localhost:3306/interview?useUnicode=true&characterencoding=utf-8";
+    public static String url = "jdbc:mysql://localhost:3306/interview?useUnicode=true&characterencoding=GBK";
     public static String username = "manager";
     public static String password = "123456";
     public static Connection con;
     public static Statement stmt;
     public static ResultSet rs;
 	public static void main(String[] args) {
-        //è¿æ¥æ•°æ®åº“
+        //Á¬½ÓÊı¾İ¿â
         try {
-            System.out.println("é¢˜ç›®ä¿¡æ¯ï¼š");
+            System.out.println("ÌâÄ¿ĞÅÏ¢£º");
             Class.forName("com.mysql.jdbc.Driver");
-            System.out.println("åŠ è½½é©±åŠ¨æˆåŠŸ");
+            System.out.println("¼ÓÔØÇı¶¯³É¹¦");
         } catch (ClassNotFoundException var2) {
-            System.out.println("åŠ è½½é©±åŠ¨å¤±è´¥!");
+            System.out.println("¼ÓÔØÇı¶¯Ê§°Ü!");
             var2.printStackTrace();
         }
         try {
             con = DriverManager.getConnection(url, username, password);
             stmt = con.createStatement();
-            System.out.println("é¢˜ç›®ä¿¡æ¯æ•°æ®åº“è¿æ¥æˆåŠŸ!");
+            System.out.println("ÌâÄ¿ĞÅÏ¢Êı¾İ¿âÁ¬½Ó³É¹¦!");
         } catch (SQLException var1) {
-            System.out.println("é¢˜ç›®ä¿¡æ¯æ•°æ®åº“è¿æ¥å¤±è´¥!");
+            System.out.println("ÌâÄ¿ĞÅÏ¢Êı¾İ¿âÁ¬½ÓÊ§°Ü!");
         }
        titleDataset w1=new titleDataset();
     }
 
 public titleDataset() {
-	//åˆå§‹åŒ–ä¸€ä¸ªjframe
-    JFrame frame = new JFrame("é¢˜ç›®ä¿¡æ¯");
+	//³õÊ¼»¯Ò»¸öjframe
+    JFrame frame = new JFrame("ÌâÄ¿ĞÅÏ¢");
 
-    //åˆå§‹åŒ–ä¸€ä¸ªèœå•æ 
+    //³õÊ¼»¯Ò»¸ö²Ëµ¥À¸
     JMenuBar menuBar = new JMenuBar();
 
-    //åˆå§‹åŒ–èœå•
-    JMenu menu1 = new JMenu("æ“ä½œ(O)");
+    //³õÊ¼»¯²Ëµ¥
+    JMenu menu1 = new JMenu("²Ù×÷(O)");
     menu1.setMnemonic('O');  
-    menu1.setFont(new Font("å®‹ä½“",Font.PLAIN,16));
-    JMenu menu2 = new JMenu("å¸®åŠ©(H)");
+    menu1.setFont(new Font("ËÎÌå",Font.PLAIN,16));
+    JMenu menu2 = new JMenu("°ïÖú(H)");
     menu2.setMnemonic('H'); 
-    menu2.setFont(new Font("å®‹ä½“",Font.PLAIN,16));
-    JMenu menu3 = new JMenu("æŸ¥è¯¢(Q)");
+    menu2.setFont(new Font("ËÎÌå",Font.PLAIN,16));
+    JMenu menu3 = new JMenu("²éÑ¯(Q)");
     menu3.setMnemonic('Q'); 
-    menu3.setFont(new Font("å®‹ä½“",Font.PLAIN,16));
-    JMenu menu4 = new JMenu("ç»Ÿè®¡(S)");
+    menu3.setFont(new Font("ËÎÌå",Font.PLAIN,16));
+    JMenu menu4 = new JMenu("Í³¼Æ(S)");
     menu4.setMnemonic('S'); 
-    menu4.setFont(new Font("å®‹ä½“",Font.PLAIN,16));
-    JMenu menu5 = new JMenu("ç»´æŠ¤(M)");
+    menu4.setFont(new Font("ËÎÌå",Font.PLAIN,16));
+    JMenu menu5 = new JMenu("Î¬»¤(M)");
     menu5.setMnemonic('M'); 
-    menu5.setFont(new Font("å®‹ä½“",Font.PLAIN,16));
-    //åˆå§‹åŒ–ä¸€ä¸ªpanel
+    menu5.setFont(new Font("ËÎÌå",Font.PLAIN,16));
+    //³õÊ¼»¯Ò»¸öpanel
     JPanel panel = new JPanel();
 
-    //åˆå§‹åŒ–ä¸€ä¸ªå®¹å™¨
+    //³õÊ¼»¯Ò»¸öÈİÆ÷
     Container container = frame.getContentPane();
-    //æŠŠèœå•æ·»åŠ åˆ°èœå•æ 
+    //°Ñ²Ëµ¥Ìí¼Óµ½²Ëµ¥À¸
     menuBar.add(menu1);
     menuBar.add(menu2);
     menuBar.add(menu3);
     menuBar.add(menu4);
     menuBar.add(menu5);
-    //è®¾ç½®èœå•æ 
+    //ÉèÖÃ²Ëµ¥À¸
     frame.setJMenuBar(menuBar);
     
     panel.setLayout(null);
     
-    JLabel label1=new JLabel("é¢˜å·ï¼š");
+    JLabel label1=new JLabel("ÌâºÅ£º");
     label1.setBounds(25,30,100,25);
     label1.setFont(new Font("",Font.PLAIN,16));
     JTextField text1 = new JTextField(20);
     text1.setBounds(65,30,150,25);
     panel.add(text1);
     
-    JLabel label2=new JLabel("éš¾åº¦ï¼š");
+    JLabel label2=new JLabel("ÄÑ¶È£º");
     label2.setBounds(25,60,100,25);
     label2.setFont(new Font("",Font.PLAIN,16));   
     JTextField text2 = new JTextField(20);
     text2.setBounds(65,60,150,25);
     panel.add(text2);
     
-    JLabel label3=new JLabel("åˆ†ç±»ï¼š");
+    JLabel label3=new JLabel("·ÖÀà£º");
     label3.setBounds(300,30,100,25);
     label3.setFont(new Font("",Font.PLAIN,16));
-    JTextField text3 = new JTextField(20);
-    text3.setBounds(340,30,150,25);
-    panel.add(text3);
+    JComboBox comboBox1=new JComboBox();
+    comboBox1.setBounds(340,30,150,25);
+    comboBox1.addItem("");
+    comboBox1.addItem("×¨ÒµÀà");
+    comboBox1.addItem("Ó¢ÓïÀà");
+    comboBox1.addItem("ÕşÖÎÀà");
+    panel.add(comboBox1);
     
-    JLabel label4=new JLabel("ä¸“ä¸šï¼š");
+    JLabel label4=new JLabel("×¨Òµ£º");
     label4.setBounds(300,60,100,25);
     label4.setFont(new Font("",Font.PLAIN,16));
     JTextField text4 = new JTextField(20);
     text4.setBounds(340,60,150,25);
     panel.add(text4);
     
-    JLabel label5=new JLabel("å†…å®¹ï¼š");
+    JLabel label5=new JLabel("ÄÚÈİ£º");
     label5.setBounds(25,90,100,25);
     label5.setFont(new Font("",Font.PLAIN,16));
-    JTextField text5= new JTextField(1000);
+    JTextField text5= new JTextField(2000);
     text5.setBounds(65,90,400,150);
     panel.add(text5);
     
@@ -123,30 +120,30 @@ public titleDataset() {
     panel.add(label3);
     panel.add(label4);
     panel.add(label5);
-    //åˆ†å‰²çº¿
+    //·Ö¸îÏß
     JSplitPane split1=new JSplitPane();
     split1.setBounds(600, 0,1, 800);
     panel.add(split1);
     
     
-    //ç”¨è¡¨æ ¼æ˜¾ç¤ºé¢˜ç›®
-    Object[] columnNames = {"é¢˜å·","åˆ†ç±»","ä¸“ä¸š","éš¾åº¦","å†…å®¹","flag"};// å®šä¹‰è¡¨æ ¼åˆ—åæ•°ç»„
-    // å®šä¹‰è¡¨æ ¼æ•°æ®æ•°ç»„
-    String[][] tableValues = {{"1","ä¸“ä¸šç±»","æ•°å­¦","4",null,"0"},{"20","è‹±è¯­","è‹±è¯­","2",null,"0"},{"55","æ”¿æ²»","æ”¿æ²»","3",null,"0"},{"23","ä¸“ä¸šç±»","è®¡ç®—æœº","4",null,"0"},{"1","ä¸“ä¸šç±»","åŒ–å­¦","4",null,"0"},{"44","ä¸“ä¸šç±»","ç‰©ç†","4",null,"0"},{"24","è‹±è¯­","è‹±è¯­","3",null,"0"}};
-    // åˆ›å»ºæŒ‡å®šåˆ—åå’Œæ•°æ®çš„è¡¨æ ¼
+    //ÓÃ±í¸ñÏÔÊ¾ÌâÄ¿
+    Object[] columnNames = {"ÌâºÅ","·ÖÀà","×¨Òµ","ÄÑ¶È","ÄÚÈİ","flag"};// ¶¨Òå±í¸ñÁĞÃûÊı×é
+    // ¶¨Òå±í¸ñÊı¾İÊı×é
+    String[][] tableValues = {{"1","×¨ÒµÀà","ÊıÑ§","4",null,"0"},{"20","Ó¢Óï","Ó¢Óï","2",null,"0"},{"55","ÕşÖÎ","ÕşÖÎ","3",null,"0"},{"23","×¨ÒµÀà","¼ÆËã»ú","4",null,"0"},{"1","×¨ÒµÀà","»¯Ñ§","4",null,"0"},{"44","×¨ÒµÀà","ÎïÀí","4",null,"0"},{"24","Ó¢Óï","Ó¢Óï","3",null,"0"}};
+    // ´´½¨Ö¸¶¨ÁĞÃûºÍÊı¾İµÄ±í¸ñ
 
     final DefaultTableModel[] model = {new DefaultTableModel()};
-    Vector data = new Vector(); // æ•°æ®è¡Œå‘é‡é›†ï¼Œå› ä¸ºåˆ—è¡¨ä¸æ­¢ä¸€è¡Œï¼Œå¾€é‡Œé¢æ·»åŠ æ•°æ®è¡Œå‘é‡ï¼Œæ·»åŠ æ–¹æ³•add(row)
-    Vector names = new Vector();// åˆ—åå‘é‡ï¼Œä½¿ç”¨å®ƒçš„add()æ–¹æ³•æ·»åŠ åˆ—å
+    Vector data = new Vector(); // Êı¾İĞĞÏòÁ¿¼¯£¬ÒòÎªÁĞ±í²»Ö¹Ò»ĞĞ£¬ÍùÀïÃæÌí¼ÓÊı¾İĞĞÏòÁ¿£¬Ìí¼Ó·½·¨add(row)
+    Vector names = new Vector();// ÁĞÃûÏòÁ¿£¬Ê¹ÓÃËüµÄadd()·½·¨Ìí¼ÓÁĞÃû
     JTable table = new JTable(model[0]);
-    //æ˜¾ç¤ºæ•°æ®åº“ä¿¡æ¯
-    names.add("é¢˜å·");
-    names.add("åˆ†ç±»");
-    names.add("ä¸“ä¸š");
-    names.add("éš¾åº¦");
-    names.add("å†…å®¹");
+    //ÏÔÊ¾Êı¾İ¿âĞÅÏ¢
+    names.add("ÌâºÅ");
+    names.add("·ÖÀà");
+    names.add("×¨Òµ");
+    names.add("ÄÑ¶È");
+    names.add("ÄÚÈİ");
     names.add("flag");
-    //ä¸“ä¸šç±»é¢˜ç›®
+    //×¨ÒµÀàÌâÄ¿
     String viewtable = "select * from majque";
     try {
         rs = stmt.executeQuery(viewtable);
@@ -156,9 +153,9 @@ public titleDataset() {
             String level = rs.getString("M_level");
             String content = rs.getString("M_content");
             String flag = rs.getString("M_flag");
-            Vector row = new Vector(); // æ•°æ®è¡Œå‘é‡ï¼Œä½¿ç”¨å®ƒçš„add()æ·»åŠ å…ƒç´ ï¼Œæ¯”å¦‚æ•´æ•°ã€Stringã€Objectç­‰ï¼Œæœ‰å‡ è¡Œå°±newå‡ ä¸ªè¡Œå‘é‡
+            Vector row = new Vector(); // Êı¾İĞĞÏòÁ¿£¬Ê¹ÓÃËüµÄadd()Ìí¼ÓÔªËØ£¬±ÈÈçÕûÊı¡¢String¡¢ObjectµÈ£¬ÓĞ¼¸ĞĞ¾Ínew¼¸¸öĞĞÏòÁ¿
             row.add(No);
-            row.add("ä¸“ä¸šç±»");
+            row.add("×¨ÒµÀà");
             row.add(major);
             row.add(level);
             row.add(content);
@@ -171,7 +168,7 @@ public titleDataset() {
         e.printStackTrace();
     }
 
-    //è‹±è¯­ç±»é¢˜ç›®
+    //Ó¢ÓïÀàÌâÄ¿
     String vieweng = "select * from engque";
     try {
         rs = stmt.executeQuery(vieweng);
@@ -180,9 +177,10 @@ public titleDataset() {
             String level = rs.getString("E_level");
             String content = rs.getString("E_content");
             String flag = rs.getString("E_flag");
-            Vector row2 = new Vector(); // æ•°æ®è¡Œå‘é‡ï¼Œä½¿ç”¨å®ƒçš„add()æ·»åŠ å…ƒç´ ï¼Œæ¯”å¦‚æ•´æ•°ã€Stringã€Objectç­‰ï¼Œæœ‰å‡ è¡Œå°±newå‡ ä¸ªè¡Œå‘é‡
+            Vector row2 = new Vector(); // Êı¾İĞĞÏòÁ¿£¬Ê¹ÓÃËüµÄadd()Ìí¼ÓÔªËØ£¬±ÈÈçÕûÊı¡¢String¡¢ObjectµÈ£¬ÓĞ¼¸ĞĞ¾Ínew¼¸¸öĞĞÏòÁ¿
             row2.add(No);
-            row2.add("è‹±è¯­ç±»");
+            row2.add("Ó¢ÓïÀà");
+            row2.add("");
             row2.add(level);
             row2.add(content);
             row2.add(flag);
@@ -194,18 +192,19 @@ public titleDataset() {
         e.printStackTrace();
     }
 
-    //æ”¿æ²»ç±»é¢˜ç›®
+    //ÕşÖÎÀàÌâÄ¿
     String viewpol = "select * from polque";
     try {
-        rs = stmt.executeQuery(vieweng);
+        rs = stmt.executeQuery(viewpol);
         while(rs.next()){
             String No = rs.getString("P_No");
             String level = rs.getString("P_level");
             String content = rs.getString("P_content");
             String flag = rs.getString("P_flag");
-            Vector row2 = new Vector(); // æ•°æ®è¡Œå‘é‡ï¼Œä½¿ç”¨å®ƒçš„add()æ·»åŠ å…ƒç´ ï¼Œæ¯”å¦‚æ•´æ•°ã€Stringã€Objectç­‰ï¼Œæœ‰å‡ è¡Œå°±newå‡ ä¸ªè¡Œå‘é‡
+            Vector row2 = new Vector(); // Êı¾İĞĞÏòÁ¿£¬Ê¹ÓÃËüµÄadd()Ìí¼ÓÔªËØ£¬±ÈÈçÕûÊı¡¢String¡¢ObjectµÈ£¬ÓĞ¼¸ĞĞ¾Ínew¼¸¸öĞĞÏòÁ¿
             row2.add(No);
-            row2.add("æ”¿æ²»ç±»");
+            row2.add("ÕşÖÎÀà");
+            row2.add("");
             row2.add(level);
             row2.add(content);
             row2.add(flag);
@@ -218,8 +217,8 @@ public titleDataset() {
     }
 
 
-    model[0].setDataVector(data, names); // è®¾ç½®æ¨¡å‹ä¸­çš„å…ƒç´ ï¼Œå®ƒä¼šè‡ªåŠ¨æ˜¾ç¤ºåœ¨åˆ—è¡¨ä¸­
-    JScrollPane jsp = new JScrollPane(table); // ç”¨åˆ—è¡¨åˆ›å»ºå¯æ»šåŠ¨çš„Panelï¼ŒæŠŠè¿™ä¸ªPanelæ·»åŠ åˆ°çª—å£ä¸­
+    model[0].setDataVector(data, names); // ÉèÖÃÄ£ĞÍÖĞµÄÔªËØ£¬Ëü»á×Ô¶¯ÏÔÊ¾ÔÚÁĞ±íÖĞ
+    JScrollPane jsp = new JScrollPane(table); // ÓÃÁĞ±í´´½¨¿É¹ö¶¯µÄPanel£¬°ÑÕâ¸öPanelÌí¼Óµ½´°¿ÚÖĞ
     jsp.setSize(600, 150);
     jsp.setLocation(0, 320);
     panel.add(jsp);
@@ -230,96 +229,1329 @@ public titleDataset() {
 
 
 
-    //æ·»åŠ æŒ‰é’®
-    JButton bt1=new JButton("æ·»åŠ ");
+    //Ìí¼Ó°´Å¥
+    JButton bt1=new JButton("Ìí¼Ó");
     bt1.setBounds(0, 250, 100, 35);
-    bt1.setFont(new Font("å®‹ä½“",Font.PLAIN,16));;
+    bt1.setFont(new Font("ËÎÌå",Font.PLAIN,16));;
     panel.add(bt1);
-    JButton bt2=new JButton("æ›´æ–°");
+    JButton bt2=new JButton("¸üĞÂ");
     bt2.setBounds(100, 250, 100, 35);
-    bt2.setFont(new Font("å®‹ä½“",Font.PLAIN,16));;
+    bt2.setFont(new Font("ËÎÌå",Font.PLAIN,16));;
     panel.add(bt2);
-    JButton bt3=new JButton("åˆ é™¤");
+    JButton bt3=new JButton("É¾³ı");
     bt3.setBounds(200, 250, 100, 35);
-    bt3.setFont(new Font("å®‹ä½“",Font.PLAIN,16));;
+    bt3.setFont(new Font("ËÎÌå",Font.PLAIN,16));;
     panel.add(bt3);
-    JButton bt4=new JButton("æµè§ˆ");
+    JButton bt4=new JButton("ä¯ÀÀ");
     bt4.setBounds(300, 250, 100, 35);
-    bt4.setFont(new Font("å®‹ä½“",Font.PLAIN,16));;
+    bt4.setFont(new Font("ËÎÌå",Font.PLAIN,16));;
     panel.add(bt4);
-    JButton bt5=new JButton("å…³é—­");
+    JButton bt5=new JButton("¹Ø±Õ");
     bt5.setBounds(400, 250, 100, 35);
-    bt5.setFont(new Font("å®‹ä½“",Font.PLAIN,16));;
+    bt5.setFont(new Font("ËÎÌå",Font.PLAIN,16));;
     panel.add(bt5);
-    JButton bt6=new JButton("ç½®é›¶");
+    JButton bt6=new JButton("ÖÃÁã");
     bt6.setBounds(500, 250, 100, 35);
-    bt6.setFont(new Font("å®‹ä½“",Font.PLAIN,16));;
+    bt6.setFont(new Font("ËÎÌå",Font.PLAIN,16));;
     panel.add(bt6);
     
-    //æŸ¥æ‰¾
-    JLabel Clabel1=new JLabel("é¢˜å·ï¼š");
+    //²éÕÒ
+    JLabel Clabel1=new JLabel("ÌâºÅ£º");
     Clabel1.setBounds(620,60,100,25);
     Clabel1.setFont(new Font("",Font.PLAIN,16));
     JTextField Ctext1 = new JTextField(20);
     Ctext1.setBounds(660,60,150,25);
     panel.add(Ctext1);
     
-    JLabel Clabel2=new JLabel("éš¾åº¦ï¼š");
+    JLabel Clabel2=new JLabel("ÄÑ¶È£º");
     Clabel2.setBounds(620,90,100,25);
     Clabel2.setFont(new Font("",Font.PLAIN,16));   
     JTextField Ctext2 = new JTextField(20);
     Ctext2.setBounds(660,90,150,25);
     panel.add(Ctext2);
     
-    JLabel Clabel3=new JLabel("åˆ†ç±»ï¼š");
+    JLabel Clabel3=new JLabel("·ÖÀà£º");
     Clabel3.setBounds(620,120,100,25);
     Clabel3.setFont(new Font("",Font.PLAIN,16));
-    JTextField Ctext3 = new JTextField(20);
-    Ctext3.setBounds(660,120,150,25);
-    panel.add(Ctext3);
+//    JTextField Ctext3 = new JTextField(20);
+//    Ctext3.setBounds(660,120,150,25);
+//    panel.add(Ctext3);
     
-    JLabel Clabel4=new JLabel("ä¸“ä¸šï¼š");
+    JLabel Clabel4=new JLabel("×¨Òµ£º");
     Clabel4.setBounds(620,150,100,25);
     Clabel4.setFont(new Font("",Font.PLAIN,16));
     JTextField Ctext4 = new JTextField(20);
     Ctext4.setBounds(660,150,150,25);
     panel.add(Ctext4);
     
-    JLabel Clabel5=new JLabel("æŸ¥æ‰¾");
+    JLabel Clabel5=new JLabel("²éÕÒ");
     Clabel5.setBounds(620,30,100,25);
     Clabel5.setFont(new Font("",Font.PLAIN,16));
-    
+
+    JComboBox comboBox=new JComboBox();
+    comboBox.setBounds(660,120,150,25);
+    comboBox.addItem("");
+    comboBox.addItem("×¨ÒµÀà");
+    comboBox.addItem("Ó¢ÓïÀà");
+    comboBox.addItem("ÕşÖÎÀà");
+    panel.add(comboBox);
+
+
     panel.add(Clabel1);
     panel.add(Clabel2);
     panel.add(Clabel3);
     panel.add(Clabel4);
     panel.add(Clabel5);
-    //æŸ¥è¯¢æ¡†æŒ‰é’®
-    JButton Cbt1=new JButton("æŸ¥è¯¢");
+    //²éÑ¯¿ò°´Å¥
+    JButton Cbt1=new JButton("²éÑ¯");
     Cbt1.setBounds(620, 250, 100, 35);
-    Cbt1.setFont(new Font("å®‹ä½“",Font.PLAIN,16));;
+    Cbt1.setFont(new Font("ËÎÌå",Font.PLAIN,16));;
     panel.add(Cbt1);
-    JButton Cbt2=new JButton("é‡ç½®");
+    JButton Cbt2=new JButton("ÖØÖÃ");
     Cbt2.setBounds(750, 250, 100, 35);
-    Cbt2.setFont(new Font("å®‹ä½“",Font.PLAIN,16));;
+    Cbt2.setFont(new Font("ËÎÌå",Font.PLAIN,16));;
     panel.add(Cbt2);
-    //æŠŠpanelæ·»åŠ åˆ°å®¹å™¨
+    //°ÑpanelÌí¼Óµ½ÈİÆ÷
     container.add(panel);
 
-    //
+    //Ìí¼ÓÌâÄ¿
+    bt1.addActionListener(new ActionListener() {
+        @Override
+        public void actionPerformed(ActionEvent e){
+            if (text1.getText().length()<=4&&!text1.getText().equals("")&&!text2.getText().equals("")&&!text5.getText().equals("")){
+                if(comboBox1.getSelectedItem().equals("×¨ÒµÀà")){
+                    if (!text4.getText().equals("")){
+                        String add_queInfo = "insert into majque(M_No,M_content,M_level,M_major) values('"+text1.getText()+"','"+text5.getText()+"'" +
+                                ",'"+text2.getText()+"','"+text4.getText()+"')";
+                        try {
+                            stmt.executeUpdate(add_queInfo);
+                            Vector rowData1 = new Vector();
+                            rowData1.add(text1.getText());
+                            rowData1.add("×¨ÒµÀà");
+                            rowData1.add(text4.getText());
+                            rowData1.add(text2.getText());
+                            rowData1.add(text5.getText());
+                            data.add(rowData1);
+                            model[0] = new DefaultTableModel(data, names);
+                            table.setModel(model[0]);
+                            System.out.println("×¨ÒµÀàÌí¼Ó³É¹¦");
+                        } catch (SQLException e1) {
+                            e1.printStackTrace();
+                            System.out.println("×¨ÒµÀàÌí¼ÓÊ§°Ü");
+                        }
+                    }
+                else{
+                        System.out.println("ÇëÑ¡Ôñ×¨Òµ");
+                    }
+            }
+                else if (comboBox1.getSelectedItem().equals("Ó¢ÓïÀà")){
+                    String add_queInfo = "insert into engque(E_No,E_content,E_level) values('"+text1.getText()+"','"+text5.getText()+"'" +
+                            ",'"+text2.getText()+"')";
+                    try {
+                        stmt.executeUpdate(add_queInfo);
+                        Vector rowData2 = new Vector();
+                        rowData2.add(text1.getText());
+                        rowData2.add("Ó¢ÓïÀà");
+                        rowData2.add("");
+                        rowData2.add(text2.getText());
+                        rowData2.add(text5.getText());
+                        data.add(rowData2);
+                        model[0] = new DefaultTableModel(data, names);
+                        table.setModel(model[0]);
+                        System.out.println("Ó¢ÓïÀàÌí¼Ó³É¹¦");
+                    } catch (SQLException e1) {
+                        e1.printStackTrace();
+                        System.out.println("Ó¢ÓïÀàÌí¼ÓÊ§°Ü");
+                    }
+                }
+                else if (comboBox1.getSelectedItem().equals("ÕşÖÎÀà")){
+                    String add_queInfo = "insert into polque(P_No,P_content,P_level) values('"+text1.getText()+"','"+text5.getText()+"'" +
+                            ",'"+text2.getText()+"')";
+                    try {
+                        stmt.executeUpdate(add_queInfo);
+                        Vector rowData3 = new Vector();
+                        rowData3.add(text1.getText());
+                        rowData3.add("ÕşÖÎÀà");
+                        rowData3.add("");
+                        rowData3.add(text2.getText());
+                        rowData3.add(text5.getText());
+                        data.add(rowData3);
+                        model[0] = new DefaultTableModel(data, names);
+                        table.setModel(model[0]);
+                        System.out.println("ÕşÖÎÀàÌí¼Ó³É¹¦");
+                    } catch (SQLException e1) {
+                        e1.printStackTrace();
+                        System.out.println("ÕşÖÎÀàÌí¼ÓÊ§°Ü");
+                    }
+                }
+                else{
+                    System.out.println("ÇëÑ¡ÔñÌâÄ¿ÀàĞÍ");
+                }
+        }
+            else{
+                System.out.println("ĞÅÏ¢²»·ûºÏ¹æ·¶");
+            }
+
+        }
+    });
+
+    //¸üĞÂÌâÄ¿ĞÅÏ¢
+    bt2.addActionListener(new ActionListener() {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            if (!text1.getText().equals("")) {
+                if (comboBox1.getSelectedItem().equals("×¨ÒµÀà")){
+                    String selectInfo = "select M_No from majque where M_No='"+text1.getText()+"'";
+                    try {
+                        rs = stmt.executeQuery(selectInfo);
+                        if(rs.next()){
+                            //¸üĞÂÄÑ¶È
+                            if(!text2.getText().equals("")){
+                                String updateMlevel = "update majque set M_level = '"+text2.getText()+"' where M_No = '"+text1.getText()+"'";
+                                stmt.executeUpdate(updateMlevel);
+                            }
+                            //¸üĞÂÄÚÈİ
+                            if(!text5.getText().equals("")){
+                                String updateMcontent = "update majque set M_content = '"+text5.getText()+"' where M_No = '"+text1.getText()+"'";
+                                stmt.executeUpdate(updateMcontent);
+                            }
+                            System.out.println("¸üĞÂ³É¹¦");
+                        }
+                        else{
+                            System.out.println("ÌâºÅ²»´æÔÚ£¬¸üĞÂÊ§°Ü");
+                        }
+                    } catch (SQLException e1) {
+                        e1.printStackTrace();
+                    }
+                }
+                else if (comboBox1.getSelectedItem().equals("Ó¢ÓïÀà")){
+                    String selectInfo = "select E_No from engque where E_No='"+text1.getText()+"'";
+                    try {
+                        rs = stmt.executeQuery(selectInfo);
+                        if(rs.next()){
+                            //¸üĞÂÄÑ¶È
+                            if(!text2.getText().equals("")){
+                                String updateElevel = "update engque set E_level = '"+text2.getText()+"' where E_No = '"+text1.getText()+"'";
+                                stmt.executeUpdate(updateElevel);
+                            }
+                            //¸üĞÂÄÚÈİ
+                            if(!text5.getText().equals("")){
+                                String updateEcontent = "update engque set E_content = '"+text5.getText()+"' where E_No = '"+text1.getText()+"'";
+                                stmt.executeUpdate(updateEcontent);
+                            }
+                            System.out.println("¸üĞÂ³É¹¦");
+                        }
+                        else{
+                            System.out.println("ÌâºÅ²»´æÔÚ£¬¸üĞÂÊ§°Ü");
+                        }
+                    } catch (SQLException e1) {
+                        e1.printStackTrace();
+                    }
+                }
+                else if(comboBox1.getSelectedItem().equals("ÕşÖÎÀà")){
+                    String selectInfo = "select P_No from polque where P_No='"+text1.getText()+"'";
+                    try {
+                        rs = stmt.executeQuery(selectInfo);
+                        if(rs.next()){
+                            //¸üĞÂÄÑ¶È
+                            if(!text2.getText().equals("")){
+                                String updatePlevel = "update polque set P_level = '"+text2.getText()+"' where P_No = '"+text1.getText()+"'";
+                                stmt.executeUpdate(updatePlevel);
+                            }
+                            //¸üĞÂÄÚÈİ
+                            if(!text5.getText().equals("")){
+                                String updateEcontent = "update polque set P_content = '"+text5.getText()+"' where P_No = '"+text1.getText()+"'";
+                                stmt.executeUpdate(updateEcontent);
+                            }
+                            System.out.println("¸üĞÂ³É¹¦");
+                        }
+                        else{
+                            System.out.println("ÌâºÅ²»´æÔÚ£¬¸üĞÂÊ§°Ü");
+                        }
+                    } catch (SQLException e1) {
+                        e1.printStackTrace();
+                    }
+                }
+                else{
+                    System.out.println("ÇëÑ¡ÔñÌâÄ¿ÀàĞÍ");
+                }
+                if(!data.isEmpty()){
+                    data.clear();
+                    model[0] = new DefaultTableModel(data, names);
+                    table.setModel(model[0]);
+                }
+                //×¨ÒµÀàÌâÄ¿
+                String viewtable = "select * from majque";
+                try {
+                    rs = stmt.executeQuery(viewtable);
+                    while(rs.next()){
+                        String No = rs.getString("M_No");
+                        String major = rs.getString("M_Major");
+                        String level = rs.getString("M_level");
+                        String content = rs.getString("M_content");
+                        String flag = rs.getString("M_flag");
+                        Vector row = new Vector();
+                        row.add(No);
+                        row.add("×¨ÒµÀà");
+                        row.add(major);
+                        row.add(level);
+                        row.add(content);
+                        row.add(flag);
+                        data.add(row);
+                        model[0] = new DefaultTableModel(data, names);
+                        table.setModel(model[0]);
+                    }
+                } catch (SQLException e1) {
+                    e1.printStackTrace();
+                }
+
+                //Ó¢ÓïÀàÌâÄ¿
+                String vieweng = "select * from engque";
+                try {
+                    rs = stmt.executeQuery(vieweng);
+                    while(rs.next()){
+                        String No = rs.getString("E_No");
+                        String level = rs.getString("E_level");
+                        String content = rs.getString("E_content");
+                        String flag = rs.getString("E_flag");
+                        Vector row2 = new Vector(); // Êı¾İĞĞÏòÁ¿£¬Ê¹ÓÃËüµÄadd()Ìí¼ÓÔªËØ£¬±ÈÈçÕûÊı¡¢String¡¢ObjectµÈ£¬ÓĞ¼¸ĞĞ¾Ínew¼¸¸öĞĞÏòÁ¿
+                        row2.add(No);
+                        row2.add("Ó¢ÓïÀà");
+                        row2.add("");
+                        row2.add(level);
+                        row2.add(content);
+                        row2.add(flag);
+                        data.add(row2);
+                        model[0] = new DefaultTableModel(data, names);
+                        table.setModel(model[0]);
+                    }
+                } catch (SQLException e1) {
+                    e1.printStackTrace();
+                }
+
+                //ÕşÖÎÀàÌâÄ¿
+                String viewpol = "select * from polque";
+                try {
+                    rs = stmt.executeQuery(viewpol);
+                    while(rs.next()){
+                        String No = rs.getString("P_No");
+                        String level = rs.getString("P_level");
+                        String content = rs.getString("P_content");
+                        String flag = rs.getString("P_flag");
+                        Vector row2 = new Vector(); // Êı¾İĞĞÏòÁ¿£¬Ê¹ÓÃËüµÄadd()Ìí¼ÓÔªËØ£¬±ÈÈçÕûÊı¡¢String¡¢ObjectµÈ£¬ÓĞ¼¸ĞĞ¾Ínew¼¸¸öĞĞÏòÁ¿
+                        row2.add(No);
+                        row2.add("ÕşÖÎÀà");
+                        row2.add("");
+                        row2.add(level);
+                        row2.add(content);
+                        row2.add(flag);
+                        data.add(row2);
+                        model[0] = new DefaultTableModel(data, names);
+                        table.setModel(model[0]);
+                    }
+                } catch (SQLException e1) {
+                    e1.printStackTrace();
+                }
+            }
+        }
+    });
 
 
-    //è®¾ç½®å…³é—­æ–¹å¼
+    //ä¯ÀÀÌâÄ¿ĞÅÏ¢
+    bt4.addActionListener(new ActionListener() {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            if(!data.isEmpty()){
+                data.clear();
+                model[0] = new DefaultTableModel(data, names);
+                table.setModel(model[0]);
+            }
+            //×¨ÒµÀàÌâÄ¿
+            String viewtable = "select * from majque";
+            try {
+                rs = stmt.executeQuery(viewtable);
+                while(rs.next()){
+                    String No = rs.getString("M_No");
+                    String major = rs.getString("M_Major");
+                    String level = rs.getString("M_level");
+                    String content = rs.getString("M_content");
+                    String flag = rs.getString("M_flag");
+                    Vector row = new Vector();
+                    row.add(No);
+                    row.add("×¨ÒµÀà");
+                    row.add(major);
+                    row.add(level);
+                    row.add(content);
+                    row.add(flag);
+                    data.add(row);
+                    model[0] = new DefaultTableModel(data, names);
+                    table.setModel(model[0]);
+                }
+            } catch (SQLException e1) {
+                e1.printStackTrace();
+            }
+
+            //Ó¢ÓïÀàÌâÄ¿
+            String vieweng = "select * from engque";
+            try {
+                rs = stmt.executeQuery(vieweng);
+                while(rs.next()){
+                    String No = rs.getString("E_No");
+                    String level = rs.getString("E_level");
+                    String content = rs.getString("E_content");
+                    String flag = rs.getString("E_flag");
+                    Vector row2 = new Vector(); // Êı¾İĞĞÏòÁ¿£¬Ê¹ÓÃËüµÄadd()Ìí¼ÓÔªËØ£¬±ÈÈçÕûÊı¡¢String¡¢ObjectµÈ£¬ÓĞ¼¸ĞĞ¾Ínew¼¸¸öĞĞÏòÁ¿
+                    row2.add(No);
+                    row2.add("Ó¢ÓïÀà");
+                    row2.add("");
+                    row2.add(level);
+                    row2.add(content);
+                    row2.add(flag);
+                    data.add(row2);
+                    model[0] = new DefaultTableModel(data, names);
+                    table.setModel(model[0]);
+                }
+            } catch (SQLException e1) {
+                e1.printStackTrace();
+            }
+
+            //ÕşÖÎÀàÌâÄ¿
+            String viewpol = "select * from polque";
+            try {
+                rs = stmt.executeQuery(viewpol);
+                while(rs.next()){
+                    String No = rs.getString("P_No");
+                    String level = rs.getString("P_level");
+                    String content = rs.getString("P_content");
+                    String flag = rs.getString("P_flag");
+                    Vector row2 = new Vector(); // Êı¾İĞĞÏòÁ¿£¬Ê¹ÓÃËüµÄadd()Ìí¼ÓÔªËØ£¬±ÈÈçÕûÊı¡¢String¡¢ObjectµÈ£¬ÓĞ¼¸ĞĞ¾Ínew¼¸¸öĞĞÏòÁ¿
+                    row2.add(No);
+                    row2.add("ÕşÖÎÀà");
+                    row2.add("");
+                    row2.add(level);
+                    row2.add(content);
+                    row2.add(flag);
+                    data.add(row2);
+                    model[0] = new DefaultTableModel(data, names);
+                    table.setModel(model[0]);
+                }
+            } catch (SQLException e1) {
+                e1.printStackTrace();
+            }
+        }
+    });
+
+    //É¾³ıÌâÄ¿ĞÅÏ¢
+    bt3.addActionListener(new ActionListener() {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            if (!text1.getText().equals("")) {
+                if (comboBox1.getSelectedItem().equals("×¨ÒµÀà")){
+                    String selectInfo = "select M_No from majque where M_No='"+text1.getText()+"'";
+                    try {
+                        rs = stmt.executeQuery(selectInfo);
+                        if(rs.next()){
+                            String deleteM = "delete from majque where M_No ='"+text1.getText()+"'";
+                            stmt.executeUpdate(deleteM);
+                            System.out.println("É¾³ı³É¹¦");
+                        }
+                        else{
+                            System.out.println("ÌâºÅ²»´æÔÚ£¬É¾³ıÊ§°Ü");
+                        }
+                    } catch (SQLException e1) {
+                        e1.printStackTrace();
+                    }
+                }
+                else if (comboBox1.getSelectedItem().equals("Ó¢ÓïÀà")){
+                    String selectInfo = "select E_No from engque where E_No='"+text1.getText()+"'";
+                    try {
+                        rs = stmt.executeQuery(selectInfo);
+                        if(rs.next()){
+                            String deleteE = "delete from engque where E_No ='"+text1.getText()+"'";
+                            stmt.executeUpdate(deleteE);
+                            System.out.println("É¾³ı³É¹¦");
+                        }
+                        else{
+                            System.out.println("ÌâºÅ²»´æÔÚ£¬É¾³ıÊ§°Ü");
+                        }
+                    } catch (SQLException e1) {
+                        e1.printStackTrace();
+                    }
+                }
+                else if(comboBox1.getSelectedItem().equals("ÕşÖÎÀà")){
+                    String selectInfo = "select P_No from polque where P_No='"+text1.getText()+"'";
+                    try {
+                        rs = stmt.executeQuery(selectInfo);
+                        if(rs.next()){
+                            String deleteP = "delete from polque where P_No ='"+text1.getText()+"'";
+                            stmt.executeUpdate(deleteP);
+                            System.out.println("É¾³ı³É¹¦");
+                        }
+                        else{
+                            System.out.println("ÌâºÅ²»´æÔÚ£¬É¾³ıÊ§°Ü");
+                        }
+                    } catch (SQLException e1) {
+                        e1.printStackTrace();
+                    }
+                }
+                else{
+                    System.out.println("ÇëÑ¡ÔñÌâÄ¿ÀàĞÍ");
+                }
+                if(!data.isEmpty()){
+                    data.clear();
+                    model[0] = new DefaultTableModel(data, names);
+                    table.setModel(model[0]);
+                }
+                //×¨ÒµÀàÌâÄ¿
+                String viewtable = "select * from majque";
+                try {
+                    rs = stmt.executeQuery(viewtable);
+                    while(rs.next()){
+                        String No = rs.getString("M_No");
+                        String major = rs.getString("M_Major");
+                        String level = rs.getString("M_level");
+                        String content = rs.getString("M_content");
+                        String flag = rs.getString("M_flag");
+                        Vector row = new Vector();
+                        row.add(No);
+                        row.add("×¨ÒµÀà");
+                        row.add(major);
+                        row.add(level);
+                        row.add(content);
+                        row.add(flag);
+                        data.add(row);
+                        model[0] = new DefaultTableModel(data, names);
+                        table.setModel(model[0]);
+                    }
+                } catch (SQLException e1) {
+                    e1.printStackTrace();
+                }
+
+                //Ó¢ÓïÀàÌâÄ¿
+                String vieweng = "select * from engque";
+                try {
+                    rs = stmt.executeQuery(vieweng);
+                    while(rs.next()){
+                        String No = rs.getString("E_No");
+                        String level = rs.getString("E_level");
+                        String content = rs.getString("E_content");
+                        String flag = rs.getString("E_flag");
+                        Vector row2 = new Vector(); // Êı¾İĞĞÏòÁ¿£¬Ê¹ÓÃËüµÄadd()Ìí¼ÓÔªËØ£¬±ÈÈçÕûÊı¡¢String¡¢ObjectµÈ£¬ÓĞ¼¸ĞĞ¾Ínew¼¸¸öĞĞÏòÁ¿
+                        row2.add(No);
+                        row2.add("Ó¢ÓïÀà");
+                        row2.add("");
+                        row2.add(level);
+                        row2.add(content);
+                        row2.add(flag);
+                        data.add(row2);
+                        model[0] = new DefaultTableModel(data, names);
+                        table.setModel(model[0]);
+                    }
+                } catch (SQLException e1) {
+                    e1.printStackTrace();
+                }
+
+                //ÕşÖÎÀàÌâÄ¿
+                String viewpol = "select * from polque";
+                try {
+                    rs = stmt.executeQuery(viewpol);
+                    while(rs.next()){
+                        String No = rs.getString("P_No");
+                        String level = rs.getString("P_level");
+                        String content = rs.getString("P_content");
+                        String flag = rs.getString("P_flag");
+                        Vector row2 = new Vector(); // Êı¾İĞĞÏòÁ¿£¬Ê¹ÓÃËüµÄadd()Ìí¼ÓÔªËØ£¬±ÈÈçÕûÊı¡¢String¡¢ObjectµÈ£¬ÓĞ¼¸ĞĞ¾Ínew¼¸¸öĞĞÏòÁ¿
+                        row2.add(No);
+                        row2.add("ÕşÖÎÀà");
+                        row2.add("");
+                        row2.add(level);
+                        row2.add(content);
+                        row2.add(flag);
+                        data.add(row2);
+                        model[0] = new DefaultTableModel(data, names);
+                        table.setModel(model[0]);
+                    }
+                } catch (SQLException e1) {
+                    e1.printStackTrace();
+                }
+            }
+            else{
+                System.out.println("ÇëÊäÈëÌâºÅ");
+            }
+        }
+    });
+
+    //flagÖÃÁã
+    bt6.addActionListener(new ActionListener() {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            //×¨ÒµÀà
+            String setflagM = "update majque set M_flag = 0";
+            try {
+                stmt.executeUpdate(setflagM);
+                //Ó¢ÓïÀà
+                String setflagE = "update engque set E_flag = 0";
+                stmt.executeUpdate(setflagE);
+                //ÕşÖÎÀà
+                String setflagP = "update polque set P_flag = 0";
+                stmt.executeUpdate(setflagP);
+                int r = table.getRowCount();
+                for (int i = 0;i<r;i++){
+                    model[0].setValueAt(0,i,5);
+                }
+
+            } catch (SQLException e1) {
+                e1.printStackTrace();
+            }
+        }
+    });
+
+
+    //²éÕÒÌâÄ¿ĞÅÏ¢
+    Cbt1.addActionListener(new ActionListener() {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            if(!data.isEmpty()){
+                data.clear();
+                model[0] = new DefaultTableModel(data, names);
+                table.setModel(model[0]);
+            }
+            if (comboBox.getSelectedItem().equals("")){
+                if (Ctext4.getText().equals("")){
+                    if (!Ctext1.getText().equals("")&&Ctext2.getText().equals("")){
+                        //Ã¿¸öÀàĞÍÖ»ÓĞÎ¨Ò»Ò»Ìâ
+                        //×¨ÒµÀà
+                        try {
+                            String select = "select * from majque where M_No = '"+Ctext1.getText()+"'";
+                            rs = stmt.executeQuery(select);
+                            if (rs.next()){
+                                String M_No = rs.getString("M_No");
+                                String M_content = rs.getString("M_content");
+                                String M_level = rs.getString("M_level");
+                                String M_Major = rs.getString("M_Major");
+                                String M_flag = rs.getString("M_flag");
+                                Vector data1 = new Vector();
+                                data1.add(M_No);
+                                data1.add("×¨ÒµÀà");
+                                data1.add(M_Major);
+                                data1.add(M_level);
+                                data1.add(M_content);
+                                data1.add(M_flag);
+                                data.add(data1);
+                                model[0] = new DefaultTableModel(data, names);
+                                table.setModel(model[0]);
+                            }
+                            else{
+                                System.out.println("×¨ÒµÌâºÅ²»´æÔÚ");
+                            }
+                            //Ó¢ÓïÀà
+                            String selectE = "select * from engque where E_No = '"+Ctext1.getText()+"'";
+                            rs = stmt.executeQuery(selectE);
+                            if (rs.next()){
+                                String E_No = rs.getString("E_No");
+                                String E_content = rs.getString("E_content");
+                                String E_level = rs.getString("E_level");
+                                String E_flag = rs.getString("E_flag");
+                                Vector data1 = new Vector();
+                                data1.add(E_No);
+                                data1.add("Ó¢ÓïÀà");
+                                data1.add("");
+                                data1.add(E_level);
+                                data1.add(E_content);
+                                data1.add(E_flag);
+                                data.add(data1);
+                                model[0] = new DefaultTableModel(data, names);
+                                table.setModel(model[0]);
+                            }
+                            else{
+                                System.out.println("Ó¢ÓïÌâºÅ²»´æÔÚ");
+                            }
+                            //ÕşÖÎÀà
+                            String selectP = "select * from polque where P_No = '"+Ctext1.getText()+"'";
+                            rs = stmt.executeQuery(selectP);
+                            if (rs.next()){
+                                String P_No = rs.getString("P_No");
+                                String P_content = rs.getString("P_content");
+                                String P_level = rs.getString("P_level");
+                                String P_flag = rs.getString("P_flag");
+                                Vector data1 = new Vector();
+                                data1.add(P_No);
+                                data1.add("ÕşÖÎÀà");
+                                data1.add("");
+                                data1.add(P_level);
+                                data1.add(P_content);
+                                data1.add(P_flag);
+                                data.add(data1);
+                                model[0] = new DefaultTableModel(data, names);
+                                table.setModel(model[0]);
+                            }
+                            else{
+                                System.out.println("ÕşÖÎÌâºÅ²»´æÔÚ");
+                            }
+                        } catch (SQLException e1) {
+                            e1.printStackTrace();
+                        }
+                    }
+                    else if (Ctext1.getText().equals("")&&!Ctext2.getText().equals("")){
+                        //ÄÑ¶ÈÎªxµÄÌâ*3
+                        //×¨ÒµÀà
+                        try {
+                            String select = "select * from majque where M_level = '"+Ctext2.getText()+"'";
+                            rs = stmt.executeQuery(select);
+                            if (rs.next()){
+                                String M_No = rs.getString("M_No");
+                                String M_content = rs.getString("M_content");
+                                String M_level = rs.getString("M_level");
+                                String M_Major = rs.getString("M_Major");
+                                String M_flag = rs.getString("M_flag");
+                                Vector data1 = new Vector();
+                                data1.add(M_No);
+                                data1.add("×¨ÒµÀà");
+                                data1.add(M_Major);
+                                data1.add(M_level);
+                                data1.add(M_content);
+                                data1.add(M_flag);
+                                data.add(data1);
+                                model[0] = new DefaultTableModel(data, names);
+                                table.setModel(model[0]);
+                            }
+                            else{
+                                System.out.println("¸ÃÄÑ¶È×¨ÒµÌâ²»´æÔÚ");
+                            }
+                            //Ó¢ÓïÀà
+                            String selectE = "select * from engque where E_level = '"+Ctext2.getText()+"'";
+                            rs = stmt.executeQuery(selectE);
+                            if (rs.next()){
+                                String E_No = rs.getString("E_No");
+                                String E_content = rs.getString("E_content");
+                                String E_level = rs.getString("E_level");
+                                String E_flag = rs.getString("E_flag");
+                                Vector data1 = new Vector();
+                                data1.add(E_No);
+                                data1.add("Ó¢ÓïÀà");
+                                data1.add("");
+                                data1.add(E_level);
+                                data1.add(E_content);
+                                data1.add(E_flag);
+                                data.add(data1);
+                                model[0] = new DefaultTableModel(data, names);
+                                table.setModel(model[0]);
+                            }
+                            else{
+                                System.out.println("¸ÃÄÑ¶ÈÓ¢ÓïÌâ²»´æÔÚ");
+                            }
+                            //ÕşÖÎÀà
+                            String selectP = "select * from polque where P_level = '"+Ctext2.getText()+"'";
+                            rs = stmt.executeQuery(selectP);
+                            if (rs.next()){
+                                String P_No = rs.getString("P_No");
+                                String P_content = rs.getString("P_content");
+                                String P_level = rs.getString("P_level");
+                                String P_flag = rs.getString("P_flag");
+                                Vector data1 = new Vector();
+                                data1.add(P_No);
+                                data1.add("ÕşÖÎÀà");
+                                data1.add("");
+                                data1.add(P_level);
+                                data1.add(P_content);
+                                data1.add(P_flag);
+                                data.add(data1);
+                                model[0] = new DefaultTableModel(data, names);
+                                table.setModel(model[0]);
+                            }
+                            else{
+                                System.out.println("¸ÃÄÑ¶ÈÕşÖÎÌâ²»´æÔÚ");
+                            }
+                        } catch (SQLException e1) {
+                            e1.printStackTrace();
+                        }
+                    }
+                    else if (!Ctext1.getText().equals("")&&!Ctext2.getText().equals("")){
+                        //ÏÈÕÒµ½ÌâºÅ£¬ÔÙ¶Ô±ÈÄÑ¶ÈÊÇ·ñÏàÍ¬*3
+                        try {
+                            String select = "select * from majque where M_No = '"+Ctext1.getText()+"'";
+                            rs = stmt.executeQuery(select);
+                            while (rs.next()){
+                                String M_No = rs.getString("M_No");
+                                String M_content = rs.getString("M_content");
+                                String M_level = rs.getString("M_level");
+                                String M_Major = rs.getString("M_Major");
+                                String M_flag = rs.getString("M_flag");
+                                if (M_level.equals(Ctext2.getText())){
+                                    Vector data1 = new Vector();
+                                    data1.add(M_No);
+                                    data1.add("×¨ÒµÀà");
+                                    data1.add(M_Major);
+                                    data1.add(M_level);
+                                    data1.add(M_content);
+                                    data1.add(M_flag);
+                                    data.add(data1);
+                                    model[0] = new DefaultTableModel(data, names);
+                                    table.setModel(model[0]);
+                                }
+                                else{
+                                    System.out.println("Î´²éÕÒµ½Ïà¹Ø¼ÇÂ¼");
+                                }
+                            }
+
+                            //Ó¢ÓïÀà
+                            String selectE = "select * from engque where E_No = '"+Ctext1.getText()+"'";
+                            rs = stmt.executeQuery(selectE);
+                            while (rs.next()){
+                                String E_No = rs.getString("E_No");
+                                String E_content = rs.getString("E_content");
+                                String E_level = rs.getString("E_level");
+                                String E_flag = rs.getString("E_flag");
+                                Vector data1 = new Vector();
+                                if (E_level.equals(Ctext2.getText())){
+                                    data1.add(E_No);
+                                    data1.add("Ó¢ÓïÀà");
+                                    data1.add("");
+                                    data1.add(E_level);
+                                    data1.add(E_content);
+                                    data1.add(E_flag);
+                                    data.add(data1);
+                                    model[0] = new DefaultTableModel(data, names);
+                                    table.setModel(model[0]);
+                                }
+                                else{
+                                    System.out.println("Î´²éÕÒµ½Ïà¹Ø¼ÇÂ¼");
+                                }
+                            }
+                            //ÕşÖÎÀà
+                            String selectP = "select * from polque where P_No = '"+Ctext1.getText()+"'";
+                            rs = stmt.executeQuery(selectP);
+                            while (rs.next()){
+                                String P_No = rs.getString("P_No");
+                                String P_content = rs.getString("P_content");
+                                String P_level = rs.getString("P_level");
+                                String P_flag = rs.getString("P_flag");
+                                if (P_level.equals(Ctext2.getText())){
+                                    Vector data1 = new Vector();
+                                    data1.add(P_No);
+                                    data1.add("ÕşÖÎÀà");
+                                    data1.add("");
+                                    data1.add(P_level);
+                                    data1.add(P_content);
+                                    data1.add(P_flag);
+                                    data.add(data1);
+                                    model[0] = new DefaultTableModel(data, names);
+                                    table.setModel(model[0]);
+                                }
+                                else{
+                                    System.out.println("Î´²éÕÒµ½Ïà¹Ø¼ÇÂ¼");
+                                }
+                            }
+                        } catch (SQLException e1) {
+                            e1.printStackTrace();
+                        }
+                    }
+                }
+                else {
+                    //ÔÚ×¨ÒµÀàÀïÕÒ×¨Òµ£¬ÔÙÆ¥ÅäÆäËûÏî
+                    String select = "select * from majque where M_Major = '"+Ctext4.getText()+"'";
+                    try {
+                        rs = stmt.executeQuery(select);
+                        while (rs.next()){
+                            String M_No = rs.getString("M_No");
+                            String M_content = rs.getString("M_content");
+                            String M_level = rs.getString("M_level");
+                            String M_Major = rs.getString("M_Major");
+                            String M_flag = rs.getString("M_flag");
+                            if (Ctext1.getText().equals("")&&Ctext2.getText().equals("")){
+                                Vector data1 = new Vector();
+                                data1.add(M_No);
+                                data1.add("×¨ÒµÀà");
+                                data1.add(M_Major);
+                                data1.add(M_level);
+                                data1.add(M_content);
+                                data1.add(M_flag);
+                                data.add(data1);
+                                model[0] = new DefaultTableModel(data, names);
+                                table.setModel(model[0]);
+                            }
+                            else if (!Ctext1.getText().equals("")&&Ctext2.getText().equals("")){
+                                if (Ctext1.getText().equals(M_No)){
+                                    Vector data1 = new Vector();
+                                    data1.add(M_No);
+                                    data1.add("×¨ÒµÀà");
+                                    data1.add(M_Major);
+                                    data1.add(M_level);
+                                    data1.add(M_content);
+                                    data1.add(M_flag);
+                                    data.add(data1);
+                                    model[0] = new DefaultTableModel(data, names);
+                                    table.setModel(model[0]);
+                                }
+                            }
+                            else if (Ctext1.getText().equals("")&&!Ctext2.getText().equals("")){
+                                if (Ctext2.getText().equals(M_level)){
+                                    Vector data1 = new Vector();
+                                    data1.add(M_No);
+                                    data1.add("×¨ÒµÀà");
+                                    data1.add(M_Major);
+                                    data1.add(M_level);
+                                    data1.add(M_content);
+                                    data1.add(M_flag);
+                                    data.add(data1);
+                                    model[0] = new DefaultTableModel(data, names);
+                                    table.setModel(model[0]);
+                                }
+                            }
+                            else if (!Ctext1.getText().equals("")&&!Ctext2.getText().equals("")){
+                                if (Ctext1.getText().equals(M_No)&&Ctext2.getText().equals(M_level)){
+                                    Vector data1 = new Vector();
+                                    data1.add(M_No);
+                                    data1.add("×¨ÒµÀà");
+                                    data1.add(M_Major);
+                                    data1.add(M_level);
+                                    data1.add(M_content);
+                                    data1.add(M_flag);
+                                    data.add(data1);
+                                    model[0] = new DefaultTableModel(data, names);
+                                    table.setModel(model[0]);
+                                }
+                            }
+                        }
+                    } catch (SQLException e1) {
+                        e1.printStackTrace();
+                    }
+                }
+            }
+            else if (comboBox.getSelectedItem().equals("×¨ÒµÀà")){
+                if (Ctext4.getText().equals("")){
+                    if (Ctext1.getText().equals("")&&Ctext2.getText().equals("")){
+                        //ÏÔÊ¾×¨ÒµÀàËùÓĞÌâ
+                        //×¨ÒµÀàÌâÄ¿
+                        String viewtable = "select * from majque";
+                        try {
+                            rs = stmt.executeQuery(viewtable);
+                            while(rs.next()){
+                                String No = rs.getString("M_No");
+                                String major = rs.getString("M_Major");
+                                String level = rs.getString("M_level");
+                                String content = rs.getString("M_content");
+                                String flag = rs.getString("M_flag");
+                                Vector row = new Vector(); // Êı¾İĞĞÏòÁ¿£¬Ê¹ÓÃËüµÄadd()Ìí¼ÓÔªËØ£¬±ÈÈçÕûÊı¡¢String¡¢ObjectµÈ£¬ÓĞ¼¸ĞĞ¾Ínew¼¸¸öĞĞÏòÁ¿
+                                row.add(No);
+                                row.add("×¨ÒµÀà");
+                                row.add(major);
+                                row.add(level);
+                                row.add(content);
+                                row.add(flag);
+                                data.add(row);
+                                model[0] = new DefaultTableModel(data, names);
+                                table.setModel(model[0]);
+                            }
+                        } catch (SQLException e1) {
+                            e1.printStackTrace();
+                        }
+                    }
+                    else if (!Ctext1.getText().equals("")&&Ctext2.getText().equals("")){
+                        //Ö»ÓĞÎ¨Ò»Ò»Ìâ
+                        //×¨ÒµÀà
+                        try {
+                            String select = "select * from majque where M_No = '"+Ctext1.getText()+"'";
+                            rs = stmt.executeQuery(select);
+                            if (rs.next()){
+                                String M_No = rs.getString("M_No");
+                                String M_content = rs.getString("M_content");
+                                String M_level = rs.getString("M_level");
+                                String M_Major = rs.getString("M_Major");
+                                String M_flag = rs.getString("M_flag");
+                                Vector data1 = new Vector();
+                                data1.add(M_No);
+                                data1.add("×¨ÒµÀà");
+                                data1.add(M_Major);
+                                data1.add(M_level);
+                                data1.add(M_content);
+                                data1.add(M_flag);
+                                data.add(data1);
+                                model[0] = new DefaultTableModel(data, names);
+                                table.setModel(model[0]);
+                            }
+                            else{
+                                System.out.println("×¨ÒµÌâºÅ²»´æÔÚ");
+                            }
+                        } catch (SQLException e1) {
+                            e1.printStackTrace();
+                        }
+                    }
+                    else if (Ctext1.getText().equals("")&&!Ctext2.getText().equals("")){
+                        //×¨ÒµÀàÄÑ¶ÈÎªxµÄÌâ
+                        try {
+                            String select = "select * from majque where M_level = '"+Ctext2.getText()+"'";
+                            rs = stmt.executeQuery(select);
+                            while (rs.next()){
+                                String M_No = rs.getString("M_No");
+                                String M_content = rs.getString("M_content");
+                                String M_level = rs.getString("M_level");
+                                String M_Major = rs.getString("M_Major");
+                                String M_flag = rs.getString("M_flag");
+                                Vector data1 = new Vector();
+                                data1.add(M_No);
+                                data1.add("×¨ÒµÀà");
+                                data1.add(M_Major);
+                                data1.add(M_level);
+                                data1.add(M_content);
+                                data1.add(M_flag);
+                                data.add(data1);
+                                model[0] = new DefaultTableModel(data, names);
+                                table.setModel(model[0]);
+                            }
+                        } catch (SQLException e1) {
+                            e1.printStackTrace();
+                        }
+                    }
+                    else if (!Ctext1.getText().equals("")&&!Ctext2.getText().equals("")){
+                        //ÏÈÕÒµ½ÌâºÅ£¬ÔÙ¶Ô±ÈÄÑ¶ÈÊÇ·ñÏàÍ¬
+                        try {
+                            String select = "select * from majque where M_No = '"+Ctext1.getText()+"'";
+                            rs = stmt.executeQuery(select);
+                            if (rs.next()){
+                                String M_No = rs.getString("M_No");
+                                String M_content = rs.getString("M_content");
+                                String M_level = rs.getString("M_level");
+                                String M_Major = rs.getString("M_Major");
+                                String M_flag = rs.getString("M_flag");
+                                if (Ctext2.getText().equals(M_level)){
+                                    Vector data1 = new Vector();
+                                    data1.add(M_No);
+                                    data1.add("×¨ÒµÀà");
+                                    data1.add(M_Major);
+                                    data1.add(M_level);
+                                    data1.add(M_content);
+                                    data1.add(M_flag);
+                                    data.add(data1);
+                                    model[0] = new DefaultTableModel(data, names);
+                                    table.setModel(model[0]);
+                                }
+                            }
+                            else{
+                                System.out.println("×¨ÒµÀàÄÑ¶È²»´æÔÚ");
+                            }
+                        } catch (SQLException e1) {
+                            e1.printStackTrace();
+                        }
+                    }
+                }
+                else {
+                    //ÕÒ×¨Òµ£¬ÔÙÆ¥ÅäÆäËûÏî
+                    //ÔÚ×¨ÒµÀàÀïÕÒ×¨Òµ£¬ÔÙÆ¥ÅäÆäËûÏî
+                    String select = "select * from majque where M_Major = '"+Ctext4.getText()+"'";
+                    try {
+                        rs = stmt.executeQuery(select);
+                        while (rs.next()){
+                            String M_No = rs.getString("M_No");
+                            String M_content = rs.getString("M_content");
+                            String M_level = rs.getString("M_level");
+                            String M_Major = rs.getString("M_Major");
+                            String M_flag = rs.getString("M_flag");
+                            if (Ctext1.getText().equals("")&&Ctext2.getText().equals("")){
+                                Vector data1 = new Vector();
+                                data1.add(M_No);
+                                data1.add("×¨ÒµÀà");
+                                data1.add(M_Major);
+                                data1.add(M_level);
+                                data1.add(M_content);
+                                data1.add(M_flag);
+                                data.add(data1);
+                                model[0] = new DefaultTableModel(data, names);
+                                table.setModel(model[0]);
+                            }
+                            else if (!Ctext1.getText().equals("")&&Ctext2.getText().equals("")){
+                                if (Ctext1.getText().equals(M_No)){
+                                    Vector data1 = new Vector();
+                                    data1.add(M_No);
+                                    data1.add("×¨ÒµÀà");
+                                    data1.add(M_Major);
+                                    data1.add(M_level);
+                                    data1.add(M_content);
+                                    data1.add(M_flag);
+                                    data.add(data1);
+                                    model[0] = new DefaultTableModel(data, names);
+                                    table.setModel(model[0]);
+                                }
+                            }
+                            else if (Ctext1.getText().equals("")&&!Ctext2.getText().equals("")){
+                                if (Ctext2.getText().equals(M_level)){
+                                    Vector data1 = new Vector();
+                                    data1.add(M_No);
+                                    data1.add("×¨ÒµÀà");
+                                    data1.add(M_Major);
+                                    data1.add(M_level);
+                                    data1.add(M_content);
+                                    data1.add(M_flag);
+                                    data.add(data1);
+                                    model[0] = new DefaultTableModel(data, names);
+                                    table.setModel(model[0]);
+                                }
+                            }
+                            else if (!Ctext1.getText().equals("")&&!Ctext2.getText().equals("")){
+                                if (Ctext1.getText().equals(M_No)&&Ctext2.getText().equals(M_level)){
+                                    Vector data1 = new Vector();
+                                    data1.add(M_No);
+                                    data1.add("×¨ÒµÀà");
+                                    data1.add(M_Major);
+                                    data1.add(M_level);
+                                    data1.add(M_content);
+                                    data1.add(M_flag);
+                                    data.add(data1);
+                                    model[0] = new DefaultTableModel(data, names);
+                                    table.setModel(model[0]);
+                                }
+                            }
+                        }
+                    } catch (SQLException e1) {
+                        e1.printStackTrace();
+                    }
+                }
+            }
+            else if (comboBox.getSelectedItem().equals("Ó¢ÓïÀà")){
+                if (Ctext1.getText().equals("")&&Ctext2.getText().equals("")) {
+                    //ÏÔÊ¾Ó¢ÓïÀàËùÓĞÌâ
+                    String vieweng = "select * from engque";
+                    try {
+                        rs = stmt.executeQuery(vieweng);
+                        while (rs.next()) {
+                            String No = rs.getString("E_No");
+                            String level = rs.getString("E_level");
+                            String content = rs.getString("E_content");
+                            String flag = rs.getString("E_flag");
+                            Vector row2 = new Vector(); // Êı¾İĞĞÏòÁ¿£¬Ê¹ÓÃËüµÄadd()Ìí¼ÓÔªËØ£¬±ÈÈçÕûÊı¡¢String¡¢ObjectµÈ£¬ÓĞ¼¸ĞĞ¾Ínew¼¸¸öĞĞÏòÁ¿
+                            row2.add(No);
+                            row2.add("Ó¢ÓïÀà");
+                            row2.add("");
+                            row2.add(level);
+                            row2.add(content);
+                            row2.add(flag);
+                            data.add(row2);
+                            model[0] = new DefaultTableModel(data, names);
+                            table.setModel(model[0]);
+                        }
+                    } catch (SQLException e1) {
+                        e1.printStackTrace();
+                    }
+                }
+                else if (!Ctext1.getText().equals("")&&Ctext2.getText().equals("")){
+                    //Ö»ÓĞÎ¨Ò»Ò»Ìâ
+                    String vieweng = "select * from engque where E_No = '"+Ctext1.getText()+"'";
+                    try {
+                        rs = stmt.executeQuery(vieweng);
+                        if (rs.next()) {
+                            String No = rs.getString("E_No");
+                            String level = rs.getString("E_level");
+                            String content = rs.getString("E_content");
+                            String flag = rs.getString("E_flag");
+                            Vector row2 = new Vector(); // Êı¾İĞĞÏòÁ¿£¬Ê¹ÓÃËüµÄadd()Ìí¼ÓÔªËØ£¬±ÈÈçÕûÊı¡¢String¡¢ObjectµÈ£¬ÓĞ¼¸ĞĞ¾Ínew¼¸¸öĞĞÏòÁ¿
+                            row2.add(No);
+                            row2.add("Ó¢ÓïÀà");
+                            row2.add("");
+                            row2.add(level);
+                            row2.add(content);
+                            row2.add(flag);
+                            data.add(row2);
+                            model[0] = new DefaultTableModel(data, names);
+                            table.setModel(model[0]);
+                        }
+                    } catch (SQLException e1) {
+                        e1.printStackTrace();
+                    }
+                }
+                else if (Ctext1.getText().equals("")&&!Ctext2.getText().equals("")){
+                    //ÄÑ¶ÈÎªxµÄÌâ
+                    String vieweng = "select * from engque where E_level = '"+Ctext2.getText()+"'";
+                    try {
+                        rs = stmt.executeQuery(vieweng);
+                        while (rs.next()) {
+                            String No = rs.getString("E_No");
+                            String level = rs.getString("E_level");
+                            String content = rs.getString("E_content");
+                            String flag = rs.getString("E_flag");
+                            Vector row2 = new Vector(); // Êı¾İĞĞÏòÁ¿£¬Ê¹ÓÃËüµÄadd()Ìí¼ÓÔªËØ£¬±ÈÈçÕûÊı¡¢String¡¢ObjectµÈ£¬ÓĞ¼¸ĞĞ¾Ínew¼¸¸öĞĞÏòÁ¿
+                            row2.add(No);
+                            row2.add("Ó¢ÓïÀà");
+                            row2.add("");
+                            row2.add(level);
+                            row2.add(content);
+                            row2.add(flag);
+                            data.add(row2);
+                            model[0] = new DefaultTableModel(data, names);
+                            table.setModel(model[0]);
+                        }
+                    } catch (SQLException e1) {
+                        e1.printStackTrace();
+                    }
+                }
+                else if (!Ctext1.getText().equals("")&&!Ctext2.getText().equals("")){
+                    //ÏÈÕÒµ½ÌâºÅ£¬ÔÙ¶Ô±ÈÄÑ¶ÈÊÇ·ñÏàÍ¬
+                    String vieweng = "select * from engque where E_No = '"+Ctext1.getText()+"'";
+                    try {
+                        rs = stmt.executeQuery(vieweng);
+                        if (rs.next()) {
+                            String No = rs.getString("E_No");
+                            String level = rs.getString("E_level");
+                            String content = rs.getString("E_content");
+                            String flag = rs.getString("E_flag");
+                            if (level.equals(Ctext2.getText())){
+                                Vector row2 = new Vector(); // Êı¾İĞĞÏòÁ¿£¬Ê¹ÓÃËüµÄadd()Ìí¼ÓÔªËØ£¬±ÈÈçÕûÊı¡¢String¡¢ObjectµÈ£¬ÓĞ¼¸ĞĞ¾Ínew¼¸¸öĞĞÏòÁ¿
+                                row2.add(No);
+                                row2.add("Ó¢ÓïÀà");
+                                row2.add("");
+                                row2.add(level);
+                                row2.add(content);
+                                row2.add(flag);
+                                data.add(row2);
+                                model[0] = new DefaultTableModel(data, names);
+                                table.setModel(model[0]);
+                            }
+                            else{
+                                System.out.println("ÌâºÅÄÑ¶È²»Æ¥Åä");
+                            }
+                        }
+                    } catch (SQLException e1) {
+                        e1.printStackTrace();
+                    }
+                }
+            }
+            else if (comboBox.getSelectedItem().equals("ÕşÖÎÀà")){
+                if (Ctext1.getText().equals("")&&Ctext2.getText().equals("")){
+                    //ÏÔÊ¾ÕşÖÎÀàËùÓĞÌâ
+                    //ÕşÖÎÀàÌâÄ¿
+                    String viewpol = "select * from polque";
+                    try {
+                        rs = stmt.executeQuery(viewpol);
+                        while(rs.next()){
+                            String No = rs.getString("P_No");
+                            String level = rs.getString("P_level");
+                            String content = rs.getString("P_content");
+                            String flag = rs.getString("P_flag");
+                            Vector row2 = new Vector(); // Êı¾İĞĞÏòÁ¿£¬Ê¹ÓÃËüµÄadd()Ìí¼ÓÔªËØ£¬±ÈÈçÕûÊı¡¢String¡¢ObjectµÈ£¬ÓĞ¼¸ĞĞ¾Ínew¼¸¸öĞĞÏòÁ¿
+                            row2.add(No);
+                            row2.add("ÕşÖÎÀà");
+                            row2.add("");
+                            row2.add(level);
+                            row2.add(content);
+                            row2.add(flag);
+                            data.add(row2);
+                            model[0] = new DefaultTableModel(data, names);
+                            table.setModel(model[0]);
+                        }
+                    } catch (SQLException e1) {
+                        e1.printStackTrace();
+                    }
+                }
+                else if (!Ctext1.getText().equals("")&&Ctext2.getText().equals("")){
+                    //Ö»ÓĞÎ¨Ò»Ò»Ìâ
+                    String selectP = "select * from polque where P_No = '"+Ctext1.getText()+"'";
+                    try {
+                        rs = stmt.executeQuery(selectP);
+                        if (rs.next()){
+                            String P_No = rs.getString("P_No");
+                            String P_content = rs.getString("P_content");
+                            String P_level = rs.getString("P_level");
+                            String P_flag = rs.getString("P_flag");
+                            Vector data1 = new Vector();
+                            data1.add(P_No);
+                            data1.add("ÕşÖÎÀà");
+                            data1.add("");
+                            data1.add(P_level);
+                            data1.add(P_content);
+                            data1.add(P_flag);
+                            data.add(data1);
+                            model[0] = new DefaultTableModel(data, names);
+                            table.setModel(model[0]);
+                        }
+                    } catch (SQLException e1) {
+                        e1.printStackTrace();
+                    }
+                }
+                else if (Ctext1.getText().equals("")&&!Ctext2.getText().equals("")){
+                    //ÄÑ¶ÈÎªxµÄÌâ
+                    String selectP = "select * from polque where P_level = '"+Ctext2.getText()+"'";
+                    try {
+                        rs = stmt.executeQuery(selectP);
+                        while (rs.next()){
+                            String P_No = rs.getString("P_No");
+                            String P_content = rs.getString("P_content");
+                            String P_level = rs.getString("P_level");
+                            String P_flag = rs.getString("P_flag");
+                            Vector data1 = new Vector();
+                            data1.add(P_No);
+                            data1.add("ÕşÖÎÀà");
+                            data1.add("");
+                            data1.add(P_level);
+                            data1.add(P_content);
+                            data1.add(P_flag);
+                            data.add(data1);
+                            model[0] = new DefaultTableModel(data, names);
+                            table.setModel(model[0]);
+                        }
+                    } catch (SQLException e1) {
+                        e1.printStackTrace();
+                    }
+                }
+                else if (!Ctext1.getText().equals("")&&!Ctext2.getText().equals("")){
+                    //ÏÈÕÒµ½ÌâºÅ£¬ÔÙ¶Ô±ÈÄÑ¶ÈÊÇ·ñÏàÍ¬
+                    String selectP = "select * from polque where P_No = '"+Ctext1.getText()+"'";
+                    try {
+                        rs = stmt.executeQuery(selectP);
+                        if (rs.next()){
+                            String P_No = rs.getString("P_No");
+                            String P_content = rs.getString("P_content");
+                            String P_level = rs.getString("P_level");
+                            String P_flag = rs.getString("P_flag");
+                            if (P_level.equals(Ctext2.getText())){
+                                Vector data1 = new Vector();
+                                data1.add(P_No);
+                                data1.add("ÕşÖÎÀà");
+                                data1.add("");
+                                data1.add(P_level);
+                                data1.add(P_content);
+                                data1.add(P_flag);
+                                data.add(data1);
+                                model[0] = new DefaultTableModel(data, names);
+                                table.setModel(model[0]);
+                            }
+                            else{
+                                System.out.println("Î´²éÕÒµ½Ïà¹Ø¼ÇÂ¼");
+                            }
+                        }
+                    } catch (SQLException e1) {
+                        e1.printStackTrace();
+                    }
+                }
+            }
+        }
+    });
+
+    //ÖØÖÃ
+    Cbt2.addActionListener(new ActionListener() {
+        @Override
+        public void actionPerformed(ActionEvent e){
+            Ctext1.setText("");
+            Ctext2.setText("");
+            comboBox.setSelectedItem("");
+            Ctext4.setText("");
+            if(!data.isEmpty()){
+                data.clear();
+                model[0] = new DefaultTableModel(data, names);
+                table.setModel(model[0]);
+            }
+        }
+    });
+
+    //ÉèÖÃ¹Ø±Õ·½Ê½
     frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 
-    //è®¾ç½®å¤§å°
+    //ÉèÖÃ´óĞ¡
     frame.setSize(900,700);
 
-    //è®¾ç½®ä½ç½®
+    //ÉèÖÃÎ»ÖÃ
     frame.setLocation(100, 100);
 
-    //è®¾ç½®å¯è§æ€§
+    //ÉèÖÃ¿É¼ûĞÔ
     frame.setVisible(true);
 }
 }
