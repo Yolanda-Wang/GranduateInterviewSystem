@@ -25,7 +25,7 @@ import java.net.MulticastSocket;
 import java.util.Date;
 
 public class teacherMainWidget {
-    public static String url = "jdbc:mysql://localhost:3306/interview?useUnicode=true&characterencoding=utf-8";
+    public static String url = "jdbc:mysql://localhost:3306/interview?useUnicode=true&characterencoding=GBK";
     public static String username = "manager";
     public static String password = "123456";
     public static Connection con;
@@ -387,24 +387,26 @@ public class teacherMainWidget {
         public void actionPerformed(ActionEvent e1) {
             int grade = Integer.parseInt(gradeText.getText());
             if(!gradeText.getText().equals("")&&grade<100&&grade>=0){
-//                String select="select S_intGrade from student where S_stuID = '"+考号label的值+"'";
-//                rs = stmt.executeQuery(select);
-//                  if(rs.next()){
-//                      if(rs.getString("S_intGrade").equals("")){
-//                          String add_grade = "update student set S_intGrade = '"+gradeText.getText()+"' where S_stuID = "+考号label的值+"'";
-//                          String update_flag ="update student set S_flag = 1  where S_stuID = "+考号label的值+"'";
-//                try {
-//                    stmt.executeUpdate(add_grade);
-//                    stmt.executeUpdate(update_flag);
-//                } catch (SQLException e1) {
-//                    e1.printStackTrace();
-//                }
-//                      }
-//                  }
-//                  else{
-//                      System.out.println("已打分");
-//                  }
-//
+                String select="select S_intGrade from student where S_stuID = '"+label6.getText()+"'";
+                try {
+                    rs = stmt.executeQuery(select);
+                    if(rs.next()){
+                        if(rs.getString("S_intGrade")==null){
+                            String add_grade = "update student set S_intGrade = '"+gradeText.getText()+"' where S_stuID = '"+label6.getText()+"'";
+                            String update_flag ="update student set S_flag = 1  where S_stuID = '"+label6.getText()+"'";
+                        stmt.executeUpdate(add_grade);
+                        stmt.executeUpdate(update_flag);
+                            System.out.println("分数提交成功");
+                        }
+                        else{
+                            System.out.println("已打分");
+                        }
+                    }
+
+                } catch (SQLException e2) {
+                    e2.printStackTrace();
+                }
+
             }
         }
     });
