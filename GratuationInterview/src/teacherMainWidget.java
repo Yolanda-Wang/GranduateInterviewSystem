@@ -426,10 +426,12 @@ public class teacherMainWidget {
                             String update_flag ="update student set S_flag = 1  where S_stuID = '"+label6.getText()+"'";
                         stmt.executeUpdate(add_grade);
                         stmt.executeUpdate(update_flag);
-                            System.out.println("分数提交成功");
+//                            System.out.println("分数提交成功");
+                            JOptionPane.showMessageDialog(null,"分数提交成功","提示",JOptionPane.PLAIN_MESSAGE);
                         }
                         else{
-                            System.out.println("已打分");
+//                            System.out.println("已打分");
+                            JOptionPane.showMessageDialog(null,"已打分","提示",JOptionPane.PLAIN_MESSAGE);
                         }
                     }
 
@@ -437,6 +439,10 @@ public class teacherMainWidget {
                     e2.printStackTrace();
                 }
 
+            }
+            else{
+//                System.out.println("grade is out of range!");
+                JOptionPane.showMessageDialog(null,"分数应在0-100分","提示",JOptionPane.PLAIN_MESSAGE);
             }
         }
     });

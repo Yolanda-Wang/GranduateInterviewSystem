@@ -4,16 +4,7 @@ import java.sql.*;
 import java.awt.event.*;
 import java.util.Vector;
 //
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JMenu;
-import javax.swing.JMenuBar;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JSplitPane;
-import javax.swing.JTable;
-import javax.swing.JTextField;
+import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 
 public class StudentDataset {
@@ -300,7 +291,8 @@ public StudentDataset() {
                     data.add(rowData5);
                     model[0] = new DefaultTableModel(data, names);
                     table.setModel(model[0]);
-                    System.out.println("数据添加成功");
+//                    System.out.println("数据添加成功");
+                    JOptionPane.showMessageDialog(null,"考生信息添加成功","提示",JOptionPane.PLAIN_MESSAGE);
                 } catch (SQLException e1) {
                     e1.printStackTrace();
                     System.out.println("数据添加失败");
@@ -435,7 +427,8 @@ public StudentDataset() {
                         } catch (SQLException e1) {
                             e1.printStackTrace();
                         }
-                        System.out.println("数据更新成功");
+//                        System.out.println("数据更新成功");
+                        JOptionPane.showMessageDialog(null,"考生信息更新成功","提示",JOptionPane.PLAIN_MESSAGE);
                     }
                     else{
                         System.out.println("数据更新失败");
@@ -503,7 +496,8 @@ public StudentDataset() {
                         model[0] = new DefaultTableModel(data, names);
                         table.setModel(model[0]);
                     }
-                    System.out.println("信息删除成功");
+//                    System.out.println("信息删除成功");
+                    JOptionPane.showMessageDialog(null,"考生信息删除成功","提示",JOptionPane.PLAIN_MESSAGE);
                 }
                 else{
                     System.out.println("未查询到数据");

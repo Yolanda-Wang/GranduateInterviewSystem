@@ -3,13 +3,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.*;
 
-import javax.swing.JButton;
-import javax.swing.JComboBox;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JPasswordField;
-import javax.swing.JTextField;
+import javax.swing.*;
 
 
 public class login {
@@ -98,10 +92,12 @@ public class login {
             public void actionPerformed(ActionEvent e) {
                 String passW = String.valueOf(passwordText.getPassword());
                 if(userText.getText().equals("")){
-                    System.out.println("«Î ‰»Î’À∫≈");
+//                    System.out.println("«Î ‰»Î’À∫≈");
+                    JOptionPane.showMessageDialog(null,"«Î ‰»Î’À∫≈","Ã· æ",JOptionPane.PLAIN_MESSAGE);
                 }
                 else if(passW.equals("")){
-                    System.out.println("«Î ‰»Î√‹¬Î");
+//                    System.out.println("«Î ‰»Î√‹¬Î");
+                    JOptionPane.showMessageDialog(null,"«Î ‰»Î√‹¬Î","Ã· æ",JOptionPane.PLAIN_MESSAGE);
                 }
                 else{
                     if(userText.getText().length()==11){
@@ -123,7 +119,8 @@ public class login {
                                          */
                                     }
                                     else{
-                                        System.out.println("√‹¬Î¥ÌŒÛ£°");
+//                                        System.out.println("√‹¬Î¥ÌŒÛ£°");
+                                        JOptionPane.showMessageDialog(null,"√‹¬Î¥ÌŒÛ","Ã· æ",JOptionPane.PLAIN_MESSAGE);
                                     }
                                 }
                             }
@@ -153,7 +150,8 @@ public class login {
                                          */
                                     }
                                     else{
-                                        System.out.println("√‹¬Î¥ÌŒÛ£°");
+//                                        System.out.println("√‹¬Î¥ÌŒÛ£°");
+                                        JOptionPane.showMessageDialog(null,"√‹¬Î¥ÌŒÛ","Ã· æ",JOptionPane.PLAIN_MESSAGE);
                                     }
                                 }
                             }
@@ -183,7 +181,8 @@ public class login {
                                          */
                                     }
                                     else{
-                                        System.out.println("√‹¬Î¥ÌŒÛ£°");
+//                                        System.out.println("√‹¬Î¥ÌŒÛ£°");
+                                        JOptionPane.showMessageDialog(null,"√‹¬Î¥ÌŒÛ","Ã· æ",JOptionPane.PLAIN_MESSAGE);
                                     }
                                 }
                             }

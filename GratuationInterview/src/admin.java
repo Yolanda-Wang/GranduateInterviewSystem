@@ -170,7 +170,8 @@ public admin() {
                                     data.add(rowData1);
                                     model[0] = new DefaultTableModel(data, names);
                                     table.setModel(model[0]);
-                                    System.out.println("考生账号密码添加成功");
+//                                    System.out.println("考生账号密码添加成功");
+                                    JOptionPane.showMessageDialog(null,"考生账号密码添加成功","提示",JOptionPane.PLAIN_MESSAGE);
                                 }
                                 else{
                                     System.out.println("该考生账号不存在");
@@ -191,7 +192,8 @@ public admin() {
                                     data.add(rowData2);
                                     model[0] = new DefaultTableModel(data, names);
                                     table.setModel(model[0]);
-                                    System.out.println("导师账号密码添加成功");
+//                                    System.out.println("导师账号密码添加成功");
+                                    JOptionPane.showMessageDialog(null,"导师账号密码添加成功","提示",JOptionPane.PLAIN_MESSAGE);
                                 }
                                 else{
                                     System.out.println("该导师账号不存在");
@@ -209,7 +211,8 @@ public admin() {
                                 data.add(rowData2);
                                 model[0] = new DefaultTableModel(data, names);
                                 table.setModel(model[0]);
-                                System.out.println("管理员账号密码添加成功");
+//                                System.out.println("管理员账号密码添加成功");
+                                JOptionPane.showMessageDialog(null,"管理员账号密码添加成功","提示",JOptionPane.PLAIN_MESSAGE);
                             }
                             else{
                                 System.out.println("账号长度不匹配");
@@ -274,7 +277,8 @@ public admin() {
                                         data.add(rowData1);
                                         model[0] = new DefaultTableModel(data, names);
                                         table.setModel(model[0]);
-                                        System.out.println("考生账号密码添加成功");
+//                                        System.out.println("考生账号密码添加成功");
+                                        JOptionPane.showMessageDialog(null,"考生账号密码更新成功","提示",JOptionPane.PLAIN_MESSAGE);
                                     }
                                     else{
                                         System.out.println("该考生账号不存在");
@@ -295,7 +299,8 @@ public admin() {
                                         data.add(rowData2);
                                         model[0] = new DefaultTableModel(data, names);
                                         table.setModel(model[0]);
-                                        System.out.println("导师账号密码添加成功");
+//                                        System.out.println("导师账号密码添加成功");
+                                        JOptionPane.showMessageDialog(null,"导师账号密码更新成功","提示",JOptionPane.PLAIN_MESSAGE);
                                     }
                                     else{
                                         System.out.println("该导师账号不存在");
@@ -313,7 +318,8 @@ public admin() {
                                     data.add(rowData2);
                                     model[0] = new DefaultTableModel(data, names);
                                     table.setModel(model[0]);
-                                    System.out.println("管理员账号密码添加成功");
+//                                    System.out.println("管理员账号密码添加成功");
+                                    JOptionPane.showMessageDialog(null,"管理员账号密码添加成功","提示",JOptionPane.PLAIN_MESSAGE);
                                 }
                                 else{
                                     System.out.println("账户不存在");
@@ -364,7 +370,8 @@ public admin() {
                                     stmt.executeUpdate(delete);
                                     String delete_stu = "update student set S_password='' where S_stuID = '" + userText.getText() + "'";
                                     stmt.executeUpdate(delete_stu);
-                                    System.out.println("考生账号密码删除成功");
+//                                    System.out.println("考生账号密码删除成功");
+                                    JOptionPane.showMessageDialog(null,"考生账号密码删除成功","提示",JOptionPane.PLAIN_MESSAGE);
                                 } else {
                                     System.out.println("账号密码不匹配");
                                 }
@@ -384,7 +391,8 @@ public admin() {
                                     stmt.executeUpdate(delete);
                                     String delete_stu = "update teacher set T_password='' where T_TeaID = '" + userText.getText() + "'";
                                     stmt.executeUpdate(delete_stu);
-                                    System.out.println("导师账号密码删除成功");
+//                                    System.out.println("导师账号密码删除成功");
+                                    JOptionPane.showMessageDialog(null,"导师账号密码删除成功","提示",JOptionPane.PLAIN_MESSAGE);
                                 } else {
                                     System.out.println("账号密码不匹配");
                                 }
@@ -406,6 +414,7 @@ public admin() {
                                     String delete_stu = "update manager set M_password='' where M_manID = '" + userText.getText() + "'";
                                     stmt.executeUpdate(delete_stu);
                                     System.out.println("管理员账号密码删除成功");
+                                    JOptionPane.showMessageDialog(null,"管理员账号密码删除成功","提示",JOptionPane.PLAIN_MESSAGE);
                                 } else {
                                     System.out.println("账号密码不匹配");
                                 }

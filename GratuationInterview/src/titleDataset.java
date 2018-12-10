@@ -334,14 +334,16 @@ public titleDataset() {
                             data.add(rowData1);
                             model[0] = new DefaultTableModel(data, names);
                             table.setModel(model[0]);
-                            System.out.println("专业类添加成功");
+//                            System.out.println("专业类添加成功");
+                            JOptionPane.showMessageDialog(null,"专业类题目添加成功","提示",JOptionPane.PLAIN_MESSAGE);
                         } catch (SQLException e1) {
                             e1.printStackTrace();
                             System.out.println("专业类添加失败");
                         }
                     }
                 else{
-                        System.out.println("请选择专业");
+//                        System.out.println("请选择专业");
+                        JOptionPane.showMessageDialog(null,"请选择专业","提示",JOptionPane.PLAIN_MESSAGE);
                     }
             }
                 else if (comboBox1.getSelectedItem().equals("英语类")){
@@ -358,7 +360,8 @@ public titleDataset() {
                         data.add(rowData2);
                         model[0] = new DefaultTableModel(data, names);
                         table.setModel(model[0]);
-                        System.out.println("英语类添加成功");
+//                        System.out.println("英语类添加成功");
+                        JOptionPane.showMessageDialog(null,"英语类题目添加成功","提示",JOptionPane.PLAIN_MESSAGE);
                     } catch (SQLException e1) {
                         e1.printStackTrace();
                         System.out.println("英语类添加失败");
@@ -378,14 +381,16 @@ public titleDataset() {
                         data.add(rowData3);
                         model[0] = new DefaultTableModel(data, names);
                         table.setModel(model[0]);
-                        System.out.println("政治类添加成功");
+//                        System.out.println("政治类添加成功");
+                        JOptionPane.showMessageDialog(null,"政治类题目添加成功","提示",JOptionPane.PLAIN_MESSAGE);
                     } catch (SQLException e1) {
                         e1.printStackTrace();
                         System.out.println("政治类添加失败");
                     }
                 }
                 else{
-                    System.out.println("请选择题目类型");
+//                    System.out.println("请选择题目类型");
+                    JOptionPane.showMessageDialog(null,"请选择题目类型","提示",JOptionPane.PLAIN_MESSAGE);
                 }
         }
             else{
@@ -473,7 +478,8 @@ public titleDataset() {
                     }
                 }
                 else{
-                    System.out.println("请选择题目类型");
+//                    System.out.println("请选择题目类型");
+                    JOptionPane.showMessageDialog(null,"请选择题目类型","提示",JOptionPane.PLAIN_MESSAGE);
                 }
                 if(!data.isEmpty()){
                     data.clear();
@@ -653,7 +659,8 @@ public titleDataset() {
                         if(rs.next()){
                             String deleteM = "delete from majque where M_No ='"+text1.getText()+"'";
                             stmt.executeUpdate(deleteM);
-                            System.out.println("删除成功");
+//                            System.out.println("删除成功");
+                            JOptionPane.showMessageDialog(null,"删除成功","提示",JOptionPane.PLAIN_MESSAGE);
                         }
                         else{
                             System.out.println("题号不存在，删除失败");
@@ -669,7 +676,8 @@ public titleDataset() {
                         if(rs.next()){
                             String deleteE = "delete from engque where E_No ='"+text1.getText()+"'";
                             stmt.executeUpdate(deleteE);
-                            System.out.println("删除成功");
+//                            System.out.println("删除成功");
+                            JOptionPane.showMessageDialog(null,"删除成功","提示",JOptionPane.PLAIN_MESSAGE);
                         }
                         else{
                             System.out.println("题号不存在，删除失败");
@@ -685,7 +693,8 @@ public titleDataset() {
                         if(rs.next()){
                             String deleteP = "delete from polque where P_No ='"+text1.getText()+"'";
                             stmt.executeUpdate(deleteP);
-                            System.out.println("删除成功");
+                            JOptionPane.showMessageDialog(null,"删除成功","提示",JOptionPane.PLAIN_MESSAGE);
+//                            System.out.println("删除成功");
                         }
                         else{
                             System.out.println("题号不存在，删除失败");
@@ -776,7 +785,8 @@ public titleDataset() {
                 }
             }
             else{
-                System.out.println("请输入题号");
+//                System.out.println("请输入题号");
+                JOptionPane.showMessageDialog(null,"请输入题号","提示",JOptionPane.PLAIN_MESSAGE);
             }
         }
     });
