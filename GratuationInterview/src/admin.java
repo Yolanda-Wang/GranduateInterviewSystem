@@ -3,11 +3,20 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.*;
-import java.util.Vector;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
 
-import javax.swing.*;
-import javax.swing.table.DefaultTableModel;
-
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JPanel;
+import javax.swing.JPasswordField;
+import javax.swing.JTable;
+import javax.swing.JTextField;
 
 public class admin {
     public static String url = "jdbc:mysql://localhost:3306/interview?useUnicode=true&characterencoding=GBK";
@@ -16,6 +25,9 @@ public class admin {
     public static Connection con;
     public static Statement stmt;
     public static ResultSet rs;
+<<<<<<< HEAD
+    public static void main(String[]args) {
+=======
 public static void main(String[]args) throws SQLException {
     try {
         System.out.println("’À∫≈π‹¿Ì£∫");
@@ -80,23 +92,85 @@ public admin() {
         names.add("√‹¬Î");
         names.add("¿‡±");
     String viewtable = "select * from password";
+>>>>>>> c1aeefb3f04ab20f4098d9c4dc5d773db1493b67
         try {
-            rs = stmt.executeQuery(viewtable);
-            while (rs.next()) {
-                String ID = rs.getString("ID");
-                String passWord = rs.getString("password");
-                String type = rs.getString("type");
-                Vector row = new Vector();
-                row.add(ID);
-                row.add(passWord);
-                row.add(type);
-                data.add(row);
-                model[0] = new DefaultTableModel(data, names);
-                table.setModel(model[0]);
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
+            System.out.println("ÁôªÂΩïÔºö");
+            Class.forName("com.mysql.jdbc.Driver");
+            System.out.println("Âä†ËΩΩÈ©±Âä®ÊàêÂäü");
+        } catch (ClassNotFoundException var2) {
+            System.out.println("Âä†ËΩΩÈ©±Âä®Â§±Ë¥•!");
+            var2.printStackTrace();
         }
+<<<<<<< HEAD
+
+        try {
+            con = DriverManager.getConnection(url, username, password);
+            stmt = con.createStatement();
+            System.out.println("ËøûÊé•ÊàêÂäü");
+        } catch (SQLException var1) {
+            System.out.println("ËøûÊé•Â§±Ë¥•!");
+        }
+        admin a=new admin();
+    }
+    public admin() {
+        try {
+            System.out.println("ÁôªÂΩïÔºö");
+            Class.forName("com.mysql.jdbc.Driver");
+            System.out.println("Âä†ËΩΩÈ©±Âä®ÊàêÂäü");
+        } catch (ClassNotFoundException var2) {
+            System.out.println("Âä†ËΩΩÈ©±Âä®Â§±Ë¥•!");
+            var2.printStackTrace();
+        }
+
+        try {
+            con = DriverManager.getConnection(url, username, password);
+            stmt = con.createStatement();
+            System.out.println("ËøûÊé•ÊàêÂäü");
+        } catch (SQLException var1) {
+            System.out.println("ËøûÊé•Â§±Ë¥•!");
+        }
+        JFrame frame=new JFrame("ÁÆ°ÁêÜÂëòÁïåÈù¢");
+        //ÂàùÂßãÂåñ‰∏Ä‰∏™ËèúÂçïÊ†è
+        JMenuBar menuBar = new JMenuBar();
+
+        //ÂàùÂßãÂåñËèúÂçï
+        JMenu menu1 = new JMenu("Êìç‰Ωú(O)");
+        menu1.setMnemonic('O');
+        menu1.setFont(new Font("ÂÆã‰Ωì",Font.PLAIN,16));
+        JMenu menu2 = new JMenu("Â∏ÆÂä©(H)");
+        menu2.setMnemonic('H');
+        menu2.setFont(new Font("ÂÆã‰Ωì",Font.PLAIN,16));
+        JMenu menu3 = new JMenu("Êü•ËØ¢(Q)");
+        menu3.setMnemonic('Q');
+        menu3.setFont(new Font("ÂÆã‰Ωì",Font.PLAIN,16));
+        JMenu menu4 = new JMenu("ÁªüËÆ°(S)");
+        menu4.setMnemonic('S');
+        menu4.setFont(new Font("ÂÆã‰Ωì",Font.PLAIN,16));
+        JMenu menu5 = new JMenu("Áª¥Êä§(M)");
+        menu5.setMnemonic('M');
+        menu5.setFont(new Font("ÂÆã‰Ωì",Font.PLAIN,16));
+        //ÊääËèúÂçïÊ∑ªÂä†Âà∞ËèúÂçïÊ†è
+        menuBar.add(menu1);
+        menuBar.add(menu2);
+        menuBar.add(menu3);
+        menuBar.add(menu4);
+        menuBar.add(menu5);
+        //ËÆæÁΩÆËèúÂçïÊ†è
+        frame.setJMenuBar(menuBar);
+
+        JPanel panel=new JPanel();
+        Container container = frame.getContentPane();
+        panel.setLayout(null);
+
+        JButton stuManageButton = new JButton("ÁÆ°ÁêÜÂ≠¶Áîü‰ø°ÊÅØ");
+        stuManageButton.setFont(new Font("",Font.PLAIN,16));
+        stuManageButton.setBounds(20, 20, 150, 35);
+        stuManageButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new StudentDataset();
+                frame.dispose();
+=======
         model[0].setDataVector(data, names); // …Ë÷√ƒ£–Õ÷–µƒ‘™Àÿ£¨À¸ª·◊‘∂Øœ‘ æ‘⁄¡–±Ì÷–
         JScrollPane jsp = new JScrollPane(table); // ”√¡–±Ì¥¥Ω®ø…πˆ∂ØµƒPanel£¨∞—’‚∏ˆPanelÃÌº”µΩ¥∞ø⁄÷–
         jsp.setSize(200, 200);
@@ -228,9 +302,21 @@ public admin() {
                 else{
                     System.out.println("’À∫≈√‹¬Î–ËÕ¨ ±ÃÌº”");
                 }
+>>>>>>> c1aeefb3f04ab20f4098d9c4dc5d773db1493b67
             }
         });
+        panel.add(stuManageButton);
 
+<<<<<<< HEAD
+        JButton teaManageButton = new JButton("ÁÆ°ÁêÜËÄÅÂ∏à‰ø°ÊÅØ");
+        teaManageButton.setFont(new Font("",Font.PLAIN,16));
+        teaManageButton.setBounds(20, 60, 150, 35);
+        teaManageButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new teacherManagement();
+                frame.dispose();
+=======
         //∏¸–¬’À∫≈√‹¬Î
         updateButton.addActionListener(new ActionListener() {
             @Override
@@ -350,9 +436,56 @@ public admin() {
                         System.out.println("√‹¬Î±ÿ–ÎŒ™∞ÀŒª£°");
                     }
                 }
+>>>>>>> c1aeefb3f04ab20f4098d9c4dc5d773db1493b67
             }
         });
+        panel.add(teaManageButton);
 
+<<<<<<< HEAD
+        JButton titleButton = new JButton("ÁÆ°ÁêÜÈ¢òÁõÆ‰ø°ÊÅØ");
+        titleButton.setFont(new Font("",Font.PLAIN,16));
+        titleButton.setBounds(20, 100, 150, 35);
+        titleButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new titleDataset();
+                frame.dispose();
+            }
+        });
+        panel.add(titleButton);
+
+        JLabel label=new JLabel("ÈÄâÊã©Èù¢ËØïÁßëÁõÆÔºö");
+        label.setBounds(20,140,100,25);
+        label.setFont(new Font("",Font.PLAIN,16));
+        JComboBox combo=new JComboBox();
+        combo.setBounds(200,140,150,25);
+        combo.addItem("Ëã±ËØ≠");
+        combo.addItem("Êï∞Â≠¶");
+        combo.addItem("ËÆ°ÁÆóÊú∫");
+        combo.addItem("Áâ©ÁêÜ");
+        combo.addItem("ÂåñÂ≠¶");
+        combo.addItem("ÊîøÊ≤ª");
+        panel.add(combo);
+        panel.add(label);
+        JButton commitButton = new JButton("Êèê‰∫§");
+        commitButton.setFont(new Font("",Font.PLAIN,16));
+        commitButton.setBounds(80, 180, 150, 35);
+
+        panel.add(commitButton);
+        frame.add(panel);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+
+        //ËÆæÁΩÆÂ§ßÂ∞è
+        frame.setSize(600,500);
+
+        //ËÆæÁΩÆ‰ΩçÁΩÆ
+        frame.setLocation(100, 100);
+
+        //ËÆæÁΩÆÂèØËßÅÊÄß
+        frame.setVisible(true);
+    }
+=======
         //…æ≥˝’À∫≈√‹¬Î
     deleteButton.addActionListener(new ActionListener() {
         @Override
@@ -461,4 +594,5 @@ public admin() {
 	    //…Ë÷√ø…º˚–‘
 	    frame.setVisible(true);
 }
+>>>>>>> c1aeefb3f04ab20f4098d9c4dc5d773db1493b67
 }

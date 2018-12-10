@@ -48,6 +48,17 @@ public class login {
          */
         JPanel panel = new JPanel();
         // 添加面板
+<<<<<<< HEAD
+        frame.add(panel);
+        /*
+         * 调用用户定义的方法并添加组件到面板
+         */
+
+        // 设置界面可见
+        frame.setVisible(true);
+
+=======
+>>>>>>> c1aeefb3f04ab20f4098d9c4dc5d773db1493b67
         panel.setLayout(null);
 
         // 创建 JLabel
@@ -76,6 +87,8 @@ public class login {
         loginButton.setBounds(170, 180, 100, 35);
         panel.add(loginButton);
 
+<<<<<<< HEAD
+=======
         frame.add(panel);
         /*
          * 调用用户定义的方法并添加组件到面板
@@ -86,6 +99,7 @@ public class login {
 
 
 
+>>>>>>> c1aeefb3f04ab20f4098d9c4dc5d773db1493b67
         //登录
         loginButton.addActionListener(new ActionListener() {
             @Override

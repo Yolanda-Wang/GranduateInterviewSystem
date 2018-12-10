@@ -32,6 +32,12 @@ public class teacherMainWidget {
     public static String que_content;
     public static MulticastSocket mss = null;
     public static InetAddress group;
+    public static MulticastSocket mss2 = null;
+    public static InetAddress group2;
+    public static String maj;
+    public static String name;
+    public static Integer count_stu = 0;
+    public static String next_stuID = " ";
     public static void main(String[] args) {
         //连接数据库
         try {
@@ -108,15 +114,15 @@ public class teacherMainWidget {
     label5.setBounds(320,20,100,25);
     label5.setFont(new Font("",Font.PLAIN,16));
     //set传值给考号
-    JLabel label6=new JLabel("20161414623");
+    JLabel label6=new JLabel(" ");
     label6.setBounds(100,30,100,25);
     label6.setFont(new Font("",Font.PLAIN,16));
     //传值给姓名
-    JLabel label7=new JLabel("dqy");
+    JLabel label7=new JLabel(" ");
     label7.setBounds(100,60,100,25);
     label7.setFont(new Font("",Font.PLAIN,16));
     //传值给专业
-    JLabel label8=new JLabel("cs");
+    JLabel label8=new JLabel(" ");
     label8.setBounds(100,90,100,25);
     label8.setFont(new Font("",Font.PLAIN,16));
 
@@ -134,8 +140,8 @@ public class teacherMainWidget {
     panel.add(label6);
     panel.add(label7);
     panel.add(label8);
-        panel.add(label9);
-        label9.setText("综合面试其实主要考察考生的综合素质。包括考生本科期间的科研能力、知识结构、计算机操作能力、外语能力和应变能力等，在回答的时候并不要求十分精准的答案，但是要求考生流畅清楚以及有逻辑性的陈述。所以在综合面试之前相关信息的搜集、知识点的储备、以及勤加练习都是必不可少的。");
+    panel.add(label9);
+    label9.setText("综合面试其实主要考察考生的综合素质。包括考生本科期间的科研能力、知识结构、计算机操作能力、外语能力和应变能力等，在回答的时候并不要求十分精准的答案，但是要求考生流畅清楚以及有逻辑性的陈述。所以在综合面试之前相关信息的搜集、知识点的储备、以及勤加练习都是必不可少的。");
     //分割线
     JSplitPane split1=new JSplitPane();
     split1.setBounds(300, 0,1, 500);
@@ -195,60 +201,125 @@ public class teacherMainWidget {
     frame.setVisible(true);
 
     //显示题目信息
-    ResultSet rs1;
-    String select = "select * from queno where S_stuID='"+label6.getText()+"'";
-    try {
-        rs = stmt.executeQuery(select);
-        if (rs.next()){
-//            if(!data.isEmpty()) {
-//                data.clear();
-//                model[0] = new DefaultTableModel(data, names);
-//                table.setModel(model[0]);
-//            }
-            majNo = rs.getString("majNo");
-            System.out.println(majNo);
-            polNo = rs.getString("polNo");
-            System.out.println(polNo);
-            EngNo = rs.getString("EngNo");
-            System.out.println(EngNo);
-            String selectMaj ="select M_content from majque where M_No = '"+majNo+"'";
-            rs1 = stmt.executeQuery(selectMaj);
-            if (rs1.next()){
-                maj_content = rs1.getString("M_content");
-                System.out.println(maj_content);
-//                Vector row = new Vector(); // 数据行向量，使用它的add()添加元素，比如整数、String、Object等，有几行就new几个行向量
-//                row.add("专业类");
-//                row.add(majNo);
-//                row.add(maj_content);
-//                data.add(row);
-            }
-            String selectEng ="select E_content from engque where E_No = '"+EngNo+"'";
-            rs1 = stmt.executeQuery(selectEng);
-            if (rs1.next()){
-                eng_content = rs1.getString("E_content");
-//                Vector row2 = new Vector();
-//                row2.add("英语类");
-//                row2.add(EngNo);
-//                row2.add(eng_content);
-//                data.add(row2);
-            }
-            String selectpol ="select P_content from polque where P_No = '"+polNo+"'";
-            rs1 = stmt.executeQuery(selectpol);
-            if (rs1.next()){
-                pol_content = rs1.getString("P_content");
-//                Vector row3 = new Vector();
-//                row3.add("政治类类");
-//                row3.add(polNo);
-//                row3.add(pol_content);
-//                data.add(row3);
-            }
-//            model[0] = new DefaultTableModel(data, names);
-//            table.setModel(model[0]);
-        }
-    } catch (SQLException e) {
-        e.printStackTrace();
-    }
 
+
+        //下一位
+        bt3.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                count_stu++;
+                ResultSet rst;
+                String next_stu = "select * from choosestu where Num='"+count_stu+"'";
+                try {
+                    rst = stmt.executeQuery(next_stu);
+                    if(rst.next()){
+                        next_stuID = rst.getString("stuID");
+                        System.out.println(next_stuID);
+                    }
+                }catch (Exception e2){
+                    e2.printStackTrace();
+                }
+                if (count_stu == 10){
+                    count_stu = 0;
+                    //清空表
+                    String delete = "delete from choosestu";
+                    try {
+                        stmt.executeUpdate(delete);
+                    }catch (Exception exc){
+                        exc.printStackTrace();
+                    }
+
+                }
+
+                //读取学生信息
+                String information = "select * from student where S_stuID='"+next_stuID+"'";
+                try {
+                    rs = stmt.executeQuery(information);
+                    if (rs.next()){
+                        name = rs.getString("S_name");
+                        System.out.println(name);
+                        maj = rs.getString("S_major");
+                        System.out.println(maj);
+                    }
+                    String select = "select * from queno where S_stuID='"+next_stuID+"'";
+                    rs = stmt.executeQuery(select);
+                    if (rs.next()){
+                        majNo = rs.getString("majNo");
+                        System.out.println(majNo);
+                        polNo = rs.getString("polNo");
+                        System.out.println(polNo);
+                        EngNo = rs.getString("EngNo");
+                        System.out.println(EngNo);
+
+                        ResultSet rs1, rs2;
+                        String selectMaj ="select M_content from majque where M_No = '"+majNo+"'";
+                        rs = stmt.executeQuery(selectMaj);
+                        if (rs.next()){
+                            maj_content = rs.getString("M_content");
+                            System.out.println(maj_content);
+                        }
+                        String selectEng ="select E_content from engque where E_No = '"+EngNo+"'";
+                        rs1 = stmt.executeQuery(selectEng);
+                        if (rs1.next()){
+                            eng_content = rs1.getString("E_content");
+                            System.out.println(eng_content);
+                        }
+                        String selectpol ="select P_content from polque where P_No = '"+polNo+"'";
+                        rs2 = stmt.executeQuery(selectpol);
+                        if (rs2.next()){
+                            pol_content = rs2.getString("P_content");
+                            System.out.println(pol_content);
+                        }
+                    }
+                } catch (SQLException ex) {
+                    ex.printStackTrace();
+                }
+
+                label6.setText(next_stuID);
+                label7.setText(name);
+                label8.setText(maj);
+                countque = 0;
+
+                try {
+                    group2 = InetAddress.getByName("224.0.0.2");//组播地址
+                    int port = 8888;
+                    mss2 = new MulticastSocket(port);
+                    mss2.joinGroup(group2);
+                    System.out.println("发送数据包启动！（启动时间" + new Date() + ")");
+                    String message2 = next_stuID;
+                    byte[] buffer2 = message2.getBytes();
+                    DatagramPacket dp2 = new DatagramPacket(buffer2, buffer2.length, group2, port);
+                    mss2.send(dp2);
+                    System.out.println("发送数据包给 " + group2 + ":" + port);
+                    Thread.sleep(1000);
+
+                    message2 = name;
+                    buffer2 = message2.getBytes();
+                    DatagramPacket dp3 = new DatagramPacket(buffer2, buffer2.length, group2, port);
+                    mss2.send(dp3);
+                    System.out.println("发送数据包给 " + group2 + ":" + port);
+                    Thread.sleep(1000);
+
+                    message2 = maj;
+                    buffer2 = message2.getBytes();
+                    DatagramPacket dp4 = new DatagramPacket(buffer2, buffer2.length, group2, port);
+                    mss2.send(dp4);
+                    System.out.println("发送数据包给 " + group2 + ":" + port);
+                    Thread.sleep(1000);
+                } catch (Exception e2) {
+                    e2.printStackTrace();
+                } finally {
+                    try {
+                        if (mss2 != null) {
+                            mss2.leaveGroup(group2);
+                            mss2.close();
+                        }
+                    } catch (Exception e2) {
+                        // TODO: handle exception
+                    }
+                }
+            }
+        });
     //下一题
     bt2.addActionListener(new ActionListener() {
         @Override
@@ -263,12 +334,13 @@ public class teacherMainWidget {
                     que_content = maj_content;
                     label9.setText(que_content);
                     try {
-                        group = InetAddress.getByName("224.0.0.2");//组播地址
+                        group = InetAddress.getByName("224.0.0.1");//组播地址
                         int port = 8888;
                         mss = new MulticastSocket(port);
                         mss.joinGroup(group);
                         System.out.println("发送数据包启动！（启动时间" + new Date() + ")");
                         String message = que_content;
+                        //message = "12345";
                         byte[] buffer = message.getBytes();
                         DatagramPacket dp = new DatagramPacket(buffer, buffer.length, group, port);
                         mss.send(dp);
@@ -293,7 +365,7 @@ public class teacherMainWidget {
                     que_content = pol_content;
                     label9.setText(que_content);
                     try {
-                        group = InetAddress.getByName("224.0.0.2");//组播地址
+                        group = InetAddress.getByName("224.0.0.1");//组播地址
                         int port = 8888;
                         mss = new MulticastSocket(port);
                         mss.joinGroup(group);
@@ -323,7 +395,7 @@ public class teacherMainWidget {
                     que_content = eng_content;
                     label9.setText(que_content);
                     try {
-                        group = InetAddress.getByName("224.0.0.2");//组播地址
+                        group = InetAddress.getByName("224.0.0.1");//组播地址
                         int port = 8888;
                         mss = new MulticastSocket(port);
                         mss.joinGroup(group);
@@ -351,65 +423,9 @@ public class teacherMainWidget {
                 default:
                     System.out.println("end");
             }
-//            try {
-//                group = InetAddress.getByName("224.0.0.2");//组播地址
-//                int port = 8888;
-//                mss = new MulticastSocket(port);
-//                mss.joinGroup(group);
-//                System.out.println("发送数据包启动！（启动时间" + new Date() + ")");
-//                String message = que_content;
-//                byte[] buffer = message.getBytes();
-//                DatagramPacket dp = new DatagramPacket(buffer, buffer.length, group, port);
-//                mss.send(dp);
-//                System.out.println("发送数据包给 " + group + ":" + port);
-//                Thread.sleep(1000);
-//            } catch (Exception e1) {
-//                e1.printStackTrace();
-//            } finally {
-//                try {
-//                    if (mss != null) {
-//                        mss.leaveGroup(group);
-//                        mss.close();
-//                    }
-//                } catch (Exception e2) {
-//                    // TODO: handle exception
-//                }
-//            }
         }
     });
 
-    bt3.addActionListener(new ActionListener() {
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            String next_stuID = "20161414624";
-
-            try {
-                group = InetAddress.getByName("224.0.0.2");//组播地址
-                int port = 8888;
-                mss = new MulticastSocket(port);
-                mss.joinGroup(group);
-                System.out.println("发送数据包启动！（启动时间" + new Date() + ")");
-                String message = next_stuID;
-                byte[] buffer = message.getBytes();
-                DatagramPacket dp = new DatagramPacket(buffer, buffer.length, group, port);
-                mss.send(dp);
-                System.out.println("发送数据包给 " + group + ":" + port);
-                Thread.sleep(1000);
-            } catch (Exception e1) {
-                e1.printStackTrace();
-            } finally {
-                try {
-                    if (mss != null) {
-                        mss.leaveGroup(group);
-                        mss.close();
-                    }
-                } catch (Exception e2) {
-                    // TODO: handle exception
-                }
-            }
-            countque++;
-        }
-    });
 
     //提交分数
     bt1.addActionListener(new ActionListener() {
