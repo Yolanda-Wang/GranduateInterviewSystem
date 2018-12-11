@@ -2,11 +2,26 @@
 <project version="4">
   <component name="Encoding" native2AsciiForPropertiesFiles="true" defaultCharsetForPropertiesFiles="GBK">
     <file url="file://$PROJECT_DIR$/src/StudentDataset.java" charset="GBK" />
+<<<<<<< HEAD
     <file url="file://$PROJECT_DIR$/src/admin.java" charset="GBK" />
     <file url="file://$PROJECT_DIR$/src/database.java" charset="GBK" />
     <file url="file://$PROJECT_DIR$/src/teacherMainWidget.java" charset="GBK" />
     <file url="file://$PROJECT_DIR$/src/teacherManagement.java" charset="GBK" />
     <file url="file://$PROJECT_DIR$/src/titleDataset.java" charset="GBK" />
+=======
+<<<<<<< HEAD
+    <file url="file://$PROJECT_DIR$/src/admin.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/login.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/teacherMainWidget.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/teacherManagement.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/titleDataset.java" charset="GBK" />
+=======
+    <file url="file://$PROJECT_DIR$/src/admin.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/teacherMainWidget.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/teacherManagement.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/titleDataset.java" charset="UTF-8" />
+>>>>>>> 7ceda170b38d313871fb503d8ae4f9f7cd678aca
+>>>>>>> 4498caa156ac25db4b5753417aad8318df51e1b6
     <file url="PROJECT" charset="GBK" />
   </component>
 </project>

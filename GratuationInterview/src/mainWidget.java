@@ -15,6 +15,7 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
+<<<<<<< HEAD
 
 import java.net.DatagramPacket;
 import java.net.InetAddress;
@@ -24,6 +25,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.Random;
 
+=======
+>>>>>>> 4498caa156ac25db4b5753417aad8318df51e1b6
 public class mainWidget {
     public static String url = "jdbc:mysql://localhost:3306/interview?useUnicode=true&characterencoding=GBK";
     public static String username = "manager";
@@ -254,8 +257,11 @@ public class mainWidget {
 
         //设置可见性
         frame.setVisible(true);
+<<<<<<< HEAD
   }
     public static void closeThis(){
         frame.dispose();
+=======
+>>>>>>> 4498caa156ac25db4b5753417aad8318df51e1b6
     }
 }

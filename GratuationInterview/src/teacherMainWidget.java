@@ -38,6 +38,7 @@ public class teacherMainWidget {
     public static String name;
     public static Integer count_stu = 0;
     public static String next_stuID = " ";
+<<<<<<< HEAD
     public String Tea_ID;
 //    public static void main(String[] args) {
 //        //连接数据库
@@ -61,6 +62,10 @@ public class teacherMainWidget {
 //    }
     public teacherMainWidget(String TeaID){
         Tea_ID=TeaID;
+=======
+    public static void main(String[] args) {
+        //连接数据库
+>>>>>>> 4498caa156ac25db4b5753417aad8318df51e1b6
         try {
             Class.forName("com.mysql.jdbc.Driver");
             System.out.println("加载驱动成功");
@@ -161,8 +166,8 @@ public class teacherMainWidget {
     panel.add(label6);
     panel.add(label7);
     panel.add(label8);
-        panel.add(label9);
-        label9.setText("综合面试其实主要考察考生的综合素质。包括考生本科期间的科研能力、知识结构、计算机操作能力、外语能力和应变能力等，在回答的时候并不要求十分精准的答案，但是要求考生流畅清楚以及有逻辑性的陈述。所以在综合面试之前相关信息的搜集、知识点的储备、以及勤加练习都是必不可少的。");
+    panel.add(label9);
+    label9.setText("综合面试其实主要考察考生的综合素质。包括考生本科期间的科研能力、知识结构、计算机操作能力、外语能力和应变能力等，在回答的时候并不要求十分精准的答案，但是要求考生流畅清楚以及有逻辑性的陈述。所以在综合面试之前相关信息的搜集、知识点的储备、以及勤加练习都是必不可少的。");
     //分割线
     JSplitPane split1=new JSplitPane();
     split1.setBounds(300, 0,1, 500);
@@ -200,6 +205,7 @@ public class teacherMainWidget {
     frame.setVisible(true);
 
     //显示题目信息
+<<<<<<< HEAD
         //下一位
         bt3.addActionListener(new ActionListener() {
             @Override
@@ -226,6 +232,36 @@ public class teacherMainWidget {
                         exc.printStackTrace();
                     }
 
+=======
+
+
+        //下一位
+        bt3.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                count_stu++;
+                ResultSet rst;
+                String next_stu = "select * from choosestu where Num='"+count_stu+"'";
+                try {
+                    rst = stmt.executeQuery(next_stu);
+                    if(rst.next()){
+                        next_stuID = rst.getString("stuID");
+                        System.out.println(next_stuID);
+                    }
+                }catch (Exception e2){
+                    e2.printStackTrace();
+                }
+                if (count_stu == 10){
+                    count_stu = 0;
+                    //清空表
+                    String delete = "delete from choosestu";
+                    try {
+                        stmt.executeUpdate(delete);
+                    }catch (Exception exc){
+                        exc.printStackTrace();
+                    }
+
+>>>>>>> 4498caa156ac25db4b5753417aad8318df51e1b6
                 }
 
                 //读取学生信息
@@ -306,6 +342,7 @@ public class teacherMainWidget {
                 } catch (Exception e2) {
                     e2.printStackTrace();
                 } finally {
+<<<<<<< HEAD
                     try {
                         if (mss2 != null) {
                             mss2.leaveGroup(group2);
@@ -330,6 +367,48 @@ public class teacherMainWidget {
                         System.out.println(maj_content);
                         que_content = maj_content;
                         label9.setText(que_content);
+=======
+                    try {
+                        if (mss2 != null) {
+                            mss2.leaveGroup(group2);
+                            mss2.close();
+                        }
+                    } catch (Exception e2) {
+                        // TODO: handle exception
+                    }
+                }
+            }
+        });
+    //下一题
+    bt2.addActionListener(new ActionListener() {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            //System.out.println(rs);
+            //String select2 = "select * from queno where S_stuID='"+label6.getText()+"'";
+//            try {
+            //rs = stmt.executeQuery(select2);
+            switch (countque) {
+                case 0:
+                    System.out.println(maj_content);
+                    que_content = maj_content;
+                    label9.setText(que_content);
+                    try {
+                        group = InetAddress.getByName("224.0.0.1");//组播地址
+                        int port = 8888;
+                        mss = new MulticastSocket(port);
+                        mss.joinGroup(group);
+                        System.out.println("发送数据包启动！（启动时间" + new Date() + ")");
+                        String message = que_content;
+                        //message = "12345";
+                        byte[] buffer = message.getBytes();
+                        DatagramPacket dp = new DatagramPacket(buffer, buffer.length, group, port);
+                        mss.send(dp);
+                        System.out.println("发送数据包给 " + group + ":" + port);
+                        Thread.sleep(1000);
+                    } catch (Exception e1) {
+                        e1.printStackTrace();
+                    } finally {
+>>>>>>> 4498caa156ac25db4b5753417aad8318df51e1b6
                         try {
                             group = InetAddress.getByName("224.0.0.3");//组播地址
                             int port = 8888;
@@ -355,12 +434,37 @@ public class teacherMainWidget {
                                 // TODO: handle exception
                             }
                         }
+<<<<<<< HEAD
                         countque++;
                         break;
                     case 1:
                         System.out.println(pol_content);
                         que_content = pol_content;
                         label9.setText(que_content);
+=======
+                    }
+                    countque++;
+                    break;
+                case 1:
+                    System.out.println(pol_content);
+                    que_content = pol_content;
+                    label9.setText(que_content);
+                    try {
+                        group = InetAddress.getByName("224.0.0.1");//组播地址
+                        int port = 8888;
+                        mss = new MulticastSocket(port);
+                        mss.joinGroup(group);
+                        System.out.println("发送数据包启动！（启动时间" + new Date() + ")");
+                        String message = que_content;
+                        byte[] buffer = message.getBytes();
+                        DatagramPacket dp = new DatagramPacket(buffer, buffer.length, group, port);
+                        mss.send(dp);
+                        System.out.println("发送数据包给 " + group + ":" + port);
+                        Thread.sleep(1000);
+                    } catch (Exception e1) {
+                        e1.printStackTrace();
+                    } finally {
+>>>>>>> 4498caa156ac25db4b5753417aad8318df51e1b6
                         try {
                             group = InetAddress.getByName("224.0.0.3");//组播地址
                             int port = 8888;
@@ -385,12 +489,37 @@ public class teacherMainWidget {
                                 // TODO: handle exception
                             }
                         }
+<<<<<<< HEAD
                         countque++;
                         break;
                     case 2:
                         System.out.println(eng_content);
                         que_content = eng_content;
                         label9.setText(que_content);
+=======
+                    }
+                    countque++;
+                    break;
+                case 2:
+                    System.out.println(eng_content);
+                    que_content = eng_content;
+                    label9.setText(que_content);
+                    try {
+                        group = InetAddress.getByName("224.0.0.1");//组播地址
+                        int port = 8888;
+                        mss = new MulticastSocket(port);
+                        mss.joinGroup(group);
+                        System.out.println("发送数据包启动！（启动时间" + new Date() + ")");
+                        String message = que_content;
+                        byte[] buffer = message.getBytes();
+                        DatagramPacket dp = new DatagramPacket(buffer, buffer.length, group, port);
+                        mss.send(dp);
+                        System.out.println("发送数据包给 " + group + ":" + port);
+                        Thread.sleep(1000);
+                    } catch (Exception e1) {
+                        e1.printStackTrace();
+                    } finally {
+>>>>>>> 4498caa156ac25db4b5753417aad8318df51e1b6
                         try {
                             group = InetAddress.getByName("224.0.0.3");//组播地址
                             int port = 8888;
@@ -415,6 +544,7 @@ public class teacherMainWidget {
                                 // TODO: handle exception
                             }
                         }
+<<<<<<< HEAD
                         countque++;
                         break;
                     default:
@@ -422,6 +552,16 @@ public class teacherMainWidget {
                 }
             }
         });
+=======
+                    }
+                    countque++;
+                    break;
+                default:
+                    System.out.println("end");
+            }
+        }
+    });
+>>>>>>> 4498caa156ac25db4b5753417aad8318df51e1b6
 
 
     //提交分数
@@ -439,10 +579,12 @@ public class teacherMainWidget {
                             String update_flag ="update student set S_flag = 1  where S_stuID = '"+label6.getText()+"'";
                         stmt.executeUpdate(add_grade);
                         stmt.executeUpdate(update_flag);
-                            System.out.println("分数提交成功");
+//                            System.out.println("分数提交成功");
+                            JOptionPane.showMessageDialog(null,"分数提交成功","提示",JOptionPane.PLAIN_MESSAGE);
                         }
                         else{
-                            System.out.println("已打分");
+//                            System.out.println("已打分");
+                            JOptionPane.showMessageDialog(null,"已打分","提示",JOptionPane.PLAIN_MESSAGE);
                         }
                     }
 
@@ -450,6 +592,10 @@ public class teacherMainWidget {
                     e2.printStackTrace();
                 }
 
+            }
+            else{
+//                System.out.println("grade is out of range!");
+                JOptionPane.showMessageDialog(null,"分数应在0-100分","提示",JOptionPane.PLAIN_MESSAGE);
             }
         }
     });

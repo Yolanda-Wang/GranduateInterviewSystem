@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -5,11 +6,21 @@ import java.net.DatagramPacket;
 import java.net.InetAddress;
 import java.net.MulticastSocket;
 import java.sql.*;
+=======
+import java.awt.BorderLayout;
+import java.awt.Container;
+import java.awt.Dimension;
+import java.awt.Font;
+import java.net.DatagramPacket;
+import java.net.InetAddress;
+import java.net.MulticastSocket;
+>>>>>>> 4498caa156ac25db4b5753417aad8318df51e1b6
 import java.util.Date;
 
 import javax.swing.*;
 
 public class questionWidget {
+<<<<<<< HEAD
     public static String url = "jdbc:mysql://localhost:3306/interview?useUnicode=true&characterencoding=GBK";
     public static String username = "manager";
     public static String password = "123456";
@@ -22,10 +33,15 @@ public class questionWidget {
     public static DatagramPacket dp;
     public static byte[] buffer;
     public static String s;
+=======
+    public static MulticastSocket msr = null;
+    public static InetAddress group;
+>>>>>>> 4498caa156ac25db4b5753417aad8318df51e1b6
     public static void main(String[] args) {
         questionWidget w1=new questionWidget();
     }
     public questionWidget() {
+<<<<<<< HEAD
         try {
             Class.forName("com.mysql.jdbc.Driver");
             System.out.println("加载驱动成功");
@@ -41,6 +57,8 @@ public class questionWidget {
         } catch (SQLException var1) {
             System.out.println("数据库连接失败!");
         }
+=======
+>>>>>>> 4498caa156ac25db4b5753417aad8318df51e1b6
         //初始化一个jframe
         JFrame frame = new JFrame("学生端");
 
@@ -54,6 +72,7 @@ public class questionWidget {
         JLabel label5=new JLabel("题目信息：");
         label5.setBounds(50,30,100,25);
         label5.setFont(new Font("",Font.PLAIN,16));
+<<<<<<< HEAD
         label6=new JTextArea();
         label6.setLineWrap(true);
         label6.setBounds(80,60,450,200);
@@ -79,6 +98,19 @@ public class questionWidget {
         panel.setLayout(null);
 
 
+=======
+        JTextArea label6=new JTextArea();
+        //label9.setSize(5000,5000);
+        label6.setLineWrap(true);
+        label6.setBounds(80,60,450,300);
+        label6.setFont(new Font("",Font.PLAIN,16));
+
+        panel.add(label5);
+        panel.add(label6);
+        label6.setText("综合面试其实主要考察考生的综合素质。包括考生本科期间的科研能力、知识结构、计算机操作能力、外语能力和应变能力等，在回答的时候并不要求十分精准的答案，但是要求考生流畅清楚以及有逻辑性的陈述。所以在综合面试之前相关信息的搜集、知识点的储备、以及勤加练习都是必不可少的。");
+        panel.setLayout(null);
+
+>>>>>>> 4498caa156ac25db4b5753417aad8318df51e1b6
         //把panel添加到容器
         container.add(panel);
 
@@ -95,6 +127,7 @@ public class questionWidget {
 
         //设置可见性
         frame.setVisible(true);
+<<<<<<< HEAD
         bt3.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -134,6 +167,10 @@ public class questionWidget {
     public void broadcast(){
         try {
             group = InetAddress.getByName("224.0.0.3");//组播地址
+=======
+        try {
+            group = InetAddress.getByName("224.0.0.1");//组播地址
+>>>>>>> 4498caa156ac25db4b5753417aad8318df51e1b6
             int port = 8888;
             msr = new MulticastSocket(port);
             msr.joinGroup(group);//加入连接
@@ -147,7 +184,11 @@ public class questionWidget {
                 //解码组播数据包
                 System.out.println(s);
                 label6.setText(s);
+<<<<<<< HEAD
            }
+=======
+            }
+>>>>>>> 4498caa156ac25db4b5753417aad8318df51e1b6
         } catch (Exception e) {
             e.printStackTrace();
         }finally{
