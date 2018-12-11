@@ -38,6 +38,23 @@ public class teacherManagement {
 	    teacherManagement w1=new teacherManagement();
     }
 public teacherManagement() {
+    try {
+        System.out.println("导师信息：");
+        Class.forName("com.mysql.jdbc.Driver");
+        System.out.println("加载驱动成功!");
+    } catch (ClassNotFoundException var2) {
+        System.out.println("加载驱动失败!");
+        var2.printStackTrace();
+    }
+
+    try {
+        con = DriverManager.getConnection(url, username, password);
+        stmt = con.createStatement();
+        System.out.println("导师信息数据库连接成功");
+    } catch (SQLException var1) {
+        System.out.println("导师信息数据库连接失败!");
+    }
+
 	//初始化一个jframe
     JFrame frame = new JFrame("导师信息管理");
 
@@ -525,7 +542,7 @@ public teacherManagement() {
     frame.setSize(800,500);
 
     //设置位置
-    frame.setLocation(100, 100);
+    frame.setLocation(500, 300);
 
     //设置可见性
     frame.setVisible(true);

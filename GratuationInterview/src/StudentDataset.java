@@ -4,16 +4,7 @@ import java.sql.*;
 import java.awt.event.*;
 import java.util.Vector;
 //
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JMenu;
-import javax.swing.JMenuBar;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JSplitPane;
-import javax.swing.JTable;
-import javax.swing.JTextField;
+import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 
 public class StudentDataset {
@@ -44,6 +35,21 @@ public class StudentDataset {
     }
 
 public StudentDataset() {
+    try {
+        Class.forName("com.mysql.jdbc.Driver");
+        System.out.println("加载驱动成功");
+    } catch (ClassNotFoundException var2) {
+        System.out.println("加载驱动失败!");
+        var2.printStackTrace();
+    }
+
+    try {
+        con = DriverManager.getConnection(url, username, password);
+        stmt = con.createStatement();
+        System.out.println("数据库连接成功");
+    } catch (SQLException var1) {
+        System.out.println("数据库连接失败!");
+    }
     //初始化一个jframe
     JFrame frame = new JFrame("学生信息");
 
@@ -51,32 +57,40 @@ public StudentDataset() {
     JMenuBar menuBar = new JMenuBar();
 
     //初始化菜单
-    JMenu menu1 = new JMenu("操作(O)");
-    menu1.setMnemonic('O');  
-    menu1.setFont(new Font("宋体",Font.PLAIN,16));
-    JMenu menu2 = new JMenu("帮助(H)");
-    menu2.setMnemonic('H'); 
-    menu2.setFont(new Font("宋体",Font.PLAIN,16));
-    JMenu menu3 = new JMenu("查询(Q)");
-    menu3.setMnemonic('Q'); 
-    menu3.setFont(new Font("宋体",Font.PLAIN,16));
+//    JMenu menu1 = new JMenu("操作(O)");
+//    menu1.setMnemonic('O');
+//    menu1.setFont(new Font("宋体",Font.PLAIN,16));
+//    JMenu menu2 = new JMenu("帮助(H)");
+//    menu2.setMnemonic('H');
+//    menu2.setFont(new Font("宋体",Font.PLAIN,16));
+//    JMenu menu3 = new JMenu("查询(Q)");
+//    menu3.setMnemonic('Q');
+//    menu3.setFont(new Font("宋体",Font.PLAIN,16));
     JMenu menu4 = new JMenu("统计(S)");
     menu4.setMnemonic('S'); 
     menu4.setFont(new Font("宋体",Font.PLAIN,16));
-    JMenu menu5 = new JMenu("维护(M)");
-    menu5.setMnemonic('M'); 
-    menu5.setFont(new Font("宋体",Font.PLAIN,16));
+    JMenuItem rank=new JMenuItem("总分排名");
+    rank.addActionListener(new ActionListener() {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            new orderedStudent();
+        }
+    });
+    menu4.add(rank);
+//    JMenu menu5 = new JMenu("维护(M)");
+//    menu5.setMnemonic('M');
+//    menu5.setFont(new Font("宋体",Font.PLAIN,16));
     //初始化一个panel
     JPanel panel = new JPanel();
 
     //初始化一个容器
     Container container = frame.getContentPane();
     //把菜单添加到菜单栏
-    menuBar.add(menu1);
-    menuBar.add(menu2);
-    menuBar.add(menu3);
+//    menuBar.add(menu1);
+//    menuBar.add(menu2);
+//    menuBar.add(menu3);
     menuBar.add(menu4);
-    menuBar.add(menu5);
+//    menuBar.add(menu5);
     //设置菜单栏
     frame.setJMenuBar(menuBar);
     
@@ -144,13 +158,19 @@ public StudentDataset() {
     JTextField text9= new JTextField(20);
     text9.setBounds(555,90,150,25);
     panel.add(text9);
-    
+
     JLabel label10=new JLabel("报考专业：");
     label10.setBounds(720,30,100,25);
     label10.setFont(new Font("",Font.PLAIN,16));
-    JTextField text10= new JTextField(20);
-    text10.setBounds(790,30,150,25);
-    panel.add(text10);
+    JComboBox combo=new JComboBox();
+    combo.setBounds(790,30,150,25);
+    combo.addItem("英语");
+    combo.addItem("数学");
+    combo.addItem("计算机");
+    combo.addItem("物理");
+    combo.addItem("化学");
+    combo.addItem("政治");
+    panel.add(combo);
     
     JLabel label11=new JLabel("面试成绩：");
     label11.setBounds(720,90,100,25);
@@ -282,7 +302,7 @@ public StudentDataset() {
                 String add_stuInfo = "insert into student(S_stuID,S_name,S_polGrade,S_EngGrade," +
                         "S_majGrade,S_major,S_School,S_ID,S_sex,S_phone" +
                         ") values('"+text1.getText()+"','"+text3.getText()+"','"+text7.getText()+"','"+text9.getText()+"'" +
-                        ",'"+text6.getText()+"','"+text10.getText()+"','"+text8.getText()+"','"+text2.getText()+"','"+text5.getText()+"'" +
+                        ",'"+text6.getText()+"','"+combo.getSelectedItem()+"','"+text8.getText()+"','"+text2.getText()+"','"+text5.getText()+"'" +
                         ",'"+text4.getText()+"')";
                 try {
                     stmt.executeUpdate(add_stuInfo);
@@ -290,7 +310,7 @@ public StudentDataset() {
                     rowData5.add(text1.getText());
                     rowData5.add(text3.getText());
                     rowData5.add(text5.getText());
-                    rowData5.add(text10.getText());
+                    rowData5.add(combo.getSelectedIndex());
                     rowData5.add(text2.getText());
                     rowData5.add(text4.getText());
                     rowData5.add(text8.getText());
@@ -362,8 +382,8 @@ public StudentDataset() {
                             }
                         }
                         //更新报考专业
-                        if (!text10.getText().equals("")) {
-                            String updateInfo = "update student set S_major='" + text10.getText() + "' where S_stuID='" + text1.getText() + "'";
+                        if (!combo.getSelectedItem().equals("")) {
+                            String updateInfo = "update student set S_major='" + combo.getSelectedItem() + "' where S_stuID='" + text1.getText() + "'";
                             try {
                                 stmt.executeUpdate(updateInfo);
                             } catch (SQLException e1) {
@@ -770,7 +790,7 @@ public StudentDataset() {
     frame.setSize(1300,700);
 
     //设置位置
-    frame.setLocation(100, 100);
+    frame.setLocation(400, 200);
 
     //设置可见性
     frame.setVisible(true);

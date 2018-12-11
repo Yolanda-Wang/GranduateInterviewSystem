@@ -38,6 +38,21 @@ public class titleDataset {
     }
 
 public titleDataset() {
+    try {
+        System.out.println("题目信息：");
+        Class.forName("com.mysql.jdbc.Driver");
+        System.out.println("加载驱动成功");
+    } catch (ClassNotFoundException var2) {
+        System.out.println("加载驱动失败!");
+        var2.printStackTrace();
+    }
+    try {
+        con = DriverManager.getConnection(url, username, password);
+        stmt = con.createStatement();
+        System.out.println("题目信息数据库连接成功!");
+    } catch (SQLException var1) {
+        System.out.println("题目信息数据库连接失败!");
+    }
 	//初始化一个jframe
     JFrame frame = new JFrame("题目信息");
 
@@ -1549,7 +1564,7 @@ public titleDataset() {
     frame.setSize(900,700);
 
     //设置位置
-    frame.setLocation(100, 100);
+    frame.setLocation(400, 200);
 
     //设置可见性
     frame.setVisible(true);

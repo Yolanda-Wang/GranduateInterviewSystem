@@ -90,7 +90,7 @@ public class login {
         // 设置界面可见
         frame.setVisible(true);
 
-
+        frame.setLocation(600, 300);
 
         //登录
         loginButton.addActionListener(new ActionListener() {
@@ -114,13 +114,16 @@ public class login {
                                 }
                                 else{
                                     if(rs.getString("S_password").equals(passW)){
-                                        /*登陆成功跳转界面
-
-
-
-
-
-                                         */
+                                        java.sql.Timestamp time=new java.sql.Timestamp(System.currentTimeMillis());
+                                        String time1=time.toString();
+                                        String logInfo="insert into log values('"+rs.getString("S_stuID")+"','"+rs.getString("S_password")+"','"+time1+"')";
+                                        try{
+                                            stmt.executeUpdate(logInfo);
+                                        }catch (SQLException e1) {
+                                            e1.printStackTrace();
+                                        }
+                                        frame.dispose();
+                                        mainWidget m=new mainWidget(userText.getText());
                                     }
                                     else{
                                         System.out.println("密码错误！");
@@ -135,28 +138,45 @@ public class login {
                         }
                     }
                     else if(userText.getText().length()==6){
-                        String select = "select T_TeaID,T_password from teacher where T_TeaID='"+userText.getText()+"'";
+                        String select = "select T_TeaID,T_password,T_flag from teacher where T_TeaID='"+userText.getText()+"'";
                         try {
                             rs = stmt.executeQuery(select);
                             if(rs.next()){
                                 if(rs.getString("T_password")==null){
                                     System.out.println("未分配密码");
                                 }
-                                else{
-                                    if(rs.getString("T_password").equals(passW)){
-                                        /*登陆成功跳转界面
-
-
-
-
-
-                                         */
-                                    }
-                                    else{
+                                else {
+                                    if (rs.getString("T_password").equals(passW)) {
+                                        int flag=rs.getInt("T_flag");
+                                        if(flag==0){
+                                            java.sql.Timestamp time=new java.sql.Timestamp(System.currentTimeMillis());
+                                            String time1=time.toString();
+                                            String logInfo="insert into log values('"+rs.getString("T_TeaID")+"','"+rs.getString("T_password")+"','"+time1+"')";
+                                            try{
+                                                stmt.executeUpdate(logInfo);
+                                            }catch (SQLException e1) {
+                                                e1.printStackTrace();
+                                            }
+                                            frame.dispose();
+                                            new teachersWidget(userText.getText());
+                                        }
+                                        else{
+                                            java.sql.Timestamp time=new java.sql.Timestamp(System.currentTimeMillis());
+                                            String time1=time.toString();
+                                            String logInfo="insert into log values('"+rs.getString("T_TeaID")+"','"+rs.getString("T_password")+"','"+time1+"')";
+                                            try{
+                                                stmt.executeUpdate(logInfo);
+                                            }catch (SQLException e1) {
+                                                e1.printStackTrace();
+                                            }
+                                            frame.dispose();
+                                            new teacherMainWidget(userText.getText());
+                                        }
+                                    } else {
                                         System.out.println("密码错误！");
                                     }
-                                }
-                            }
+                                }                                }
+
                             else{
                                 System.out.println("该导师未登记");
                             }
@@ -174,13 +194,16 @@ public class login {
                                 }
                                 else{
                                     if(rs.getString("M_password").equals(passW)){
-                                        /*登陆成功跳转界面
-
-
-
-
-
-                                         */
+                                        java.sql.Timestamp time=new java.sql.Timestamp(System.currentTimeMillis());
+                                        String time1=time.toString();
+                                        String logInfo="insert into log values('"+rs.getString("M_manID")+"','"+rs.getString("M_password")+"','"+time1+"')";
+                                        try{
+                                            stmt.executeUpdate(logInfo);
+                                        }catch (SQLException e1) {
+                                            e1.printStackTrace();
+                                        }
+                                        new admin();
+                                        frame.dispose();
                                     }
                                     else{
                                         System.out.println("密码错误！");
