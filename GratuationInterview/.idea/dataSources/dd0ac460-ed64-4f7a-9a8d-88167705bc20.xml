@@ -16,7 +16,7 @@
     </schema>
     <schema id="4" parent="1" name="interview">
       <Visible>1</Visible>
-      <Collation>utf8_general_ci</Collation>
+      <Collation>gbk_chinese_ci</Collation>
     </schema>
     <schema id="5" parent="1" name="mysql">
       <Collation>latin1_swedish_ci</Collation>
@@ -921,9 +921,7 @@
     <table id="232" parent="4" name="manager">
       <Collation>latin1_swedish_ci</Collation>
     </table>
-    <table id="233" parent="4" name="password">
-      <Collation>gbk_chinese_ci</Collation>
-    </table>
+    <table id="233" parent="4" name="password"/>
     <table id="234" parent="4" name="polque">
       <Collation>latin1_swedish_ci</Collation>
     </table>
@@ -941,27 +939,26 @@
     </table>
     <column id="239" parent="229" name="E_No">
       <Position>1</Position>
-      <DataType>char(9)|0s</DataType>
+      <DataType>smallint(6)|0s</DataType>
       <NotNull>1</NotNull>
-      <DefaultExpression>&apos;&apos;</DefaultExpression>
       <ColumnKind>normal</ColumnKind>
-      <Collation>utf8_general_ci</Collation>
     </column>
     <column id="240" parent="229" name="E_content">
       <Position>2</Position>
       <DataType>char(100)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
-      <Collation>utf8_general_ci</Collation>
+      <Collation>gbk_chinese_ci</Collation>
     </column>
     <column id="241" parent="229" name="E_level">
       <Position>3</Position>
       <DataType>char(2)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
-      <Collation>utf8_general_ci</Collation>
+      <Collation>gbk_chinese_ci</Collation>
     </column>
     <column id="242" parent="229" name="E_flag">
       <Position>4</Position>
       <DataType>smallint(6)|0s</DataType>
+      <DefaultExpression>&apos;0&apos;</DefaultExpression>
       <ColumnKind>normal</ColumnKind>
     </column>
     <key id="243" parent="229" name="PRIMARY">
@@ -969,17 +966,17 @@
       <ColNames>E_No</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="244" parent="230" name="login">
+    <column id="244" parent="230" name="ID">
       <Position>1</Position>
       <DataType>varchar(11)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
-      <Collation>utf8_general_ci</Collation>
+      <Collation>gbk_chinese_ci</Collation>
     </column>
     <column id="245" parent="230" name="password">
       <Position>2</Position>
       <DataType>char(8)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
-      <Collation>utf8_general_ci</Collation>
+      <Collation>gbk_chinese_ci</Collation>
     </column>
     <column id="246" parent="230" name="time">
       <Position>3</Position>
@@ -988,33 +985,32 @@
     </column>
     <column id="247" parent="231" name="M_No">
       <Position>1</Position>
-      <DataType>char(9)|0s</DataType>
+      <DataType>smallint(6)|0s</DataType>
       <NotNull>1</NotNull>
-      <DefaultExpression>&apos;&apos;</DefaultExpression>
       <ColumnKind>normal</ColumnKind>
-      <Collation>utf8_general_ci</Collation>
     </column>
     <column id="248" parent="231" name="M_content">
       <Position>2</Position>
       <DataType>char(100)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
-      <Collation>utf8_general_ci</Collation>
+      <Collation>gbk_chinese_ci</Collation>
     </column>
     <column id="249" parent="231" name="M_level">
       <Position>3</Position>
       <DataType>char(2)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
-      <Collation>utf8_general_ci</Collation>
+      <Collation>gbk_chinese_ci</Collation>
     </column>
     <column id="250" parent="231" name="M_Major">
       <Position>4</Position>
       <DataType>char(10)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
-      <Collation>utf8_general_ci</Collation>
+      <Collation>gbk_chinese_ci</Collation>
     </column>
     <column id="251" parent="231" name="M_flag">
       <Position>5</Position>
       <DataType>smallint(6)|0s</DataType>
+      <DefaultExpression>&apos;0&apos;</DefaultExpression>
       <ColumnKind>normal</ColumnKind>
     </column>
     <key id="252" parent="231" name="PRIMARY">
@@ -1028,13 +1024,13 @@
       <NotNull>1</NotNull>
       <DefaultExpression>&apos;&apos;</DefaultExpression>
       <ColumnKind>normal</ColumnKind>
-      <Collation>utf8_general_ci</Collation>
+      <Collation>gbk_chinese_ci</Collation>
     </column>
     <column id="254" parent="232" name="M_password">
       <Position>2</Position>
       <DataType>char(8)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
-      <Collation>utf8_general_ci</Collation>
+      <Collation>gbk_chinese_ci</Collation>
     </column>
     <key id="255" parent="232" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
@@ -1067,11 +1063,9 @@
     </key>
     <column id="260" parent="234" name="P_No">
       <Position>1</Position>
-      <DataType>char(9)|0s</DataType>
+      <DataType>smallint(6)|0s</DataType>
       <NotNull>1</NotNull>
-      <DefaultExpression>&apos;&apos;</DefaultExpression>
       <ColumnKind>normal</ColumnKind>
-      <Collation>utf8_general_ci</Collation>
     </column>
     <column id="261" parent="234" name="P_content">
       <Position>2</Position>
@@ -1088,6 +1082,7 @@
     <column id="263" parent="234" name="P_flag">
       <Position>4</Position>
       <DataType>smallint(6)|0s</DataType>
+      <DefaultExpression>&apos;0&apos;</DefaultExpression>
       <ColumnKind>normal</ColumnKind>
     </column>
     <key id="264" parent="234" name="PRIMARY">
@@ -1122,14 +1117,14 @@
       <NotNull>1</NotNull>
       <DefaultExpression>&apos;&apos;</DefaultExpression>
       <ColumnKind>normal</ColumnKind>
-      <Collation>utf8_general_ci</Collation>
+      <Collation>gbk_chinese_ci</Collation>
     </column>
     <column id="270" parent="236" name="S_name">
       <Position>2</Position>
       <DataType>varchar(20)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
-      <Collation>utf8_general_ci</Collation>
+      <Collation>gbk_chinese_ci</Collation>
     </column>
     <column id="271" parent="236" name="S_polGrade">
       <Position>3</Position>

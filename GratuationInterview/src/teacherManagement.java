@@ -244,6 +244,8 @@ public teacherManagement() {
                     model[0] = new DefaultTableModel(data, names);
                     table.setModel(model[0]);
                     System.out.println("数据添加成功");
+                    JOptionPane.showMessageDialog(null,"数据添加成功","提示",JOptionPane.PLAIN_MESSAGE);
+
                 } catch (SQLException e1) {
                     e1.printStackTrace();
                     System.out.println("数据添加失败");
@@ -301,8 +303,8 @@ public teacherManagement() {
                             model[0] = new DefaultTableModel(data, names);
                             table.setModel(model[0]);
                         }
-
-                        System.out.println("数据更新成功");
+                        JOptionPane.showMessageDialog(null,"数据更新成功","提示",JOptionPane.PLAIN_MESSAGE);
+//                        System.out.println("数据更新成功");
                     }
                     else{
                         System.out.println("数据更新失败");
@@ -349,7 +351,8 @@ public teacherManagement() {
                             model[0] = new DefaultTableModel(data, names);
                             table.setModel(model[0]);
                         }
-                        System.out.println("信息删除成功");
+//                        System.out.println("信息删除成功");
+                        JOptionPane.showMessageDialog(null,"信息删除成功","提示",JOptionPane.PLAIN_MESSAGE);
                     }
                 }
                 else{

@@ -25,6 +25,10 @@ public class admin {
     public static Connection con;
     public static Statement stmt;
     public static ResultSet rs;
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> 4850ae774c435ed590eb701117713f0e6a1b52c2
     public static void main(String[]args) {
         try {
             System.out.println("µ«¬º£∫");
@@ -34,6 +38,7 @@ public class admin {
             System.out.println("º”‘ÿ«˝∂Ø ß∞‹!");
             var2.printStackTrace();
         }
+<<<<<<< HEAD
 
         try {
             con = DriverManager.getConnection(url, username, password);
@@ -41,11 +46,99 @@ public class admin {
             System.out.println("¡¨Ω”≥…π¶");
         } catch (SQLException var1) {
             System.out.println("¡¨Ω” ß∞‹!");
+=======
+=======
+<<<<<<< HEAD
+    public static void main(String[]args) {
+=======
+public static void main(String[]args) throws SQLException {
+    try {
+        System.out.println("’À∫≈π‹¿Ì£∫");
+        Class.forName("com.mysql.jdbc.Driver");
+        System.out.println("º”‘ÿ«˝∂Ø≥…π¶");
+    } catch (ClassNotFoundException var2) {
+        System.out.println("º”‘ÿ«˝∂Ø ß∞‹!");
+        var2.printStackTrace();
+    }
+    try {
+        con = DriverManager.getConnection(url, username, password);
+        stmt = con.createStatement();
+        System.out.println("’À∫≈π‹¿Ì ˝æ›ø‚¡¨Ω”≥…π¶");
+    } catch (SQLException var1) {
+        System.out.println("’À∫≈π‹¿Ì ˝æ›ø‚¡¨Ω” ß∞‹!");
+    }
+	admin a=new admin();
+}
+public admin() {
+	JFrame frame=new JFrame("π‹¿Ì‘±ΩÁ√Ê");
+	//≥ı ºªØ“ª∏ˆ≤Àµ•¿∏
+    JMenuBar menuBar = new JMenuBar();
+
+    //≥ı ºªØ≤Àµ•
+    JMenu menu1 = new JMenu("≤Ÿ◊˜(O)");
+    menu1.setMnemonic('O');  
+    menu1.setFont(new Font("ÀŒÃÂ",Font.PLAIN,16));
+    JMenu menu2 = new JMenu("∞Ô÷˙(H)");
+    menu2.setMnemonic('H'); 
+    menu2.setFont(new Font("ÀŒÃÂ",Font.PLAIN,16));
+    JMenu menu3 = new JMenu("≤È—Ø(Q)");
+    menu3.setMnemonic('Q'); 
+    menu3.setFont(new Font("ÀŒÃÂ",Font.PLAIN,16));
+    JMenu menu4 = new JMenu("Õ≥º∆(S)");
+    menu4.setMnemonic('S'); 
+    menu4.setFont(new Font("ÀŒÃÂ",Font.PLAIN,16));
+    JMenu menu5 = new JMenu("Œ¨ª§(M)");
+    menu5.setMnemonic('M'); 
+    menu5.setFont(new Font("ÀŒÃÂ",Font.PLAIN,16));
+    //∞—≤Àµ•ÃÌº”µΩ≤Àµ•¿∏
+    menuBar.add(menu1);
+    menuBar.add(menu2);
+    menuBar.add(menu3);
+    menuBar.add(menu4);
+    menuBar.add(menu5);
+    //…Ë÷√≤Àµ•¿∏
+    frame.setJMenuBar(menuBar);
+    
+    JPanel panel=new JPanel();
+    Container container = frame.getContentPane();
+	panel.setLayout(null);
+	   
+//	  Object[] columnNames = {"’À∫≈","√‹¬Î","¿‡±"};// ∂®“Â±Ì∏Ò¡–√˚ ˝◊È
+//	    // ∂®“Â±Ì∏Ò ˝æ› ˝◊È
+//	    String[][] tableValues = {{"001","123",null},{"002","234",null},{"003","562",null}};
+//	    // ¥¥Ω®÷∏∂®¡–√˚∫Õ ˝æ›µƒ±Ì∏Ò
+        final DefaultTableModel[] model = {new DefaultTableModel()};
+        Vector data = new Vector(); //  ˝æ›––œÚ¡øºØ£¨“ÚŒ™¡–±Ì≤ª÷π“ª––£¨Õ˘¿Ô√ÊÃÌº” ˝æ›––œÚ¡ø£¨ÃÌº”∑Ω∑®add(row)
+        Vector names = new Vector();// ¡–√˚œÚ¡ø£¨ π”√À¸µƒadd()∑Ω∑®ÃÌº”¡–√˚
+        JTable table = new JTable(model[0]);
+        names.add("’À∫≈");
+        names.add("√‹¬Î");
+        names.add("¿‡±");
+    String viewtable = "select * from password";
+>>>>>>> c1aeefb3f04ab20f4098d9c4dc5d773db1493b67
+        try {
+            System.out.println("ÁôªÂΩïÔºö");
+            Class.forName("com.mysql.jdbc.Driver");
+            System.out.println("Âä†ËΩΩÈ©±Âä®ÊàêÂäü");
+        } catch (ClassNotFoundException var2) {
+            System.out.println("Âä†ËΩΩÈ©±Âä®Â§±Ë¥•!");
+            var2.printStackTrace();
+        }
+<<<<<<< HEAD
+
+        try {
+            con = DriverManager.getConnection(url, username, password);
+            stmt = con.createStatement();
+            System.out.println("ËøûÊé•ÊàêÂäü");
+        } catch (SQLException var1) {
+            System.out.println("ËøûÊé•Â§±Ë¥•!");
+>>>>>>> 4850ae774c435ed590eb701117713f0e6a1b52c2
         }
         admin a=new admin();
     }
     public admin() {
         try {
+<<<<<<< HEAD
             System.out.println("µ«¬º£∫");
             Class.forName("com.mysql.jdbc.Driver");
             System.out.println("º”‘ÿ«˝∂Ø≥…π¶");
@@ -53,6 +146,85 @@ public class admin {
             System.out.println("º”‘ÿ«˝∂Ø ß∞‹!");
             var2.printStackTrace();
         }
+=======
+            System.out.println("ÁôªÂΩïÔºö");
+            Class.forName("com.mysql.jdbc.Driver");
+            System.out.println("Âä†ËΩΩÈ©±Âä®ÊàêÂäü");
+        } catch (ClassNotFoundException var2) {
+            System.out.println("Âä†ËΩΩÈ©±Âä®Â§±Ë¥•!");
+            var2.printStackTrace();
+        }
+
+        try {
+            con = DriverManager.getConnection(url, username, password);
+            stmt = con.createStatement();
+            System.out.println("ËøûÊé•ÊàêÂäü");
+        } catch (SQLException var1) {
+            System.out.println("ËøûÊé•Â§±Ë¥•!");
+        }
+        JFrame frame=new JFrame("ÁÆ°ÁêÜÂëòÁïåÈù¢");
+        //ÂàùÂßãÂåñ‰∏Ä‰∏™ËèúÂçïÊ†è
+        JMenuBar menuBar = new JMenuBar();
+
+        //ÂàùÂßãÂåñËèúÂçï
+        JMenu menu1 = new JMenu("Êìç‰Ωú(O)");
+        menu1.setMnemonic('O');
+        menu1.setFont(new Font("ÂÆã‰Ωì",Font.PLAIN,16));
+        JMenu menu2 = new JMenu("Â∏ÆÂä©(H)");
+        menu2.setMnemonic('H');
+        menu2.setFont(new Font("ÂÆã‰Ωì",Font.PLAIN,16));
+        JMenu menu3 = new JMenu("Êü•ËØ¢(Q)");
+        menu3.setMnemonic('Q');
+        menu3.setFont(new Font("ÂÆã‰Ωì",Font.PLAIN,16));
+        JMenu menu4 = new JMenu("ÁªüËÆ°(S)");
+        menu4.setMnemonic('S');
+        menu4.setFont(new Font("ÂÆã‰Ωì",Font.PLAIN,16));
+        JMenu menu5 = new JMenu("Áª¥Êä§(M)");
+        menu5.setMnemonic('M');
+        menu5.setFont(new Font("ÂÆã‰Ωì",Font.PLAIN,16));
+        //ÊääËèúÂçïÊ∑ªÂä†Âà∞ËèúÂçïÊ†è
+        menuBar.add(menu1);
+        menuBar.add(menu2);
+        menuBar.add(menu3);
+        menuBar.add(menu4);
+        menuBar.add(menu5);
+        //ËÆæÁΩÆËèúÂçïÊ†è
+        frame.setJMenuBar(menuBar);
+
+        JPanel panel=new JPanel();
+        Container container = frame.getContentPane();
+        panel.setLayout(null);
+
+        JButton stuManageButton = new JButton("ÁÆ°ÁêÜÂ≠¶Áîü‰ø°ÊÅØ");
+        stuManageButton.setFont(new Font("",Font.PLAIN,16));
+        stuManageButton.setBounds(20, 20, 150, 35);
+        stuManageButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new StudentDataset();
+                frame.dispose();
+=======
+        model[0].setDataVector(data, names); // …Ë÷√ƒ£–Õ÷–µƒ‘™Àÿ£¨À¸ª·◊‘∂Øœ‘ æ‘⁄¡–±Ì÷–
+        JScrollPane jsp = new JScrollPane(table); // ”√¡–±Ì¥¥Ω®ø…πˆ∂ØµƒPanel£¨∞—’‚∏ˆPanelÃÌº”µΩ¥∞ø⁄÷–
+        jsp.setSize(200, 200);
+        jsp.setLocation(10, 70);
+        panel.add(jsp);
+	    table.setBounds(10,70,200,200);
+	    table.setRowHeight(30);
+	    table.setFont(new Font("",Font.PLAIN,16));
+	    table.getTableHeader().setBounds(10, 50, 250, 20);
+	    
+	    // ‰»ÎŒƒ±æøÚ
+	    JLabel userLabel = new JLabel("’À∫≈:");
+        userLabel.setFont(new Font("",Font.PLAIN,16));
+        userLabel.setBounds(300,40,250,25);
+        panel.add(userLabel);
+        
+	    JTextField userText = new JTextField(20);
+        userText.setBounds(350,40,165,25);
+        panel.add(userText);
+>>>>>>> 4498caa156ac25db4b5753417aad8318df51e1b6
+>>>>>>> 4850ae774c435ed590eb701117713f0e6a1b52c2
 
         try {
             con = DriverManager.getConnection(url, username, password);
@@ -61,6 +233,7 @@ public class admin {
         } catch (SQLException var1) {
             System.out.println("¡¨Ω” ß∞‹!");
         }
+<<<<<<< HEAD
         JFrame frame=new JFrame("π‹¿Ì‘±ΩÁ√Ê");
         //≥ı ºªØ“ª∏ˆ≤Àµ•¿∏
         JMenuBar menuBar = new JMenuBar();
@@ -89,10 +262,173 @@ public class admin {
             public void actionPerformed(ActionEvent e) {
                 new StudentDataset();
 
+=======
+        admin a=new admin();
+    }
+    public admin() {
+        try {
+            System.out.println("µ«¬º£∫");
+            Class.forName("com.mysql.jdbc.Driver");
+            System.out.println("º”‘ÿ«˝∂Ø≥…π¶");
+        } catch (ClassNotFoundException var2) {
+            System.out.println("º”‘ÿ«˝∂Ø ß∞‹!");
+            var2.printStackTrace();
+        }
+
+        try {
+            con = DriverManager.getConnection(url, username, password);
+            stmt = con.createStatement();
+            System.out.println("¡¨Ω”≥…π¶");
+        } catch (SQLException var1) {
+            System.out.println("¡¨Ω” ß∞‹!");
+        }
+        JFrame frame=new JFrame("π‹¿Ì‘±ΩÁ√Ê");
+        //≥ı ºªØ“ª∏ˆ≤Àµ•¿∏
+        JMenuBar menuBar = new JMenuBar();
+
+        //≥ı ºªØ≤Àµ•
+        JMenu menu1 = new JMenu("≤Ÿ◊˜(O)");
+        menu1.setMnemonic('O');
+        menu1.setFont(new Font("ÀŒÃÂ",Font.PLAIN,16));
+        JMenu menu2 = new JMenu("∞Ô÷˙(H)");
+        menu2.setMnemonic('H');
+        menu2.setFont(new Font("ÀŒÃÂ",Font.PLAIN,16));
+        JMenu menu3 = new JMenu("≤È—Ø(Q)");
+        menu3.setMnemonic('Q');
+        menu3.setFont(new Font("ÀŒÃÂ",Font.PLAIN,16));
+        JMenu menu4 = new JMenu("Õ≥º∆(S)");
+        menu4.setMnemonic('S');
+        menu4.setFont(new Font("ÀŒÃÂ",Font.PLAIN,16));
+        JMenu menu5 = new JMenu("Œ¨ª§(M)");
+        menu5.setMnemonic('M');
+        menu5.setFont(new Font("ÀŒÃÂ",Font.PLAIN,16));
+        //∞—≤Àµ•ÃÌº”µΩ≤Àµ•¿∏
+        menuBar.add(menu1);
+        menuBar.add(menu2);
+        menuBar.add(menu3);
+        menuBar.add(menu4);
+        menuBar.add(menu5);
+        //…Ë÷√≤Àµ•¿∏
+        frame.setJMenuBar(menuBar);
+
+        JPanel panel=new JPanel();
+        Container container = frame.getContentPane();
+        panel.setLayout(null);
+
+        JButton stuManageButton = new JButton("π‹¿Ì—ß…˙–≈œ¢");
+        stuManageButton.setFont(new Font("",Font.PLAIN,16));
+        stuManageButton.setBounds(20, 20, 150, 35);
+        stuManageButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new StudentDataset();
+                frame.dispose();
             }
         });
         panel.add(stuManageButton);
 
+        JButton teaManageButton = new JButton("π‹¿Ì¿œ ¶–≈œ¢");
+        teaManageButton.setFont(new Font("",Font.PLAIN,16));
+        teaManageButton.setBounds(20, 60, 150, 35);
+        teaManageButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+<<<<<<< HEAD
+                new teacherManagement();
+                frame.dispose();
+            }
+        });
+        panel.add(teaManageButton);
+
+        JButton titleButton = new JButton("π‹¿ÌÃ‚ƒø–≈œ¢");
+        titleButton.setFont(new Font("",Font.PLAIN,16));
+        titleButton.setBounds(20, 100, 150, 35);
+        titleButton.addActionListener(new ActionListener() {
+=======
+                String passW = String.valueOf(passwordText.getPassword());
+                if(!userText.getText().equals("")&&!passW.equals("")){
+                    try {
+                        if(passW.length()==8){
+                            if(userText.getText().length()==11) {
+                                String viewtable = "select S_stuID from student where S_stuID='"+userText.getText()+"'";
+                                rs = stmt.executeQuery(viewtable);
+                                if(rs.next()){
+                                    String addPass = "insert into password(ID,password,type) values('"+userText.getText()+"','"+passW+"','øº…˙')";
+                                    String addstup = "update student set S_password = '"+passW+"' where S_stuID='"+userText.getText()+"'";
+                                    stmt.executeUpdate(addPass);
+                                    stmt.executeUpdate(addstup);
+                                    Vector rowData1 = new Vector();
+                                    rowData1.add(userText.getText());
+                                    rowData1.add(passW);
+                                    rowData1.add("øº…˙");
+                                    data.add(rowData1);
+                                    model[0] = new DefaultTableModel(data, names);
+                                    table.setModel(model[0]);
+//                                    System.out.println("øº…˙’À∫≈√‹¬ÎÃÌº”≥…π¶");
+                                    JOptionPane.showMessageDialog(null,"øº…˙’À∫≈√‹¬ÎÃÌº”≥…π¶","Ã· æ",JOptionPane.PLAIN_MESSAGE);
+                                }
+                                else{
+                                    System.out.println("∏√øº…˙’À∫≈≤ª¥Ê‘⁄");
+                                }
+                            }
+                            else if(userText.getText().length()==6){
+                                String viewtable = "select T_TeaID from teacher where T_TeaID='"+userText.getText()+"'";
+                                rs = stmt.executeQuery(viewtable);
+                                if(rs.next()){
+                                    String addPass = "insert into password(ID,password,type) values('"+userText.getText()+"','"+passW+"','µº ¶')";
+                                    String addteap = "update teacher set T_password = '"+passW+"' where T_TeaID='"+userText.getText()+"'";
+                                    stmt.executeUpdate(addPass);
+                                    stmt.executeUpdate(addteap);
+                                    Vector rowData2 = new Vector();
+                                    rowData2.add(userText.getText());
+                                    rowData2.add(passW);
+                                    rowData2.add("µº ¶");
+                                    data.add(rowData2);
+                                    model[0] = new DefaultTableModel(data, names);
+                                    table.setModel(model[0]);
+//                                    System.out.println("µº ¶’À∫≈√‹¬ÎÃÌº”≥…π¶");
+                                    JOptionPane.showMessageDialog(null,"µº ¶’À∫≈√‹¬ÎÃÌº”≥…π¶","Ã· æ",JOptionPane.PLAIN_MESSAGE);
+                                }
+                                else{
+                                    System.out.println("∏√µº ¶’À∫≈≤ª¥Ê‘⁄");
+                                }
+                            }
+                            else if(userText.getText().length()==2){
+                                String addPass = "insert into password(ID,password,type) values('"+userText.getText()+"','"+passW+"','π‹¿Ì‘±')";
+                                String addmanp = "insert into manager(M_manID,M_password) values('"+userText.getText()+"','"+passW+"')";
+                                stmt.executeUpdate(addPass);
+                                stmt.executeUpdate(addmanp);
+                                Vector rowData2 = new Vector();
+                                rowData2.add(userText.getText());
+                                rowData2.add(passW);
+                                rowData2.add("π‹¿Ì‘±");
+                                data.add(rowData2);
+                                model[0] = new DefaultTableModel(data, names);
+                                table.setModel(model[0]);
+//                                System.out.println("π‹¿Ì‘±’À∫≈√‹¬ÎÃÌº”≥…π¶");
+                                JOptionPane.showMessageDialog(null,"π‹¿Ì‘±’À∫≈√‹¬ÎÃÌº”≥…π¶","Ã· æ",JOptionPane.PLAIN_MESSAGE);
+                            }
+                            else{
+                                System.out.println("’À∫≈≥§∂»≤ª∆•≈‰");
+                            }
+                        }
+                     else {
+                            System.out.println("√‹¬ÎŒ™∞ÀŒª ˝");
+                        }
+                    } catch (SQLException e1) {
+                        e1.printStackTrace();
+                    }
+                }
+                else{
+                    System.out.println("’À∫≈√‹¬Î–ËÕ¨ ±ÃÌº”");
+                }
+>>>>>>> c1aeefb3f04ab20f4098d9c4dc5d773db1493b67
+>>>>>>> 4850ae774c435ed590eb701117713f0e6a1b52c2
+            }
+        });
+        panel.add(stuManageButton);
+
+<<<<<<< HEAD
         JButton teaManageButton = new JButton("π‹¿Ì¿œ ¶–≈œ¢");
         teaManageButton.setFont(new Font("",Font.PLAIN,16));
         teaManageButton.setBounds(200, 90, 150, 35);
@@ -180,6 +516,295 @@ public class admin {
                                 String chooseStu3="update student set S_flag=1 where S_stuID='"+sID+"'";
                                 stmt.executeUpdate(chooseStu3);
                                 n++;
+=======
+<<<<<<< HEAD
+        JButton teaManageButton = new JButton("ÁÆ°ÁêÜËÄÅÂ∏à‰ø°ÊÅØ");
+        teaManageButton.setFont(new Font("",Font.PLAIN,16));
+        teaManageButton.setBounds(20, 60, 150, 35);
+        teaManageButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new teacherManagement();
+                frame.dispose();
+=======
+        //∏¸–¬’À∫≈√‹¬Î
+        updateButton.addActionListener(new ActionListener() {
+>>>>>>> 4498caa156ac25db4b5753417aad8318df51e1b6
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new titleDataset();
+                frame.dispose();
+            }
+        });
+        panel.add(titleButton);
+
+        JLabel label=new JLabel("—°‘Ò√Ê ‘ø∆ƒø£∫");
+        label.setBounds(20,140,100,25);
+        label.setFont(new Font("",Font.PLAIN,16));
+        JComboBox combo=new JComboBox();
+        combo.setBounds(200,140,150,25);
+        combo.addItem("”¢”Ô");
+        combo.addItem("cs");
+        combo.addItem("º∆À„ª˙");
+        combo.addItem("ŒÔ¿Ì");
+        combo.addItem("ªØ—ß");
+        combo.addItem("’˛÷Œ");
+        panel.add(combo);
+        panel.add(label);
+        JButton commitButton = new JButton("Ã·Ωª");
+        commitButton.setFont(new Font("",Font.PLAIN,16));
+        commitButton.setBounds(80, 180, 150, 35);
+        commitButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String selectNum="select count(*) from student where S_major='"+combo.getSelectedItem()+"'and S_flag=0";
+                try{
+                    rs=stmt.executeQuery(selectNum);
+                    if(rs.next()){
+                        int num=rs.getInt("count(*)");
+                        if(num>5){
+                            List<String> sID=new ArrayList<>();
+                            String chooseStu = "select S_stuID from student where S_major='"+combo.getSelectedItem()+"'and S_flag=0";
+                            rs=stmt.executeQuery(chooseStu);
+                            int n=0;
+                            List<Integer> numbers = new ArrayList<>();
+                            for(int i = 0; i < num; i ++)
+                                numbers.add(i);
+
+                            while(rs.next()){
+                                       sID.add(rs.getString("S_stuID"));
+
+                            }
+<<<<<<< HEAD
+
+                            int index =0;
+                            for(int i = 0; i < 5; i++){
+                                Random random = new Random();
+                                int r = random.nextInt(num - i);
+                                index = numbers.get(r);
+                                System.out.print(index);
+                                String chooseStu2="insert into choosestu values("+(i+1)+",'"+sID.get(index)+"')";
+                                stmt.executeUpdate(chooseStu2);
+                                String chooseStu3="update student set S_flag=1 where S_stuID='"+sID.get(index)+"'";
+                                stmt.executeUpdate(chooseStu3);
+                                numbers.remove(r);
+=======
+                            else{
+                                if(userText.getText().length()==11) {
+                                    String viewtable = "select S_stuID from student where S_stuID='"+userText.getText()+"'";
+                                    rs = stmt.executeQuery(viewtable);
+                                    if(rs.next()){
+                                        String addPass = "insert into password(ID,password,type) values('"+userText.getText()+"','"+passW+"','øº…˙')";
+                                        String addstup = "update student set S_password = '"+passW+"' where S_stuID='"+userText.getText()+"'";
+                                        stmt.executeUpdate(addPass);
+                                        stmt.executeUpdate(addstup);
+                                        Vector rowData1 = new Vector();
+                                        rowData1.add(userText.getText());
+                                        rowData1.add(passW);
+                                        rowData1.add("øº…˙");
+                                        data.add(rowData1);
+                                        model[0] = new DefaultTableModel(data, names);
+                                        table.setModel(model[0]);
+//                                        System.out.println("øº…˙’À∫≈√‹¬ÎÃÌº”≥…π¶");
+                                        JOptionPane.showMessageDialog(null,"øº…˙’À∫≈√‹¬Î∏¸–¬≥…π¶","Ã· æ",JOptionPane.PLAIN_MESSAGE);
+                                    }
+                                    else{
+                                        System.out.println("∏√øº…˙’À∫≈≤ª¥Ê‘⁄");
+                                    }
+                                }
+                                else if(userText.getText().length()==6){
+                                    String viewtable = "select T_TeaID from teacher where T_TeaID='"+userText.getText()+"'";
+                                    rs = stmt.executeQuery(viewtable);
+                                    if(rs.next()){
+                                        String addPass = "insert into password(ID,password,type) values('"+userText.getText()+"','"+passW+"','µº ¶')";
+                                        String addteap = "update teacher set T_password = '"+passW+"' where T_TeaID='"+userText.getText()+"'";
+                                        stmt.executeUpdate(addPass);
+                                        stmt.executeUpdate(addteap);
+                                        Vector rowData2 = new Vector();
+                                        rowData2.add(userText.getText());
+                                        rowData2.add(passW);
+                                        rowData2.add("µº ¶");
+                                        data.add(rowData2);
+                                        model[0] = new DefaultTableModel(data, names);
+                                        table.setModel(model[0]);
+//                                        System.out.println("µº ¶’À∫≈√‹¬ÎÃÌº”≥…π¶");
+                                        JOptionPane.showMessageDialog(null,"µº ¶’À∫≈√‹¬Î∏¸–¬≥…π¶","Ã· æ",JOptionPane.PLAIN_MESSAGE);
+                                    }
+                                    else{
+                                        System.out.println("∏√µº ¶’À∫≈≤ª¥Ê‘⁄");
+                                    }
+                                }
+                                else if(userText.getText().length()==2){
+                                    String addPass = "insert into password(ID,password,type) values('"+userText.getText()+"','"+passW+"','π‹¿Ì‘±')";
+                                    String addmanp = "insert into manager(M_manID,M_password) values('"+userText.getText()+"','"+passW+"')";
+                                    stmt.executeUpdate(addPass);
+                                    stmt.executeUpdate(addmanp);
+                                    Vector rowData2 = new Vector();
+                                    rowData2.add(userText.getText());
+                                    rowData2.add(passW);
+                                    rowData2.add("π‹¿Ì‘±");
+                                    data.add(rowData2);
+                                    model[0] = new DefaultTableModel(data, names);
+                                    table.setModel(model[0]);
+//                                    System.out.println("π‹¿Ì‘±’À∫≈√‹¬ÎÃÌº”≥…π¶");
+                                    JOptionPane.showMessageDialog(null,"π‹¿Ì‘±’À∫≈√‹¬ÎÃÌº”≥…π¶","Ã· æ",JOptionPane.PLAIN_MESSAGE);
+                                }
+                                else{
+                                    System.out.println("’Àªß≤ª¥Ê‘⁄");
+                                }
+>>>>>>> 4498caa156ac25db4b5753417aad8318df51e1b6
+                            }
+                        }else{
+
+                            String sID;
+                            String chooseStu = "select S_stuID from Student where S_major='"+combo.getSelectedItem()+"'and S_flag=0";
+                            rs=stmt.executeQuery(chooseStu);
+                            int n=1;
+                            while(rs.next()){
+                                sID=rs.getString("S_stuID");
+                                String chooseStu2="insert into choosestu values("+n+",'"+sID+"')";
+                                stmt.executeUpdate(chooseStu2);
+                                String chooseStu3="update student set S_flag=1 where S_stuID='"+sID+"'";
+                                stmt.executeUpdate(chooseStu3);
+                                n++;
+                            }
+                        }
+
+                    }
+<<<<<<< HEAD
+                }  catch (Exception e2) {
+                // TODO: handle exception
+            }
+            }
+        });
+        panel.add(commitButton);
+        frame.add(panel);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+=======
+
+                    else{
+                        System.out.println("√‹¬Î±ÿ–ÎŒ™∞ÀŒª£°");
+                    }
+                }
+>>>>>>> c1aeefb3f04ab20f4098d9c4dc5d773db1493b67
+            }
+        });
+        panel.add(teaManageButton);
+
+<<<<<<< HEAD
+        JButton titleButton = new JButton("ÁÆ°ÁêÜÈ¢òÁõÆ‰ø°ÊÅØ");
+        titleButton.setFont(new Font("",Font.PLAIN,16));
+        titleButton.setBounds(20, 100, 150, 35);
+        titleButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new titleDataset();
+                frame.dispose();
+            }
+        });
+        panel.add(titleButton);
+
+        JLabel label=new JLabel("ÈÄâÊã©Èù¢ËØïÁßëÁõÆÔºö");
+        label.setBounds(20,140,100,25);
+        label.setFont(new Font("",Font.PLAIN,16));
+        JComboBox combo=new JComboBox();
+        combo.setBounds(200,140,150,25);
+        combo.addItem("Ëã±ËØ≠");
+        combo.addItem("Êï∞Â≠¶");
+        combo.addItem("ËÆ°ÁÆóÊú∫");
+        combo.addItem("Áâ©ÁêÜ");
+        combo.addItem("ÂåñÂ≠¶");
+        combo.addItem("ÊîøÊ≤ª");
+        panel.add(combo);
+        panel.add(label);
+        JButton commitButton = new JButton("Êèê‰∫§");
+        commitButton.setFont(new Font("",Font.PLAIN,16));
+        commitButton.setBounds(80, 180, 150, 35);
+
+        panel.add(commitButton);
+        frame.add(panel);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+
+        //ËÆæÁΩÆÂ§ßÂ∞è
+        frame.setSize(600,500);
+
+        //ËÆæÁΩÆ‰ΩçÁΩÆ
+        frame.setLocation(100, 100);
+
+        //ËÆæÁΩÆÂèØËßÅÊÄß
+        frame.setVisible(true);
+    }
+=======
+        //…æ≥˝’À∫≈√‹¬Î
+    deleteButton.addActionListener(new ActionListener() {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            String passW = String.valueOf(passwordText.getPassword());
+            if (!userText.getText().equals("") && !passW.equals("")) {
+                if (passW.length() == 8) {
+                    if (userText.getText().length() == 11) {
+                        String select = "select password from password where ID='" + userText.getText() + "'";
+                        try {
+                            rs = stmt.executeQuery(select);
+                            if (rs.next()) {
+                                if (rs.getString("password").equals(passW)) {
+                                    String delete = "delete from password where ID = '" + userText.getText() + "'";
+                                    stmt.executeUpdate(delete);
+                                    String delete_stu = "update student set S_password='' where S_stuID = '" + userText.getText() + "'";
+                                    stmt.executeUpdate(delete_stu);
+//                                    System.out.println("øº…˙’À∫≈√‹¬Î…æ≥˝≥…π¶");
+                                    JOptionPane.showMessageDialog(null,"øº…˙’À∫≈√‹¬Î…æ≥˝≥…π¶","Ã· æ",JOptionPane.PLAIN_MESSAGE);
+                                } else {
+                                    System.out.println("’À∫≈√‹¬Î≤ª∆•≈‰");
+                                }
+                            } else {
+                                System.out.println("’À∫≈√‹¬Î≤ª¥Ê‘⁄");
+                            }
+                        } catch (SQLException e1) {
+                            e1.printStackTrace();
+                        }
+                    } else if (userText.getText().length() == 6) {
+                        String select = "select password from password where ID='" + userText.getText() + "'";
+                        try {
+                            rs = stmt.executeQuery(select);
+                            if (rs.next()) {
+                                if (rs.getString("password").equals(passW)) {
+                                    String delete = "delete from password where ID = '" + userText.getText() + "'";
+                                    stmt.executeUpdate(delete);
+                                    String delete_stu = "update teacher set T_password='' where T_TeaID = '" + userText.getText() + "'";
+                                    stmt.executeUpdate(delete_stu);
+//                                    System.out.println("µº ¶’À∫≈√‹¬Î…æ≥˝≥…π¶");
+                                    JOptionPane.showMessageDialog(null,"µº ¶’À∫≈√‹¬Î…æ≥˝≥…π¶","Ã· æ",JOptionPane.PLAIN_MESSAGE);
+                                } else {
+                                    System.out.println("’À∫≈√‹¬Î≤ª∆•≈‰");
+                                }
+                            } else {
+                                System.out.println("’À∫≈√‹¬Î≤ª¥Ê‘⁄");
+                            }
+                        } catch (SQLException e1) {
+                            e1.printStackTrace();
+                        }
+                    }
+                    else if(userText.getText().length() ==2){
+                        String select = "select password from password where ID='" + userText.getText() + "'";
+                        try {
+                            rs = stmt.executeQuery(select);
+                            if (rs.next()) {
+                                if (rs.getString("password").equals(passW)) {
+                                    String delete = "delete from password where ID = '" + userText.getText() + "'";
+                                    stmt.executeUpdate(delete);
+                                    String delete_stu = "update manager set M_password='' where M_manID = '" + userText.getText() + "'";
+                                    stmt.executeUpdate(delete_stu);
+                                    System.out.println("π‹¿Ì‘±’À∫≈√‹¬Î…æ≥˝≥…π¶");
+                                    JOptionPane.showMessageDialog(null,"π‹¿Ì‘±’À∫≈√‹¬Î…æ≥˝≥…π¶","Ã· æ",JOptionPane.PLAIN_MESSAGE);
+                                } else {
+                                    System.out.println("’À∫≈√‹¬Î≤ª∆•≈‰");
+                                }
+                            } else {
+                                System.out.println("’À∫≈√‹¬Î≤ª¥Ê‘⁄");
+>>>>>>> 4850ae774c435ed590eb701117713f0e6a1b52c2
                             }
                         }
 
@@ -187,6 +812,7 @@ public class admin {
                 }  catch (Exception e2) {
                 // TODO: handle exception
             }
+<<<<<<< HEAD
             }
         });
         panel.add(commitButton);
@@ -197,13 +823,35 @@ public class admin {
         //…Ë÷√¥Û–°
         frame.setSize(600,500);
 
+=======
+        }
+    });
+	    //…Ë÷√¥Û–°
+	    frame.setSize(600,500);
+>>>>>>> 4498caa156ac25db4b5753417aad8318df51e1b6
+
+        //…Ë÷√¥Û–°
+        frame.setSize(600,500);
+
+<<<<<<< HEAD
+>>>>>>> 4850ae774c435ed590eb701117713f0e6a1b52c2
         //…Ë÷√Œª÷√
         frame.setLocation(600, 300);
 
         //…Ë÷√ø…º˚–‘
         frame.setVisible(true);
+<<<<<<< HEAD
 
         //…Ë÷√¥∞ø⁄¥Û–°≤ªø…±‰
         frame.setResizable(false);
     }
+=======
+    }
+=======
+	    //…Ë÷√ø…º˚–‘
+	    frame.setVisible(true);
+}
+>>>>>>> c1aeefb3f04ab20f4098d9c4dc5d773db1493b67
+>>>>>>> 4498caa156ac25db4b5753417aad8318df51e1b6
+>>>>>>> 4850ae774c435ed590eb701117713f0e6a1b52c2
 }

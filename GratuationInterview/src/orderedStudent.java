@@ -44,23 +44,54 @@ public class orderedStudent {
         JMenuBar menuBar = new JMenuBar();
 
         //初始化菜单
+<<<<<<< HEAD
+=======
+        JMenu menu1 = new JMenu("操作(O)");
+        menu1.setMnemonic('O');
+        menu1.setFont(new Font("宋体",Font.PLAIN,16));
+        JMenu menu2 = new JMenu("帮助(H)");
+        menu2.setMnemonic('H');
+        menu2.setFont(new Font("宋体",Font.PLAIN,16));
+        JMenu menu3 = new JMenu("查询(Q)");
+        menu3.setMnemonic('Q');
+        menu3.setFont(new Font("宋体",Font.PLAIN,16));
+>>>>>>> 4850ae774c435ed590eb701117713f0e6a1b52c2
         JMenu menu4 = new JMenu("统计(S)");
         menu4.setMnemonic('S');
         menu4.setFont(new Font("宋体",Font.PLAIN,16));
         JMenuItem rank=new JMenuItem("总分排名");
         menu4.add(rank);
+<<<<<<< HEAD
+=======
+        JMenu menu5 = new JMenu("维护(M)");
+        menu5.setMnemonic('M');
+        menu5.setFont(new Font("宋体",Font.PLAIN,16));
+>>>>>>> 4850ae774c435ed590eb701117713f0e6a1b52c2
         //初始化一个panel
         JPanel panel = new JPanel();
 
         //初始化一个容器
         Container container = frame.getContentPane();
         //把菜单添加到菜单栏
+<<<<<<< HEAD
         menuBar.add(menu4);
+=======
+        menuBar.add(menu1);
+        menuBar.add(menu2);
+        menuBar.add(menu3);
+        menuBar.add(menu4);
+        menuBar.add(menu5);
+>>>>>>> 4850ae774c435ed590eb701117713f0e6a1b52c2
         //设置菜单栏
         frame.setJMenuBar(menuBar);
 
         panel.setLayout(null);
 
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> 4850ae774c435ed590eb701117713f0e6a1b52c2
         final DefaultTableModel[] model = {new DefaultTableModel()};
         Vector data = new Vector(); // 数据行向量集，因为列表不止一行，往里面添加数据行向量，添加方法add(row)
         Vector names = new Vector();// 列名向量，使用它的add()方法添加列名
@@ -121,7 +152,11 @@ public class orderedStudent {
         }
         model[0].setDataVector(data, names); // 设置模型中的元素，它会自动显示在列表中
         JScrollPane jsp = new JScrollPane(table); // 用列表创建可滚动的Panel，把这个Panel添加到窗口中
+<<<<<<< HEAD
         jsp.setSize(1000, 400);
+=======
+        jsp.setSize(1000, 500);
+>>>>>>> 4850ae774c435ed590eb701117713f0e6a1b52c2
         jsp.setLocation(10, 0);
         panel.add(jsp);
         table.setBounds(10,20,1000,100);
@@ -148,8 +183,11 @@ public class orderedStudent {
 
         //设置可见性
         frame.setVisible(true);
+<<<<<<< HEAD
 
        //设置窗口大小不可变
        frame.setResizable(false);
+=======
+>>>>>>> 4850ae774c435ed590eb701117713f0e6a1b52c2
     }
 }
