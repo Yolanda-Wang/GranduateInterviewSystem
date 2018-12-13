@@ -38,6 +38,21 @@ public class titleDataset {
     }
 
 public titleDataset() {
+    try {
+        System.out.println("题目信息：");
+        Class.forName("com.mysql.jdbc.Driver");
+        System.out.println("加载驱动成功");
+    } catch (ClassNotFoundException var2) {
+        System.out.println("加载驱动失败!");
+        var2.printStackTrace();
+    }
+    try {
+        con = DriverManager.getConnection(url, username, password);
+        stmt = con.createStatement();
+        System.out.println("题目信息数据库连接成功!");
+    } catch (SQLException var1) {
+        System.out.println("题目信息数据库连接失败!");
+    }
 	//初始化一个jframe
     JFrame frame = new JFrame("题目信息");
 
@@ -45,32 +60,20 @@ public titleDataset() {
     JMenuBar menuBar = new JMenuBar();
 
     //初始化菜单
-    JMenu menu1 = new JMenu("操作(O)");
-    menu1.setMnemonic('O');  
-    menu1.setFont(new Font("宋体",Font.PLAIN,16));
+
     JMenu menu2 = new JMenu("帮助(H)");
     menu2.setMnemonic('H'); 
     menu2.setFont(new Font("宋体",Font.PLAIN,16));
-    JMenu menu3 = new JMenu("查询(Q)");
-    menu3.setMnemonic('Q'); 
-    menu3.setFont(new Font("宋体",Font.PLAIN,16));
-    JMenu menu4 = new JMenu("统计(S)");
-    menu4.setMnemonic('S'); 
-    menu4.setFont(new Font("宋体",Font.PLAIN,16));
-    JMenu menu5 = new JMenu("维护(M)");
-    menu5.setMnemonic('M'); 
-    menu5.setFont(new Font("宋体",Font.PLAIN,16));
+
     //初始化一个panel
     JPanel panel = new JPanel();
 
     //初始化一个容器
     Container container = frame.getContentPane();
     //把菜单添加到菜单栏
-    menuBar.add(menu1);
+
     menuBar.add(menu2);
-    menuBar.add(menu3);
-    menuBar.add(menu4);
-    menuBar.add(menu5);
+
     //设置菜单栏
     frame.setJMenuBar(menuBar);
     
@@ -219,7 +222,7 @@ public titleDataset() {
 
     model[0].setDataVector(data, names); // 设置模型中的元素，它会自动显示在列表中
     JScrollPane jsp = new JScrollPane(table); // 用列表创建可滚动的Panel，把这个Panel添加到窗口中
-    jsp.setSize(600, 150);
+    jsp.setSize(600, 300);
     jsp.setLocation(0, 320);
     panel.add(jsp);
 
@@ -341,7 +344,7 @@ public titleDataset() {
                         }
                     }
                 else{
-                        System.out.println("请选择专业");
+                        JOptionPane.showMessageDialog(null,"请选择专业","提示",JOptionPane.PLAIN_MESSAGE);
                     }
             }
                 else if (comboBox1.getSelectedItem().equals("英语类")){
@@ -385,11 +388,11 @@ public titleDataset() {
                     }
                 }
                 else{
-                    System.out.println("请选择题目类型");
+                    JOptionPane.showMessageDialog(null,"请选择题目类型","提示",JOptionPane.PLAIN_MESSAGE);
                 }
         }
             else{
-                System.out.println("信息不符合规范");
+                JOptionPane.showMessageDialog(null,"信息不符合规范","提示",JOptionPane.PLAIN_MESSAGE);
             }
 
         }
@@ -442,7 +445,7 @@ public titleDataset() {
                             System.out.println("更新成功");
                         }
                         else{
-                            System.out.println("题号不存在，更新失败");
+                            JOptionPane.showMessageDialog(null,"题号不存在，更新失败","提示",JOptionPane.PLAIN_MESSAGE);
                         }
                     } catch (SQLException e1) {
                         e1.printStackTrace();
@@ -466,14 +469,14 @@ public titleDataset() {
                             System.out.println("更新成功");
                         }
                         else{
-                            System.out.println("题号不存在，更新失败");
+                            JOptionPane.showMessageDialog(null,"题号不存在，更新失败","提示",JOptionPane.PLAIN_MESSAGE);
                         }
                     } catch (SQLException e1) {
                         e1.printStackTrace();
                     }
                 }
                 else{
-                    System.out.println("请选择题目类型");
+                    JOptionPane.showMessageDialog(null,"请选择题目类型","提示",JOptionPane.PLAIN_MESSAGE);
                 }
                 if(!data.isEmpty()){
                     data.clear();
@@ -656,7 +659,7 @@ public titleDataset() {
                             System.out.println("删除成功");
                         }
                         else{
-                            System.out.println("题号不存在，删除失败");
+                            JOptionPane.showMessageDialog(null,"题号不存在，删除失败","提示",JOptionPane.PLAIN_MESSAGE);
                         }
                     } catch (SQLException e1) {
                         e1.printStackTrace();
@@ -672,7 +675,7 @@ public titleDataset() {
                             System.out.println("删除成功");
                         }
                         else{
-                            System.out.println("题号不存在，删除失败");
+                            JOptionPane.showMessageDialog(null,"题号不存在，删除失败","提示",JOptionPane.PLAIN_MESSAGE);
                         }
                     } catch (SQLException e1) {
                         e1.printStackTrace();
@@ -688,14 +691,14 @@ public titleDataset() {
                             System.out.println("删除成功");
                         }
                         else{
-                            System.out.println("题号不存在，删除失败");
+                            JOptionPane.showMessageDialog(null,"题号不存在，删除失败","提示",JOptionPane.PLAIN_MESSAGE);
                         }
                     } catch (SQLException e1) {
                         e1.printStackTrace();
                     }
                 }
                 else{
-                    System.out.println("请选择题目类型");
+                    JOptionPane.showMessageDialog(null,"请选择题目类型","提示",JOptionPane.PLAIN_MESSAGE);
                 }
                 if(!data.isEmpty()){
                     data.clear();
@@ -776,7 +779,7 @@ public titleDataset() {
                 }
             }
             else{
-                System.out.println("请输入题号");
+                JOptionPane.showMessageDialog(null,"请输入题号","提示",JOptionPane.PLAIN_MESSAGE);
             }
         }
     });
@@ -1542,16 +1545,18 @@ public titleDataset() {
     });
 
     //设置关闭方式
-    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    frame.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 
 
     //设置大小
     frame.setSize(900,700);
 
     //设置位置
-    frame.setLocation(100, 100);
+    frame.setLocation(400, 200);
 
     //设置可见性
     frame.setVisible(true);
+    //设置窗口大小不可变
+    frame.setResizable(false);
 }
 }

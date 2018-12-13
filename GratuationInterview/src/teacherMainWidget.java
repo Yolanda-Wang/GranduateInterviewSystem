@@ -32,10 +32,36 @@ public class teacherMainWidget {
     public static String que_content;
     public static MulticastSocket mss = null;
     public static InetAddress group;
-    public static void main(String[] args) {
-        //连接数据库
+    public static MulticastSocket mss2 = null;
+    public static InetAddress group2;
+    public static String maj;
+    public static String name;
+    public static Integer count_stu = 0;
+    public static String next_stuID = " ";
+    public String Tea_ID;
+//    public static void main(String[] args) {
+//        //连接数据库
+//        try {
+//            System.out.println("教师可视端：");
+//            Class.forName("com.mysql.jdbc.Driver");
+//            System.out.println("加载驱动成功");
+//        } catch (ClassNotFoundException var2) {
+//            System.out.println("加载驱动失败!");
+//            var2.printStackTrace();
+//        }
+//
+//        try {
+//            con = DriverManager.getConnection(url, username, password);
+//            stmt = con.createStatement();
+//            System.out.println("连接成功");
+//        } catch (SQLException var1) {
+//            System.out.println("连接失败");
+//        }
+//	    teacherMainWidget w1=new teacherMainWidget();
+//    }
+    public teacherMainWidget(String TeaID){
+        Tea_ID=TeaID;
         try {
-            System.out.println("教师可视端：");
             Class.forName("com.mysql.jdbc.Driver");
             System.out.println("加载驱动成功");
         } catch (ClassNotFoundException var2) {
@@ -46,14 +72,13 @@ public class teacherMainWidget {
         try {
             con = DriverManager.getConnection(url, username, password);
             stmt = con.createStatement();
-            System.out.println("连接成功");
+            System.out.println("数据库连接成功");
         } catch (SQLException var1) {
-            System.out.println("连接失败");
+            System.out.println("数据库连接失败!");
         }
-	    teacherMainWidget w1=new teacherMainWidget();
+        teacherMainWidget(stmt);
     }
-
-    public teacherMainWidget() {
+    public void teacherMainWidget(Statement stmt) {
     //初始化一个jframe
     JFrame frame = new JFrame("教师端");
 
@@ -61,33 +86,34 @@ public class teacherMainWidget {
     JMenuBar menuBar = new JMenuBar();
 
     //初始化菜单
-    JMenu menu1 = new JMenu("操作(O)");
-    menu1.setMnemonic('O');  
-    menu1.setFont(new Font("宋体",Font.PLAIN,16));
-    JMenu menu2 = new JMenu("帮助(H)");
-    menu2.setMnemonic('H'); 
-    menu2.setFont(new Font("宋体",Font.PLAIN,16));
-    JMenu menu3 = new JMenu("查询(Q)");
-    menu3.setMnemonic('Q'); 
-    menu3.setFont(new Font("宋体",Font.PLAIN,16));
-    JMenu menu4 = new JMenu("统计(S)");
-    menu4.setMnemonic('S'); 
-    menu4.setFont(new Font("宋体",Font.PLAIN,16));
-    JMenu menu5 = new JMenu("维护(M)");
-    menu5.setMnemonic('M'); 
-    menu5.setFont(new Font("宋体",Font.PLAIN,16));
-    //初始化一个panel
+        JMenu menu1 = new JMenu("操作(O)");
+        menu1.setMnemonic('O');
+        JMenuItem logout=new JMenuItem("注销");
+        menu1.add(logout);
+        logout.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                java.sql.Timestamp time=new java.sql.Timestamp(System.currentTimeMillis());
+                String time1=time.toString();
+                String logoutInfo="insert into log values('"+Tea_ID+"','-','"+time1+"')";
+                try{
+                    stmt.executeUpdate(logoutInfo);
+                }catch (SQLException e1) {
+                    e1.printStackTrace();
+                }
+                frame.dispose();
+                new login();
+            }
+        });
+        menu1.setFont(new Font("宋体",Font.PLAIN,16));
+
     JPanel panel = new JPanel();
 
     //初始化一个容器
     Container container = frame.getContentPane();
     //把菜单添加到菜单栏
     menuBar.add(menu1);
-    menuBar.add(menu2);
-    menuBar.add(menu3);
-    menuBar.add(menu4);
-    menuBar.add(menu5);
-    //设置菜单栏
+
     frame.setJMenuBar(menuBar);
     
     panel.setLayout(null);
@@ -108,15 +134,15 @@ public class teacherMainWidget {
     label5.setBounds(320,20,100,25);
     label5.setFont(new Font("",Font.PLAIN,16));
     //set传值给考号
-    JLabel label6=new JLabel("20161414623");
+    JLabel label6=new JLabel(" ");
     label6.setBounds(100,30,100,25);
     label6.setFont(new Font("",Font.PLAIN,16));
     //传值给姓名
-    JLabel label7=new JLabel("dqy");
+    JLabel label7=new JLabel(" ");
     label7.setBounds(100,60,100,25);
     label7.setFont(new Font("",Font.PLAIN,16));
     //传值给专业
-    JLabel label8=new JLabel("cs");
+    JLabel label8=new JLabel(" ");
     label8.setBounds(100,90,100,25);
     label8.setFont(new Font("",Font.PLAIN,16));
 
@@ -126,6 +152,7 @@ public class teacherMainWidget {
         label9.setLineWrap(true);
         label9.setBounds(320,50,250,280);
         label9.setFont(new Font("",Font.PLAIN,16));
+        label9.setEditable(false);
     panel.add(label1);
     panel.add(label2);
     panel.add(label3);
@@ -147,38 +174,16 @@ public class teacherMainWidget {
     //按钮
     JButton bt1=new JButton("提交");
     bt1.setBounds(100, 250, 100, 35);
-    bt1.setFont(new Font("宋体",Font.PLAIN,16));;
+    bt1.setFont(new Font("宋体",Font.PLAIN,16));
     panel.add(bt1);
     JButton bt2=new JButton("下一题");
     bt2.setBounds(320, 350, 100, 35);
-    bt2.setFont(new Font("宋体",Font.PLAIN,16));;
+    bt2.setFont(new Font("宋体",Font.PLAIN,16));
     panel.add(bt2);
         JButton bt3=new JButton("下一位");
         bt3.setBounds(450, 350, 100, 35);
-        bt3.setFont(new Font("宋体",Font.PLAIN,16));;
+        bt3.setFont(new Font("宋体",Font.PLAIN,16));
         panel.add(bt3);
-
-    //用表格显示题目
-
-//    Object[] columnNames = {"题目类别","题号","查看详细"};// 定义表格列名数组
-//    final DefaultTableModel[] model = {new DefaultTableModel()};
-//    Vector data = new Vector(); // 数据行向量集，因为列表不止一行，往里面添加数据行向量，添加方法add(row)
-//    Vector names = new Vector();// 列名向量，使用它的add()方法添加列名
-//    JTable table = new JTable(model[0]);
-//    //显示数据库信息
-//    names.add("题目类别");
-//    names.add("题号");
-//    names.add("查看详细");
-//    model[0].setDataVector(data, names);
-//    // 创建指定列名和数据的表格
-//    JScrollPane jsp = new JScrollPane(table); // 用列表创建可滚动的Panel，把这个Panel添加到窗口中
-//    jsp.setSize(250, 90);
-//    jsp.setLocation(320, 70);
-//    panel.add(jsp);
-//    table.setBounds(320,70,250,50);
-//    table.getTableHeader().setBounds(320, 50, 250, 20);
-//    panel.add(table.getTableHeader());
-
     //把panel添加到容器
     container.add(panel);
 
@@ -194,222 +199,233 @@ public class teacherMainWidget {
     //设置可见性
     frame.setVisible(true);
 
+        //设置窗口大小不可变
+        frame.setResizable(false);
+
     //显示题目信息
-    ResultSet rs1;
-    String select = "select * from queno where S_stuID='"+label6.getText()+"'";
-    try {
-        rs = stmt.executeQuery(select);
-        if (rs.next()){
-//            if(!data.isEmpty()) {
-//                data.clear();
-//                model[0] = new DefaultTableModel(data, names);
-//                table.setModel(model[0]);
-//            }
-            majNo = rs.getString("majNo");
-            System.out.println(majNo);
-            polNo = rs.getString("polNo");
-            System.out.println(polNo);
-            EngNo = rs.getString("EngNo");
-            System.out.println(EngNo);
-            String selectMaj ="select M_content from majque where M_No = '"+majNo+"'";
-            rs1 = stmt.executeQuery(selectMaj);
-            if (rs1.next()){
-                maj_content = rs1.getString("M_content");
-                System.out.println(maj_content);
-//                Vector row = new Vector(); // 数据行向量，使用它的add()添加元素，比如整数、String、Object等，有几行就new几个行向量
-//                row.add("专业类");
-//                row.add(majNo);
-//                row.add(maj_content);
-//                data.add(row);
-            }
-            String selectEng ="select E_content from engque where E_No = '"+EngNo+"'";
-            rs1 = stmt.executeQuery(selectEng);
-            if (rs1.next()){
-                eng_content = rs1.getString("E_content");
-//                Vector row2 = new Vector();
-//                row2.add("英语类");
-//                row2.add(EngNo);
-//                row2.add(eng_content);
-//                data.add(row2);
-            }
-            String selectpol ="select P_content from polque where P_No = '"+polNo+"'";
-            rs1 = stmt.executeQuery(selectpol);
-            if (rs1.next()){
-                pol_content = rs1.getString("P_content");
-//                Vector row3 = new Vector();
-//                row3.add("政治类类");
-//                row3.add(polNo);
-//                row3.add(pol_content);
-//                data.add(row3);
-            }
-//            model[0] = new DefaultTableModel(data, names);
-//            table.setModel(model[0]);
-        }
-    } catch (SQLException e) {
-        e.printStackTrace();
-    }
-
-    //下一题
-    bt2.addActionListener(new ActionListener() {
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            //System.out.println(rs);
-            //String select2 = "select * from queno where S_stuID='"+label6.getText()+"'";
-//            try {
-            //rs = stmt.executeQuery(select2);
-            switch (countque) {
-                case 0:
-                    System.out.println(maj_content);
-                    que_content = maj_content;
-                    label9.setText(que_content);
-                    try {
-                        group = InetAddress.getByName("224.0.0.2");//组播地址
-                        int port = 8888;
-                        mss = new MulticastSocket(port);
-                        mss.joinGroup(group);
-                        System.out.println("发送数据包启动！（启动时间" + new Date() + ")");
-                        String message = que_content;
-                        byte[] buffer = message.getBytes();
-                        DatagramPacket dp = new DatagramPacket(buffer, buffer.length, group, port);
-                        mss.send(dp);
-                        System.out.println("发送数据包给 " + group + ":" + port);
-                        Thread.sleep(1000);
-                    } catch (Exception e1) {
-                        e1.printStackTrace();
-                    } finally {
-                        try {
-                            if (mss != null) {
-                                mss.leaveGroup(group);
-                                mss.close();
-                            }
-                        } catch (Exception e2) {
-                            // TODO: handle exception
-                        }
-                    }
-                    countque++;
-                    break;
-                case 1:
-                    System.out.println(pol_content);
-                    que_content = pol_content;
-                    label9.setText(que_content);
-                    try {
-                        group = InetAddress.getByName("224.0.0.2");//组播地址
-                        int port = 8888;
-                        mss = new MulticastSocket(port);
-                        mss.joinGroup(group);
-                        System.out.println("发送数据包启动！（启动时间" + new Date() + ")");
-                        String message = que_content;
-                        byte[] buffer = message.getBytes();
-                        DatagramPacket dp = new DatagramPacket(buffer, buffer.length, group, port);
-                        mss.send(dp);
-                        System.out.println("发送数据包给 " + group + ":" + port);
-                        Thread.sleep(1000);
-                    } catch (Exception e1) {
-                        e1.printStackTrace();
-                    } finally {
-                        try {
-                            if (mss != null) {
-                                mss.leaveGroup(group);
-                                mss.close();
-                            }
-                        } catch (Exception e2) {
-                            // TODO: handle exception
-                        }
-                    }
-                    countque++;
-                    break;
-                case 2:
-                    System.out.println(eng_content);
-                    que_content = eng_content;
-                    label9.setText(que_content);
-                    try {
-                        group = InetAddress.getByName("224.0.0.2");//组播地址
-                        int port = 8888;
-                        mss = new MulticastSocket(port);
-                        mss.joinGroup(group);
-                        System.out.println("发送数据包启动！（启动时间" + new Date() + ")");
-                        String message = que_content;
-                        byte[] buffer = message.getBytes();
-                        DatagramPacket dp = new DatagramPacket(buffer, buffer.length, group, port);
-                        mss.send(dp);
-                        System.out.println("发送数据包给 " + group + ":" + port);
-                        Thread.sleep(1000);
-                    } catch (Exception e1) {
-                        e1.printStackTrace();
-                    } finally {
-                        try {
-                            if (mss != null) {
-                                mss.leaveGroup(group);
-                                mss.close();
-                            }
-                        } catch (Exception e2) {
-                            // TODO: handle exception
-                        }
-                    }
-                    countque++;
-                    break;
-                default:
-                    System.out.println("end");
-            }
-//            try {
-//                group = InetAddress.getByName("224.0.0.2");//组播地址
-//                int port = 8888;
-//                mss = new MulticastSocket(port);
-//                mss.joinGroup(group);
-//                System.out.println("发送数据包启动！（启动时间" + new Date() + ")");
-//                String message = que_content;
-//                byte[] buffer = message.getBytes();
-//                DatagramPacket dp = new DatagramPacket(buffer, buffer.length, group, port);
-//                mss.send(dp);
-//                System.out.println("发送数据包给 " + group + ":" + port);
-//                Thread.sleep(1000);
-//            } catch (Exception e1) {
-//                e1.printStackTrace();
-//            } finally {
-//                try {
-//                    if (mss != null) {
-//                        mss.leaveGroup(group);
-//                        mss.close();
-//                    }
-//                } catch (Exception e2) {
-//                    // TODO: handle exception
-//                }
-//            }
-        }
-    });
-
-    bt3.addActionListener(new ActionListener() {
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            String next_stuID = "20161414624";
-
-            try {
-                group = InetAddress.getByName("224.0.0.2");//组播地址
-                int port = 8888;
-                mss = new MulticastSocket(port);
-                mss.joinGroup(group);
-                System.out.println("发送数据包启动！（启动时间" + new Date() + ")");
-                String message = next_stuID;
-                byte[] buffer = message.getBytes();
-                DatagramPacket dp = new DatagramPacket(buffer, buffer.length, group, port);
-                mss.send(dp);
-                System.out.println("发送数据包给 " + group + ":" + port);
-                Thread.sleep(1000);
-            } catch (Exception e1) {
-                e1.printStackTrace();
-            } finally {
+        //下一位
+        bt3.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                count_stu++;
+                ResultSet rst;
+                String next_stu = "select * from choosestu where Num='"+count_stu+"'";
                 try {
-                    if (mss != null) {
-                        mss.leaveGroup(group);
-                        mss.close();
+                    rst = stmt.executeQuery(next_stu);
+                    if(rst.next()){
+                        next_stuID = rst.getString("stuID");
+                        System.out.println(next_stuID);
                     }
+                }catch (Exception e2){
+                    e2.printStackTrace();
+                }
+                if (count_stu == 10){
+                    count_stu = 0;
+                    //清空表
+                    String delete = "delete from choosestu";
+                    try {
+                        stmt.executeUpdate(delete);
+                    }catch (Exception exc){
+                        exc.printStackTrace();
+                    }
+
+                }
+
+                //读取学生信息
+                String information = "select * from student where S_stuID='"+next_stuID+"'";
+                try {
+                    rs = stmt.executeQuery(information);
+                    if (rs.next()){
+                        name = rs.getString("S_name");
+                        System.out.println(name);
+                        maj = rs.getString("S_major");
+                        System.out.println(maj);
+                    }
+                    String select = "select * from queno where S_stuID='"+next_stuID+"'";
+                    rs = stmt.executeQuery(select);
+                    if (rs.next()){
+                        majNo = rs.getString("majNo");
+                        System.out.println(majNo);
+                        polNo = rs.getString("polNo");
+                        System.out.println(polNo);
+                        EngNo = rs.getString("EngNo");
+                        System.out.println(EngNo);
+
+                        ResultSet rs1, rs2;
+                        String selectMaj ="select M_content from majque where M_No = '"+majNo+"'";
+                        rs = stmt.executeQuery(selectMaj);
+                        if (rs.next()){
+                            maj_content = rs.getString("M_content");
+                            System.out.println(maj_content);
+                        }
+                        String selectEng ="select E_content from engque where E_No = '"+EngNo+"'";
+                        rs1 = stmt.executeQuery(selectEng);
+                        if (rs1.next()){
+                            eng_content = rs1.getString("E_content");
+                            System.out.println(eng_content);
+                        }
+                        String selectpol ="select P_content from polque where P_No = '"+polNo+"'";
+                        rs2 = stmt.executeQuery(selectpol);
+                        if (rs2.next()){
+                            pol_content = rs2.getString("P_content");
+                            System.out.println(pol_content);
+                        }
+                    }
+                } catch (SQLException ex) {
+                    ex.printStackTrace();
+                }
+
+                label6.setText(next_stuID);
+                label7.setText(name);
+                label8.setText(maj);
+                countque = 0;
+
+                try {
+                    group2 = InetAddress.getByName("224.0.0.2");//组播地址
+                    int port = 8888;
+                    mss2 = new MulticastSocket(port);
+                    mss2.joinGroup(group2);
+                    System.out.println("发送数据包启动！（启动时间" + new Date() + ")");
+                    String message2 = next_stuID;
+                    byte[] buffer2 = message2.getBytes();
+                    DatagramPacket dp2 = new DatagramPacket(buffer2, buffer2.length, group2, port);
+                    mss2.send(dp2);
+                    System.out.println("发送数据包给 " + group2 + ":" + port);
+                    Thread.sleep(1000);
+
+                    message2 = name;
+                    buffer2 = message2.getBytes();
+                    DatagramPacket dp3 = new DatagramPacket(buffer2, buffer2.length, group2, port);
+                    mss2.send(dp3);
+                    System.out.println("发送数据包给 " + group2 + ":" + port);
+                    Thread.sleep(1000);
+
+                    message2 = maj;
+                    buffer2 = message2.getBytes();
+                    DatagramPacket dp4 = new DatagramPacket(buffer2, buffer2.length, group2, port);
+                    mss2.send(dp4);
+                    System.out.println("发送数据包给 " + group2 + ":" + port);
+                    Thread.sleep(1000);
                 } catch (Exception e2) {
-                    // TODO: handle exception
+                    e2.printStackTrace();
+                } finally {
+                    try {
+                        if (mss2 != null) {
+                            mss2.leaveGroup(group2);
+                            mss2.close();
+                        }
+                    } catch (Exception e2) {
+                        // TODO: handle exception
+                    }
                 }
             }
-            countque++;
-        }
-    });
+        });
+        //下一题
+        bt2.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                //System.out.println(rs);
+                //String select2 = "select * from queno where S_stuID='"+label6.getText()+"'";
+//            try {
+                //rs = stmt.executeQuery(select2);
+                switch (countque) {
+                    case 0:
+                        System.out.println(maj_content);
+                        que_content = maj_content;
+                        label9.setText(que_content);
+                        try {
+                            group = InetAddress.getByName("224.0.0.3");//组播地址
+                            int port = 8888;
+                            mss = new MulticastSocket(port);
+                            mss.joinGroup(group);
+                            System.out.println("发送数据包启动！（启动时间" + new Date() + ")");
+                            String message = que_content;
+                            //message = "12345";
+                            byte[] buffer = message.getBytes();
+                            DatagramPacket dp = new DatagramPacket(buffer, buffer.length, group, port);
+                            mss.send(dp);
+                            System.out.println("发送数据包给 " + group + ":" + port);
+                            Thread.sleep(1000);
+                        } catch (Exception e1) {
+                            e1.printStackTrace();
+                        } finally {
+                            try {
+                                if (mss != null) {
+                                    mss.leaveGroup(group);
+                                    mss.close();
+                                }
+                            } catch (Exception e2) {
+                                // TODO: handle exception
+                            }
+                        }
+                        countque++;
+                        break;
+                    case 1:
+                        System.out.println(pol_content);
+                        que_content = pol_content;
+                        label9.setText(que_content);
+                        try {
+                            group = InetAddress.getByName("224.0.0.3");//组播地址
+                            int port = 8888;
+                            mss = new MulticastSocket(port);
+                            mss.joinGroup(group);
+                            System.out.println("发送数据包启动！（启动时间" + new Date() + ")");
+                            String message = que_content;
+                            byte[] buffer = message.getBytes();
+                            DatagramPacket dp = new DatagramPacket(buffer, buffer.length, group, port);
+                            mss.send(dp);
+                            System.out.println("发送数据包给 " + group + ":" + port);
+                            Thread.sleep(1000);
+                        } catch (Exception e1) {
+                            e1.printStackTrace();
+                        } finally {
+                            try {
+                                if (mss != null) {
+                                    mss.leaveGroup(group);
+                                    mss.close();
+                                }
+                            } catch (Exception e2) {
+                                // TODO: handle exception
+                            }
+                        }
+                        countque++;
+                        break;
+                    case 2:
+                        System.out.println(eng_content);
+                        que_content = eng_content;
+                        label9.setText(que_content);
+                        try {
+                            group = InetAddress.getByName("224.0.0.3");//组播地址
+                            int port = 8888;
+                            mss = new MulticastSocket(port);
+                            mss.joinGroup(group);
+                            System.out.println("发送数据包启动！（启动时间" + new Date() + ")");
+                            String message = que_content;
+                            byte[] buffer = message.getBytes();
+                            DatagramPacket dp = new DatagramPacket(buffer, buffer.length, group, port);
+                            mss.send(dp);
+                            System.out.println("发送数据包给 " + group + ":" + port);
+                            Thread.sleep(1000);
+                        } catch (Exception e1) {
+                            e1.printStackTrace();
+                        } finally {
+                            try {
+                                if (mss != null) {
+                                    mss.leaveGroup(group);
+                                    mss.close();
+                                }
+                            } catch (Exception e2) {
+                                // TODO: handle exception
+                            }
+                        }
+                        countque++;
+                        break;
+                    default:
+                        System.out.println("end");
+                }
+            }
+        });
+
 
     //提交分数
     bt1.addActionListener(new ActionListener() {
@@ -426,10 +442,10 @@ public class teacherMainWidget {
                             String update_flag ="update student set S_flag = 1  where S_stuID = '"+label6.getText()+"'";
                         stmt.executeUpdate(add_grade);
                         stmt.executeUpdate(update_flag);
-                            System.out.println("分数提交成功");
+                            JOptionPane.showMessageDialog(null,"分数提交成功","提示",JOptionPane.PLAIN_MESSAGE);
                         }
                         else{
-                            System.out.println("已打分");
+                            JOptionPane.showMessageDialog(null,"已打分","提示",JOptionPane.PLAIN_MESSAGE);
                         }
                     }
 
@@ -441,34 +457,5 @@ public class teacherMainWidget {
         }
     });
 }
-
-//    public void server() throws Exception{
-//        InetAddress group = InetAddress.getByName("224.0.0.2");//组播地址
-//        int port = 8888;
-//        MulticastSocket mss = null;;
-//
-//        try {
-//            mss = new MulticastSocket(port);
-//            mss.joinGroup(group);
-//            System.out.println("发送数据包启动！（启动时间"+new Date()+")");
-//            String message = que_content;
-//            byte[] buffer = message.getBytes();
-//            DatagramPacket dp = new DatagramPacket(buffer, buffer.length,group,port);
-//            mss.send(dp);
-//            System.out.println("发送数据包给 "+group+":"+port);
-//            Thread.sleep(1000);
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }finally{
-//            try {
-//                if(mss!=null){
-//                    mss.leaveGroup(group);
-//                    mss.close();
-//                }
-//            } catch (Exception e2) {
-//                // TODO: handle exception
-//            }
-//        }
-//    }
 }
 

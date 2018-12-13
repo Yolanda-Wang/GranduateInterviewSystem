@@ -38,6 +38,23 @@ public class teacherManagement {
 	    teacherManagement w1=new teacherManagement();
     }
 public teacherManagement() {
+    try {
+        System.out.println("导师信息：");
+        Class.forName("com.mysql.jdbc.Driver");
+        System.out.println("加载驱动成功!");
+    } catch (ClassNotFoundException var2) {
+        System.out.println("加载驱动失败!");
+        var2.printStackTrace();
+    }
+
+    try {
+        con = DriverManager.getConnection(url, username, password);
+        stmt = con.createStatement();
+        System.out.println("导师信息数据库连接成功");
+    } catch (SQLException var1) {
+        System.out.println("导师信息数据库连接失败!");
+    }
+
 	//初始化一个jframe
     JFrame frame = new JFrame("导师信息管理");
 
@@ -45,32 +62,14 @@ public teacherManagement() {
     JMenuBar menuBar = new JMenuBar();
 
     //初始化菜单
-    JMenu menu1 = new JMenu("操作(O)");
-    menu1.setMnemonic('O');  
-    menu1.setFont(new Font("宋体",Font.PLAIN,16));
-    JMenu menu2 = new JMenu("帮助(H)");
-    menu2.setMnemonic('H'); 
-    menu2.setFont(new Font("宋体",Font.PLAIN,16));
-    JMenu menu3 = new JMenu("查询(Q)");
-    menu3.setMnemonic('Q'); 
-    menu3.setFont(new Font("宋体",Font.PLAIN,16));
-    JMenu menu4 = new JMenu("统计(S)");
-    menu4.setMnemonic('S'); 
-    menu4.setFont(new Font("宋体",Font.PLAIN,16));
-    JMenu menu5 = new JMenu("维护(M)");
-    menu5.setMnemonic('M'); 
-    menu5.setFont(new Font("宋体",Font.PLAIN,16));
+
     //初始化一个panel
     JPanel panel = new JPanel();
 
     //初始化一个容器
     Container container = frame.getContentPane();
     //把菜单添加到菜单栏
-    menuBar.add(menu1);
-    menuBar.add(menu2);
-    menuBar.add(menu3);
-    menuBar.add(menu4);
-    menuBar.add(menu5);
+
     //设置菜单栏
     frame.setJMenuBar(menuBar);
     
@@ -154,7 +153,7 @@ public teacherManagement() {
     }
     model[0].setDataVector(data, names); // 设置模型中的元素，它会自动显示在列表中
     JScrollPane jsp = new JScrollPane(table); // 用列表创建可滚动的Panel，把这个Panel添加到窗口中
-    jsp.setSize(500, 150);
+    jsp.setSize(500, 250);
     jsp.setLocation(0, 180);
     panel.add(jsp);
     table.setBounds(0,190,500,150);
@@ -224,7 +223,10 @@ public teacherManagement() {
     //把panel添加到容器
     container.add(panel);
 
-
+    JMenu menu2 = new JMenu("帮助(H)");
+    menu2.setMnemonic('H');
+    menu2.setFont(new Font("宋体",Font.PLAIN,16));
+    menuBar.add(menu2);
     //添加信息
     bt1.addActionListener(new ActionListener() {
         @Override
@@ -248,7 +250,7 @@ public teacherManagement() {
                 }
             }
             else{
-                System.out.println("信息不符合规范");
+                JOptionPane.showMessageDialog(null,"信息不符合规范","提示",JOptionPane.PLAIN_MESSAGE);
             }
         }
     });
@@ -477,7 +479,7 @@ public teacherManagement() {
                             table.setModel(model[0]);
                         }
                         else{
-                            System.out.println("学号与姓名不匹配");
+                            System.out.println("工号与姓名不匹配");
                         }
                     }
                 } catch (SQLException e2) {
@@ -518,16 +520,19 @@ public teacherManagement() {
     });
 
     //设置关闭方式
-    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    frame.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 
 
     //设置大小
     frame.setSize(800,500);
 
     //设置位置
-    frame.setLocation(100, 100);
+    frame.setLocation(500, 300);
 
     //设置可见性
     frame.setVisible(true);
+
+    //设置窗口大小不可变
+    frame.setResizable(false);
 }
 }
